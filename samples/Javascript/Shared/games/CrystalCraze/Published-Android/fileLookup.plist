@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>filenames</key>
+	<dict>
+		<key>sounds/click.wav</key>
+		<string>sounds/click.ogg</string>
+		<key>sounds/endgame.wav</key>
+		<string>sounds/endgame.ogg</string>
+		<key>sounds/gem-0.wav</key>
+		<string>sounds/gem-0.ogg</string>
+		<key>sounds/gem-1.wav</key>
+		<string>sounds/gem-1.ogg</string>
+		<key>sounds/gem-2.wav</key>
+		<string>sounds/gem-2.ogg</string>
+		<key>sounds/gem-3.wav</key>
+		<string>sounds/gem-3.ogg</string>
+		<key>sounds/gem-4.wav</key>
+		<string>sounds/gem-4.ogg</string>
+		<key>sounds/miss.wav</key>
+		<string>sounds/miss.ogg</string>
+		<key>sounds/powerup.wav</key>
+		<string>sounds/powerup.ogg</string>
+		<key>sounds/tap-0.wav</key>
+		<string>sounds/tap-0.ogg</string>
+		<key>sounds/tap-1.wav</key>
+		<string>sounds/tap-1.ogg</string>
+		<key>sounds/tap-2.wav</key>
+		<string>sounds/tap-2.ogg</string>
+		<key>sounds/tap-3.wav</key>
+		<string>sounds/tap-3.ogg</string>
+		<key>sounds/timer.wav</key>
+		<string>sounds/timer.ogg</string>
+		<key>crystals.pvr.ccz</key>
+		<string>crystals.pvr</string>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>version</key>
+		<integer>1</integer>
+	</dict>
+</dict>
+</plist>

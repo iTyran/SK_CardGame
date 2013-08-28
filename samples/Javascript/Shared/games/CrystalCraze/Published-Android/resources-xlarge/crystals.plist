@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>crystals/0.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 641}, {156, 154}}</string>
+			<key>offset</key>
+			<string>{1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{3, 3}, {156, 154}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{157, 325}, {156, 154}}</string>
+			<key>offset</key>
+			<string>{1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{3, 3}, {156, 154}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 325}, {156, 154}}</string>
+			<key>offset</key>
+			<string>{1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{3, 3}, {156, 154}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 483}, {156, 154}}</string>
+			<key>offset</key>
+			<string>{1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{3, 3}, {156, 154}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 799}, {156, 154}}</string>
+			<key>offset</key>
+			<string>{1, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{3, 3}, {156, 154}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/bomb-explo-inner.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{311, 157}, {146, 138}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{7, 11}, {146, 138}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/bomb-explo.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{163, 157}, {146, 148}}</string>
+			<key>offset</key>
+			<string>{0, 1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{7, 5}, {146, 148}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/bomb-hi.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{319, 1}, {118, 116}}</string>
+			<key>offset</key>
+			<string>{0, -1}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{21, 23}, {118, 116}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/bomb-light.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 163}, {160, 160}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {160, 160}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/bomb.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{163, 1}, {154, 154}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{3, 3}, {154, 154}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/hint.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {160, 160}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {160, 160}}</string>
+			<key>sourceSize</key>
+			<string>{160, 160}</string>
+		</dict>
+		<key>crystals/sparkle.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 957}, {60, 60}}</string>
+			<key>offset</key>
+			<string>{-1, 1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 1}, {60, 60}}</string>
+			<key>sourceSize</key>
+			<string>{64, 64}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{1024, 1024}</string>
+		<key>textureFileName</key>
+		<string>crystals.pvr</string>
+	</dict>
+</dict>
+</plist>
