@@ -27,6 +27,18 @@
 // Not needed by cocos2d-html5
 
 require("jsb.js");
+require("common.js");
+require("socket.js");
+require("login.js");
 
-log("hello");
+try{
+	Socket.getInstance().init("ws://localhost:8082/echo");
+	director = cc.Director.getInstance();
+	director.runWithScene(LoginLayer.scene());
+
+	var winSize = VisibleRect.winSize();
+	cc.log("winSize width: " + winSize.width + " height: " + winSize.height);
+}catch(e){
+	cc.log(e);
+}
 

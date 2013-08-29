@@ -166,6 +166,15 @@
 		A922754C1517C094001B78AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A922754B1517C094001B78AA /* UIKit.framework */; };
 		A922754E1517C094001B78AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A922754D1517C094001B78AA /* Foundation.framework */; };
 		A92275501517C094001B78AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A922754F1517C094001B78AA /* CoreGraphics.framework */; };
+		BC7D082017CDAB49009313C5 /* login.js in Sources */ = {isa = PBXBuildFile; fileRef = BC7D081F17CDAB49009313C5 /* login.js */; };
+		BC7D082117CDAB69009313C5 /* login.js in Resources */ = {isa = PBXBuildFile; fileRef = BC7D081F17CDAB49009313C5 /* login.js */; };
+		BC7D082517CDCA5D009313C5 /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7D082317CDCA5D009313C5 /* card.png */; };
+		BC7D082617CDCA5D009313C5 /* orange_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7D082417CDCA5D009313C5 /* orange_edit.png */; };
+		BC7D082817CDCA6A009313C5 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = BC7D082717CDCA6A009313C5 /* ipad */; };
+		BC7D082C17CDCE35009313C5 /* socket.js in Sources */ = {isa = PBXBuildFile; fileRef = BC7D082B17CDCE35009313C5 /* socket.js */; };
+		BC7D082D17CDCE4B009313C5 /* socket.js in Resources */ = {isa = PBXBuildFile; fileRef = BC7D082B17CDCE35009313C5 /* socket.js */; };
+		BC7D082F17CDDFCF009313C5 /* common.js in Sources */ = {isa = PBXBuildFile; fileRef = BC7D082E17CDDFCF009313C5 /* common.js */; };
+		BC7D083017CDDFE3009313C5 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = BC7D082E17CDDFCF009313C5 /* common.js */; };
 		D446FDA316102D7D000ADA7B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA216102D7D000ADA7B /* Default.png */; };
 		D446FDA516102D82000ADA7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA416102D82000ADA7B /* Default@2x.png */; };
 		D446FDA716102D86000ADA7B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA616102D86000ADA7B /* Default-568h@2x.png */; };
@@ -489,6 +498,13 @@
 		A922754B1517C094001B78AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A922754D1517C094001B78AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A922754F1517C094001B78AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BC7D081F17CDAB49009313C5 /* login.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = login.js; path = ../Resources/login.js; sourceTree = "<group>"; };
+		BC7D082317CDCA5D009313C5 /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
+		BC7D082417CDCA5D009313C5 /* orange_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange_edit.png; sourceTree = "<group>"; };
+		BC7D082717CDCA6A009313C5 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ipad; path = ../Resources/ipad; sourceTree = "<group>"; };
+		BC7D082B17CDCE35009313C5 /* socket.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = socket.js; path = ../Resources/socket.js; sourceTree = "<group>"; };
+		BC7D082E17CDDFCF009313C5 /* common.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = common.js; path = ../Resources/common.js; sourceTree = "<group>"; };
+		BCF3364217CEE691008CE0E7 /* AppMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacros.h; sourceTree = "<group>"; };
 		D446FDA216102D7D000ADA7B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D446FDA416102D82000ADA7B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D446FDA616102D86000ADA7B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -533,6 +549,10 @@
 		15628F5B15F0F5C2000CF24B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BC7D082E17CDDFCF009313C5 /* common.js */,
+				BC7D082B17CDCE35009313C5 /* socket.js */,
+				BC7D082717CDCA6A009313C5 /* ipad */,
+				BC7D081F17CDAB49009313C5 /* login.js */,
 				1AE4B40016D1FECD003C6D1C /* main.js */,
 				D446FDA616102D86000ADA7B /* Default-568h@2x.png */,
 				D446FDA216102D7D000ADA7B /* Default.png */,
@@ -1051,6 +1071,7 @@
 				D45446CC156DE73F00887EB5 /* ios */,
 				1AB87018175E07C6005D39BF /* libwebsockets */,
 				A922753E1517C094001B78AA /* Products */,
+				BC7D082217CDCA5D009313C5 /* ipad */,
 				15628F5B15F0F5C2000CF24B /* Resources */,
 			);
 			sourceTree = "<group>";
@@ -1082,6 +1103,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BC7D082217CDCA5D009313C5 /* ipad */ = {
+			isa = PBXGroup;
+			children = (
+				BC7D082317CDCA5D009313C5 /* card.png */,
+				BC7D082417CDCA5D009313C5 /* orange_edit.png */,
+			);
+			name = ipad;
+			path = ../Resources/ipad;
+			sourceTree = "<group>";
+		};
 		D45446CC156DE73F00887EB5 /* ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -1099,6 +1130,7 @@
 		D4545214156E28EF00887EB5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BCF3364217CEE691008CE0E7 /* AppMacros.h */,
 				D4545215156E28EF00887EB5 /* AppDelegate.cpp */,
 				D4545216156E28EF00887EB5 /* AppDelegate.h */,
 			);
@@ -1173,6 +1205,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC7D083017CDDFE3009313C5 /* common.js in Resources */,
+				BC7D082D17CDCE4B009313C5 /* socket.js in Resources */,
+				BC7D082117CDAB69009313C5 /* login.js in Resources */,
 				1AA51AEB16F71C3D000FDF05 /* jsb_chipmunk_constants.js in Resources */,
 				1AA51AEC16F71C3D000FDF05 /* jsb_cocos2d_constants.js in Resources */,
 				1AA51AED16F71C3D000FDF05 /* jsb_opengl_constants.js in Resources */,
@@ -1191,6 +1226,9 @@
 				D446FDA716102D86000ADA7B /* Default-568h@2x.png in Resources */,
 				15A3D3231682F0A0002FB0C5 /* README in Resources */,
 				15A3D38D1682F0B6002FB0C5 /* CMakeLists.txt in Resources */,
+				BC7D082517CDCA5D009313C5 /* card.png in Resources */,
+				BC7D082617CDCA5D009313C5 /* orange_edit.png in Resources */,
+				BC7D082817CDCA6A009313C5 /* ipad in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,6 +1375,9 @@
 				1AB87011175E0759005D39BF /* CCSkeletonAnimation.cpp in Sources */,
 				1AB87014175E0768005D39BF /* WebSocket.cpp in Sources */,
 				1AB87017175E0773005D39BF /* jsb_websocket.cpp in Sources */,
+				BC7D082017CDAB49009313C5 /* login.js in Sources */,
+				BC7D082C17CDCE35009313C5 /* socket.js in Sources */,
+				BC7D082F17CDDFCF009313C5 /* common.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1435,7 +1476,7 @@
 					"$(SRCROOT)/../../../extensions",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../scripting/javascript/spidermonkey-ios/lib\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
@@ -1447,7 +1488,7 @@
 					"-ljs_static",
 				);
 				PRODUCT_NAME = KaPai;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1481,7 +1522,7 @@
 					"$(SRCROOT)/../../../extensions",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../scripting/javascript/spidermonkey-ios/lib\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
@@ -1493,7 +1534,7 @@
 					"-ljs_static",
 				);
 				PRODUCT_NAME = KaPai;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

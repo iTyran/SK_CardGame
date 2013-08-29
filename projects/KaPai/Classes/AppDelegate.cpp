@@ -14,6 +14,8 @@
 #include "XMLHTTPRequest.h"
 #include "jsb_websocket.h"
 
+#include "AppMacros.h"
+
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -31,6 +33,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
+    
+    CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
+    pEGLView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionFixedHeight);
     
     // turn on display FPS
     pDirector->setDisplayStats(true);
