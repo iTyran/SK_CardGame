@@ -22,10 +22,10 @@ var Socket = cc.Class.extend({
 	onmessage:function(evt){
 		try{
 			var json = JSON.parse(evt.data);			
-			cc.NotificationCenter.getInstance().postNotification("socket_msg", json);		
+			cc.NotificationCenter.getInstance().postNotification(WS.MSG, json);
 		}catch(e){
 			cc.log("warning:" + e);
-			cc.NotificationCenter.getInstance().postNotification("socket_msg", evt.data);					
+			cc.NotificationCenter.getInstance().postNotification(WS.MSG, evt.data);					
 		}
 	},
 	send:function(data){
@@ -35,10 +35,10 @@ var Socket = cc.Class.extend({
 			this._webSocket.send(JSON.stringify(data));
 	},
 	addObserver:function(target, selector){
-		cc.NotificationCenter.getInstance().addObserver(target, selector, "socket_msg", null);
+		cc.NotificationCenter.getInstance().addObserver(target, selector, WS.MSG, null);
 	},
 	removeObserver:function(target){
-		cc.NotificationCenter.getInstance().removeObserver(target, "socket_msg");
+		cc.NotificationCenter.getInstance().removeObserver(target, WS.MSG);
 	}
 });
 

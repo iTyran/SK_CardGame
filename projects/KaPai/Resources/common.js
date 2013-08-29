@@ -3,6 +3,12 @@
 var IMG = IMG || {};
 
 IMG.loginEditBox = "orange_edit.png";
+IMG.loginBackGround = "login_background.png";
+
+var WS = WS || {};
+
+WS.MSG = "web_socket";
+WS.LOGIN = "CM_LOGIN";
 
 
 cc.s_sharedNotificationCenter = null;
