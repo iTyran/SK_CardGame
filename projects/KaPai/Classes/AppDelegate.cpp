@@ -36,6 +36,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
     pEGLView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionFixedHeight);
+    vector<string> searchPath;
+    searchPath.push_back(mediumResource.directory);
+    CCFileUtils::sharedFileUtils()->setSearchPaths(searchPath);
+    
     
     // turn on display FPS
     pDirector->setDisplayStats(true);

@@ -5,10 +5,23 @@ var IMG = IMG || {};
 IMG.loginEditBox = "orange_edit.png";
 IMG.loginBackGround = "login_background.png";
 
+IMG.loading = "loading.png";
+IMG.loadingBg = "loading_bg.png";
+IMG.editBox = "edit_box.png";
+IMG.loginBox = "login_box.png";
+IMG.btnLogin = "btn_login.png";
+IMG.btnLoginPress = "btn_login_press.png";
+IMG.btnRegister = "btn_register.png";
+IMG.btnRegisterPress = "btn_register_press.png";
+IMG.btnCancel = "btn_cancel.png";
+IMG.btnCancelPress = "btn_cancel_press.png";
+
+
 var WS = WS || {};
 
 WS.MSG = "web_socket";
 WS.LOGIN = "CM_LOGIN";
+WS.REGISTER = "CM_REGISTER";
 
 
 cc.s_sharedNotificationCenter = null;
@@ -267,4 +280,32 @@ var VisibleRect = {
 		return s_ptTopLeft;
 	}
 };
+
+
+
+var LoadingLayer = cc.Layer.extend({
+	init:function(){
+		var loadingBg = cc.Sprite.create(IMG.loadingBg);
+		loadingBg.setPosition(VisibleRect.center());
+		this.addChild(loadingBg);
+
+		var loading = cc.Sprite.create(IMG.loading);
+		loading.setPosition(VisibleRect.center());
+		this.addChild(loading);
+
+		var action = cc.RotateBy.create(2, 360);
+		loading.runAction(cc.RepeatForever.create(action));
+	},
+	onEnter:function(){
+		cc.registerTargettedDelegate(cc.MENU_HANDLER_PRIORITY, true, this);
+		this._super();
+	},
+	onExit:function(){
+		cc.unregisterTouchDelegate(this);
+		this._super();
+	},
+	onTouchBegan:function(){
+		return true;
+	}
+});
 

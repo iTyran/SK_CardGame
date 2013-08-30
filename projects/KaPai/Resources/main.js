@@ -28,11 +28,15 @@
 
 require("jsb.js");
 require("common.js");
+require("gamemanager.js");
 require("socket.js");
 require("login.js");
+require("gamescene.js");
 
 try{
-	Socket.getInstance().init("ws://localhost:8082/echo");
+	var uri = "172.100.104.225:1234";
+	// var uri = "ws://localhost:8082/echo;
+	Socket.getInstance().setUri(uri);
 	director = cc.Director.getInstance();
 	director.runWithScene(LoginLayer.scene());
 

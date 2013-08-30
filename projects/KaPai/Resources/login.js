@@ -1,9 +1,5 @@
 // login.js
 
-var GameManager = cc.Class.extend({
-	// getUser
-});
-
 var RegisterLayer = cc.Layer.extend({
 	_loginName: null,
 	_loginPwd: null,
@@ -16,69 +12,65 @@ var RegisterLayer = cc.Layer.extend({
 		return true;
 	},
 	initLayer:function(){
-		// var backGround = cc.Sprite.create(IMG.loginBackGround);
-		// this.addChild(backGround);
-
-		var lblLoginName = cc.LabelTTF.create("Login Id:", "", 50);
-		var lblLoginPwd = cc.LabelTTF.create("Login Pwd:", "", 50);
-		var lblLoginPwdConfirm = cc.LabelTTF.create("Confirm Pwd:", "", 50);
-		var lblEmail = cc.LabelTTF.create("Email:", "", 50);
+		var backGround = cc.Sprite.create(IMG.loginBackGround);
+		backGround.setPosition(VisibleRect.center());
+		this.addChild(backGround);
 
 		var editBoxSize = cc.size(350, 80);
 		this._loginName = cc.EditBox.create(
 			editBoxSize,
-			cc.Scale9Sprite.create(IMG.loginEditBox),
-			cc.Scale9Sprite.create(IMG.loginEditBox)
+			cc.Scale9Sprite.create(IMG.editBox),
+			cc.Scale9Sprite.create(IMG.editBox)
 		);
 		this._loginPwd = cc.EditBox.create(
 			editBoxSize,
-			cc.Scale9Sprite.create(IMG.loginEditBox),
-			cc.Scale9Sprite.create(IMG.loginEditBox)
+			cc.Scale9Sprite.create(IMG.editBox),
+			cc.Scale9Sprite.create(IMG.editBox)
 		);
 		this._loginPwdConfim = cc.EditBox.create(
 			editBoxSize,
-			cc.Scale9Sprite.create(IMG.loginEditBox),
-			cc.Scale9Sprite.create(IMG.loginEditBox)
+			cc.Scale9Sprite.create(IMG.editBox),
+			cc.Scale9Sprite.create(IMG.editBox)
 		);
 		this._email = cc.EditBox.create(
 			editBoxSize,
-			cc.Scale9Sprite.create(IMG.loginEditBox),
-			cc.Scale9Sprite.create(IMG.loginEditBox)
+			cc.Scale9Sprite.create(IMG.editBox),
+			cc.Scale9Sprite.create(IMG.editBox)
 		);
 
-		lblLoginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-200, 150)));
-		lblLoginPwd.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-200, 50)));
-		lblLoginPwdConfirm.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-200, -50)));
-		lblEmail.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-200, -150)));
+		this._loginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 150)));
+		this._loginPwd.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 50)));
+		this._loginPwdConfim.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, -50)));
+		this._email.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, -150)));
 
-		this._loginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(150, 150)));
-		this._loginPwd.setPosition(cc.pAdd(VisibleRect.center(), cc.p(150, 50)));
-		this._loginPwdConfim.setPosition(cc.pAdd(VisibleRect.center(), cc.p(150, -50)));
-		this._email.setPosition(cc.pAdd(VisibleRect.center(), cc.p(150, -150)));
+		this._loginName.setPlaceHolder("Login Name");
+		this._loginPwd.setPlaceHolder("Password");
+		this._loginPwdConfim.setPlaceHolder("Pwd Confirm");
+		this._email.setPlaceHolder("Email");
 
 		var layer = cc.Layer.create();
-		layer.setPosition(cc.p(0, 0));
+		layer.setPosition(cc.p(0, 100));
 		this.addChild(layer);
-		
-		layer.addChild(lblLoginName);
-		layer.addChild(lblLoginPwd);
-		layer.addChild(lblLoginPwdConfirm);
-		layer.addChild(lblEmail);
 
+		var loginBox = cc.Scale9Sprite.create(IMG.loginBox);
+		loginBox.setContentSize(cc.size(550, 450));
+		loginBox.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 0)));
+		layer.addChild(loginBox);
+		
 		layer.addChild(this._loginName);
 		layer.addChild(this._loginPwd);
 		layer.addChild(this._loginPwdConfim);
 		layer.addChild(this._email);
-
-		var menuRegister = cc.MenuItemFont.create("Register", this.callRegister, this);
-		var menuReturn = cc.MenuItemFont.create("Return", function(){
+		
+		var itemImgRegister = cc.MenuItemImage.create(IMG.btnRegister, IMG.btnRegisterPress, this.callRegister, this);
+		var itemImgCancel = cc.MenuItemImage.create(IMG.btnCancel, IMG.btncancelPress, function(){
 			cc.Director.getInstance().replaceScene(LoginLayer.scene());
 		}, this);
 		
-		menuRegister.setPosition(cc.pAdd(VisibleRect.center(), cc.p(- 200, -230)));
-		menuReturn.setPosition(cc.pAdd(VisibleRect.center(), cc.p(200, -230)));
+		itemImgRegister.setPosition(cc.pAdd(VisibleRect.center(), cc.p(- 200, -230)));
+		itemImgCancel.setPosition(cc.pAdd(VisibleRect.center(), cc.p(200, -230)));
 
-		var menu = cc.Menu.create(menuRegister, menuReturn);
+		var menu = cc.Menu.create(itemImgRegister, itemImgCancel);
 		menu.setPosition(cc.p(0, 0));
 		this.addChild(menu);
 
@@ -89,10 +81,12 @@ var RegisterLayer = cc.Layer.extend({
 		user.Password = this._loginPwd.getText();
 		user.Email = this._email.getText();
 
-		if (user.Password != this._loginPwdConfim.getText()){
+		if (!user.Username || !user.Password){
+			cc.log("username or password is not null !");
+		}else if (user.Password != this._loginPwdConfim.getText()){
 			cc.log("password confirm !!!");
 		}else{
-			cc.log("menu login ..");
+			Socket.getInstance().send(WS.REGISTER, user);
 		}
 	}
 });
@@ -106,55 +100,73 @@ var LoginLayer = cc.Layer.extend({
 		if (this._super()){
 			this.winSize = cc.Director.getInstance().getWinSize();
 			this.initLayer();
+
+			if(Socket.getInstance().init(this)){
+				Gm.getInstance().loading(this);				
+			}
 		}
-		cc.log("login layer init ...");
 		return true;
 	},
+	onOpen:function(){
+		cc.log("login on open .");
+		Gm.getInstance().unLoading();
+
+		// get user cache
+		var user = Gm.getInstance().getCacheLoginUser();
+		this._loginName.setText(user.Username);
+		this._loginPwd.setText(user.Password);
+	},
+	onError:function(){
+		cc.log("login on error .");		
+	},
 	initLayer:function(){
-		// var backGround = cc.Sprite.create("cancel.png");
-		// this.addChild(backGround);
-		
-		var labelLoginName = cc.LabelTTF.create("Login Id:", "", 50);
-		var labelLoginPwd = cc.LabelTTF.create("Login Pwd:", "", 50);
+		var backGround = cc.Sprite.create(IMG.loginBackGround);
+		backGround.setPosition(VisibleRect.center());
+		this.addChild(backGround);
 
-		labelLoginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-200, 150)));			
-		labelLoginPwd.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-200, 50)));
+		var layer = cc.Layer.create();
+		layer.setPosition(cc.p(0, 0));
+		this.addChild(layer);
 
-		this.addChild(labelLoginName);
-		this.addChild(labelLoginPwd);
+		var loginBox = cc.Sprite.create(IMG.loginBox);
+		loginBox.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 100)));
+		layer.addChild(loginBox);		
 		
 		var boxSize = cc.size(350, 80);
 		this._loginName = cc.EditBox.create(
 			boxSize,
-			cc.Scale9Sprite.create(IMG.loginEditBox),
-			cc.Scale9Sprite.create(IMG.loginEditBox));
+			cc.Scale9Sprite.create(IMG.editBox),
+			cc.Scale9Sprite.create(IMG.editBox));
 
 
 		this._loginPwd = cc.EditBox.create(
 			boxSize,
-			cc.Scale9Sprite.create(IMG.loginEditBox),
-			cc.Scale9Sprite.create(IMG.loginEditBox)
+			cc.Scale9Sprite.create(IMG.editBox),
+			cc.Scale9Sprite.create(IMG.editBox)
 		);
 		this._loginPwd.setInputFlag(cc.EDITBOX_INPUT_FLAG_PASSWORD);
 
+		// this._loginName.setPlaceholderFontColor(cc.c3b(255, 0, 0));
+		this._loginName.setPlaceHolder("Login Name");
+		this._loginPwd.setPlaceHolder("Password");
+
+		layer.addChild(this._loginName);
+		layer.addChild(this._loginPwd);
 		
-		this.addChild(this._loginName);			
-		this.addChild(this._loginPwd);
-		
-		this._loginPwd.setPosition(cc.pAdd(VisibleRect.center(), cc.p(150, 50)));
-		this._loginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(150, 150)));
-		
-		var itemLoginName = cc.MenuItemFont.create("Login", this.callLogin, this);
-		var itemRegister = cc.MenuItemFont.create("Register", function(){
+		this._loginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 170)));
+		this._loginPwd.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 30)));
+
+		var itemImgLoginName = cc.MenuItemImage.create(IMG.btnLogin, IMG.btnLoginPress, this.callLogin, this);
+		var itemImgLoginPwd = cc.MenuItemImage.create(IMG.btnRegister, IMG.btnRegisterPress, function(){
 			cc.Director.getInstance().replaceScene(RegisterLayer.scene());
 		}, this);
-		
-		itemLoginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-100, -80)));			
-		itemRegister.setPosition(cc.pAdd(VisibleRect.center(), cc.p(100, -80)));
+		itemImgLoginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-170, -200)));
+		itemImgLoginPwd.setPosition(cc.pAdd(VisibleRect.center(), cc.p(170, -200)));
 
-		var menu = cc.Menu.create(itemLoginName, itemRegister);
+		var menu = cc.Menu.create(itemImgLoginName, itemImgLoginPwd);
 		menu.setPosition(cc.p(0 ,0));
-		this.addChild(menu);
+		layer.addChild(menu);
+		
 	},
 	onEnter:function(){
 		this._super();
@@ -164,19 +176,26 @@ var LoginLayer = cc.Layer.extend({
 		this._super();
 		Socket.getInstance().removeObserver(this);
 	},
-	callLogin:function(){
+	getUserByEditBox:function(){
 		var user = {};
 		user.Username = this._loginName.getText();
 		user.Password = this._loginPwd.getText();
+		return user;
+	},
+	callLogin:function(){
+		var user = this.getUserByEditBox();
 		if (!user.Username || !user.Password){
 			cc.log("username or password is not null !");
-		}else{
-
+		}else{					
+			Socket.getInstance().send(WS.LOGIN, user);
 		}
-		Socket.getInstance().send(user);					
 	},
 	callSocket:function(obj){
-		cc.log("socket callback " + obj);
+		if (obj.Command == WS.LOGIN && obj.Return.Code == 0){
+			cc.log("login:" + obj.Return.Message);
+			Gm.getInstance().setCacheLoginUser(this.getUserByEditBox());
+			cc.Director.getInstance().replaceScene(GameLayer.scene());
+		}
 	}
 });
 
