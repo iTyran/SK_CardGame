@@ -156,8 +156,6 @@
 		1AB87014175E0768005D39BF /* WebSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AB87012175E0768005D39BF /* WebSocket.cpp */; };
 		1AB87017175E0773005D39BF /* jsb_websocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AB87015175E0773005D39BF /* jsb_websocket.cpp */; };
 		1AB8701E175E07C6005D39BF /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AB8701D175E07C6005D39BF /* libwebsockets.a */; };
-		1AE4B40316D1FECD003C6D1C /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = 1AE4B40016D1FECD003C6D1C /* main.js */; };
-		1AE4B40616D1FF4C003C6D1C /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 1AE4B40016D1FECD003C6D1C /* main.js */; };
 		A92275421517C094001B78AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92275411517C094001B78AA /* QuartzCore.framework */; };
 		A92275441517C094001B78AA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92275431517C094001B78AA /* OpenGLES.framework */; };
 		A92275461517C094001B78AA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92275451517C094001B78AA /* OpenAL.framework */; };
@@ -166,12 +164,19 @@
 		A922754C1517C094001B78AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A922754B1517C094001B78AA /* UIKit.framework */; };
 		A922754E1517C094001B78AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A922754D1517C094001B78AA /* Foundation.framework */; };
 		A92275501517C094001B78AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A922754F1517C094001B78AA /* CoreGraphics.framework */; };
-		BC49157317D06D5300A83A49 /* gamemanager.js in Sources */ = {isa = PBXBuildFile; fileRef = BC49157217D06D5300A83A49 /* gamemanager.js */; };
-		BC49157617D07C3600A83A49 /* gamescene.js in Sources */ = {isa = PBXBuildFile; fileRef = BC49157517D07C3600A83A49 /* gamescene.js */; };
-		BC7D082017CDAB49009313C5 /* login.js in Sources */ = {isa = PBXBuildFile; fileRef = BC7D081F17CDAB49009313C5 /* login.js */; };
+		BC0B8D3B17D3539200261EDD /* Common.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3517D3539200261EDD /* Common.js */; };
+		BC0B8D3C17D3539200261EDD /* GameManager.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3617D3539200261EDD /* GameManager.js */; };
+		BC0B8D3D17D3539200261EDD /* GameScene.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3717D3539200261EDD /* GameScene.js */; };
+		BC0B8D3E17D3539200261EDD /* Login.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3817D3539200261EDD /* Login.js */; };
+		BC0B8D3F17D3539200261EDD /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3917D3539200261EDD /* main.js */; };
+		BC0B8D4017D3539200261EDD /* Socket.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3A17D3539200261EDD /* Socket.js */; };
+		BC0B8D4117D353A700261EDD /* Common.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3517D3539200261EDD /* Common.js */; };
+		BC0B8D4217D353A700261EDD /* GameManager.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3617D3539200261EDD /* GameManager.js */; };
+		BC0B8D4317D353A700261EDD /* GameScene.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3717D3539200261EDD /* GameScene.js */; };
+		BC0B8D4417D353A700261EDD /* Login.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3817D3539200261EDD /* Login.js */; };
+		BC0B8D4517D353A700261EDD /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3917D3539200261EDD /* main.js */; };
+		BC0B8D4617D353A700261EDD /* Socket.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3A17D3539200261EDD /* Socket.js */; };
 		BC7D082817CDCA6A009313C5 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = BC7D082717CDCA6A009313C5 /* ipad */; };
-		BC7D082C17CDCE35009313C5 /* socket.js in Sources */ = {isa = PBXBuildFile; fileRef = BC7D082B17CDCE35009313C5 /* socket.js */; };
-		BC7D082F17CDDFCF009313C5 /* common.js in Sources */ = {isa = PBXBuildFile; fileRef = BC7D082E17CDDFCF009313C5 /* common.js */; };
 		D446FDA316102D7D000ADA7B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA216102D7D000ADA7B /* Default.png */; };
 		D446FDA516102D82000ADA7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA416102D82000ADA7B /* Default@2x.png */; };
 		D446FDA716102D86000ADA7B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA616102D86000ADA7B /* Default-568h@2x.png */; };
@@ -485,7 +490,6 @@
 		1AB87016175E0773005D39BF /* jsb_websocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsb_websocket.h; sourceTree = "<group>"; };
 		1AB8701B175E07C6005D39BF /* libwebsockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libwebsockets.h; sourceTree = "<group>"; };
 		1AB8701D175E07C6005D39BF /* libwebsockets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libwebsockets.a; sourceTree = "<group>"; };
-		1AE4B40016D1FECD003C6D1C /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = ../Resources/main.js; sourceTree = "<group>"; };
 		A922753D1517C094001B78AA /* KaPai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KaPai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92275411517C094001B78AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A92275431517C094001B78AA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -495,14 +499,15 @@
 		A922754B1517C094001B78AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A922754D1517C094001B78AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A922754F1517C094001B78AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		BC49157217D06D5300A83A49 /* gamemanager.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = gamemanager.js; path = ../Resources/gamemanager.js; sourceTree = "<group>"; };
-		BC49157517D07C3600A83A49 /* gamescene.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = gamescene.js; path = ../Resources/gamescene.js; sourceTree = "<group>"; };
-		BC7D081F17CDAB49009313C5 /* login.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = login.js; path = ../Resources/login.js; sourceTree = "<group>"; };
+		BC0B8D3517D3539200261EDD /* Common.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Common.js; path = ../Resources/Common.js; sourceTree = "<group>"; };
+		BC0B8D3617D3539200261EDD /* GameManager.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = GameManager.js; path = ../Resources/GameManager.js; sourceTree = "<group>"; };
+		BC0B8D3717D3539200261EDD /* GameScene.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = GameScene.js; path = ../Resources/GameScene.js; sourceTree = "<group>"; };
+		BC0B8D3817D3539200261EDD /* Login.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Login.js; path = ../Resources/Login.js; sourceTree = "<group>"; };
+		BC0B8D3917D3539200261EDD /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = ../Resources/main.js; sourceTree = "<group>"; };
+		BC0B8D3A17D3539200261EDD /* Socket.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Socket.js; path = ../Resources/Socket.js; sourceTree = "<group>"; };
 		BC7D082317CDCA5D009313C5 /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
 		BC7D082417CDCA5D009313C5 /* orange_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange_edit.png; sourceTree = "<group>"; };
 		BC7D082717CDCA6A009313C5 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ipad; path = ../Resources/ipad; sourceTree = "<group>"; };
-		BC7D082B17CDCE35009313C5 /* socket.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = socket.js; path = ../Resources/socket.js; sourceTree = "<group>"; };
-		BC7D082E17CDDFCF009313C5 /* common.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = common.js; path = ../Resources/common.js; sourceTree = "<group>"; };
 		BCF3364217CEE691008CE0E7 /* AppMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacros.h; sourceTree = "<group>"; };
 		D446FDA216102D7D000ADA7B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D446FDA416102D82000ADA7B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -548,13 +553,13 @@
 		15628F5B15F0F5C2000CF24B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BC49157517D07C3600A83A49 /* gamescene.js */,
-				BC49157217D06D5300A83A49 /* gamemanager.js */,
-				BC7D082E17CDDFCF009313C5 /* common.js */,
-				BC7D082B17CDCE35009313C5 /* socket.js */,
+				BC0B8D3517D3539200261EDD /* Common.js */,
+				BC0B8D3617D3539200261EDD /* GameManager.js */,
+				BC0B8D3717D3539200261EDD /* GameScene.js */,
+				BC0B8D3817D3539200261EDD /* Login.js */,
+				BC0B8D3917D3539200261EDD /* main.js */,
+				BC0B8D3A17D3539200261EDD /* Socket.js */,
 				BC7D082717CDCA6A009313C5 /* ipad */,
-				BC7D081F17CDAB49009313C5 /* login.js */,
-				1AE4B40016D1FECD003C6D1C /* main.js */,
 				D446FDA616102D86000ADA7B /* Default-568h@2x.png */,
 				D446FDA216102D7D000ADA7B /* Default.png */,
 				D446FDA416102D82000ADA7B /* Default@2x.png */,
@@ -1206,12 +1211,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC0B8D4117D353A700261EDD /* Common.js in Resources */,
+				BC0B8D4217D353A700261EDD /* GameManager.js in Resources */,
+				BC0B8D4317D353A700261EDD /* GameScene.js in Resources */,
+				BC0B8D4417D353A700261EDD /* Login.js in Resources */,
+				BC0B8D4517D353A700261EDD /* main.js in Resources */,
+				BC0B8D4617D353A700261EDD /* Socket.js in Resources */,
 				1AA51AEB16F71C3D000FDF05 /* jsb_chipmunk_constants.js in Resources */,
 				1AA51AEC16F71C3D000FDF05 /* jsb_cocos2d_constants.js in Resources */,
 				1AA51AED16F71C3D000FDF05 /* jsb_opengl_constants.js in Resources */,
 				1A4B645416EE24A80025FE93 /* jsb_cocos2d_extension.js in Resources */,
 				1A4B645516EE24A80025FE93 /* main.debug.js in Resources */,
-				1AE4B40616D1FF4C003C6D1C /* main.js in Resources */,
 				1A2757BE1697FBE500504026 /* jsb_chipmunk.js in Resources */,
 				1A2757BF1697FBE500504026 /* jsb_cocos2d.js in Resources */,
 				1A2757C01697FBE500504026 /* jsb_cocosbuilder.js in Resources */,
@@ -1331,7 +1341,6 @@
 				1A2758061698032000504026 /* js_bindings_system_registration.cpp in Sources */,
 				1A82F5F8169AC91400C4B13A /* LocalStorage.cpp in Sources */,
 				1A82F5F9169AC91400C4B13A /* LocalStorageAndroid.cpp in Sources */,
-				1AE4B40316D1FECD003C6D1C /* main.js in Sources */,
 				1A4B644916EE23A70025FE93 /* jsb_cocos2dx_auto_api.js in Sources */,
 				1A4B644A16EE23A70025FE93 /* jsb_cocos2dx_auto.cpp in Sources */,
 				1A4B644B16EE23A70025FE93 /* jsb_cocos2dx_extension_auto_api.js in Sources */,
@@ -1371,11 +1380,12 @@
 				1AB87011175E0759005D39BF /* CCSkeletonAnimation.cpp in Sources */,
 				1AB87014175E0768005D39BF /* WebSocket.cpp in Sources */,
 				1AB87017175E0773005D39BF /* jsb_websocket.cpp in Sources */,
-				BC7D082017CDAB49009313C5 /* login.js in Sources */,
-				BC7D082C17CDCE35009313C5 /* socket.js in Sources */,
-				BC7D082F17CDDFCF009313C5 /* common.js in Sources */,
-				BC49157317D06D5300A83A49 /* gamemanager.js in Sources */,
-				BC49157617D07C3600A83A49 /* gamescene.js in Sources */,
+				BC0B8D3B17D3539200261EDD /* Common.js in Sources */,
+				BC0B8D3C17D3539200261EDD /* GameManager.js in Sources */,
+				BC0B8D3D17D3539200261EDD /* GameScene.js in Sources */,
+				BC0B8D3E17D3539200261EDD /* Login.js in Sources */,
+				BC0B8D3F17D3539200261EDD /* main.js in Sources */,
+				BC0B8D4017D3539200261EDD /* Socket.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
