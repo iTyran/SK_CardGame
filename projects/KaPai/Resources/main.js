@@ -38,7 +38,7 @@ try{
 	// var uri = "ws://localhost:8082/echo;
 	Socket.getInstance().setUri(uri);
 	director = cc.Director.getInstance();
-	director.runWithScene(LoginLayer.scene());
+	director.runWithScene(GameLayer.scene());
 
 	var winSize = VisibleRect.winSize();
 	cc.log("winSize width: " + winSize.width + " height: " + winSize.height);
