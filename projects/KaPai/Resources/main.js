@@ -33,6 +33,7 @@ require("Socket.js");
 require("Login.js");
 require("GameScene.js");
 require("Instance.js");
+require("FightLayer.js");
 
 try{
 	var uri = "172.100.104.204:1234";

@@ -179,6 +179,8 @@
 		BC7D082817CDCA6A009313C5 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = BC7D082717CDCA6A009313C5 /* ipad */; };
 		BCB12BF817D48B61006261D2 /* Instance.js in Sources */ = {isa = PBXBuildFile; fileRef = BCB12BF717D48B61006261D2 /* Instance.js */; };
 		BCB12BF917D48B6B006261D2 /* Instance.js in Resources */ = {isa = PBXBuildFile; fileRef = BCB12BF717D48B61006261D2 /* Instance.js */; };
+		BCB12BFB17D4AA5C006261D2 /* FightLayer.js in Sources */ = {isa = PBXBuildFile; fileRef = BCB12BFA17D4AA5C006261D2 /* FightLayer.js */; };
+		BCB12BFC17D4AA65006261D2 /* FightLayer.js in Resources */ = {isa = PBXBuildFile; fileRef = BCB12BFA17D4AA5C006261D2 /* FightLayer.js */; };
 		D446FDA316102D7D000ADA7B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA216102D7D000ADA7B /* Default.png */; };
 		D446FDA516102D82000ADA7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA416102D82000ADA7B /* Default@2x.png */; };
 		D446FDA716102D86000ADA7B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA616102D86000ADA7B /* Default-568h@2x.png */; };
@@ -509,6 +511,7 @@
 		BC0B8D3A17D3539200261EDD /* Socket.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Socket.js; path = ../Resources/Socket.js; sourceTree = "<group>"; };
 		BC7D082717CDCA6A009313C5 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ipad; path = ../Resources/ipad; sourceTree = "<group>"; };
 		BCB12BF717D48B61006261D2 /* Instance.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Instance.js; path = ../Resources/Instance.js; sourceTree = "<group>"; };
+		BCB12BFA17D4AA5C006261D2 /* FightLayer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = FightLayer.js; path = ../Resources/FightLayer.js; sourceTree = "<group>"; };
 		BCF3364217CEE691008CE0E7 /* AppMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacros.h; sourceTree = "<group>"; };
 		D446FDA216102D7D000ADA7B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D446FDA416102D82000ADA7B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -554,6 +557,7 @@
 		15628F5B15F0F5C2000CF24B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BCB12BFA17D4AA5C006261D2 /* FightLayer.js */,
 				BCB12BF717D48B61006261D2 /* Instance.js */,
 				BC0B8D3517D3539200261EDD /* Common.js */,
 				BC0B8D3617D3539200261EDD /* GameManager.js */,
@@ -1202,6 +1206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB12BFC17D4AA65006261D2 /* FightLayer.js in Resources */,
 				BCB12BF917D48B6B006261D2 /* Instance.js in Resources */,
 				BC0B8D4117D353A700261EDD /* Common.js in Resources */,
 				BC0B8D4217D353A700261EDD /* GameManager.js in Resources */,
@@ -1379,6 +1384,7 @@
 				BC0B8D3F17D3539200261EDD /* main.js in Sources */,
 				BC0B8D4017D3539200261EDD /* Socket.js in Sources */,
 				BCB12BF817D48B61006261D2 /* Instance.js in Sources */,
+				BCB12BFB17D4AA5C006261D2 /* FightLayer.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
