@@ -91,6 +91,23 @@ var RegisterLayer = cc.Layer.extend({
 	}
 });
 
+var CreateUserLayer = cc.Layer.extend({
+	init:function(){
+		if (this._super()){
+			this.initLayer();
+		}
+		cc.log("");
+	},
+	initLayer:function(){
+		var backGround = cc.Sprite.create(IMG.loginBackGround);
+		backGround.setPosition(VisibleRect.center());
+		this.addChild(backGround);
+
+		var layer = cc.Layer.create();
+		
+	}
+});
+
 var LoginLayer = cc.Layer.extend({
 	winSize: null,
 	pCenter: null,
@@ -198,6 +215,7 @@ var LoginLayer = cc.Layer.extend({
 		}
 	}
 });
+
 
 LoginLayer.scene = function(){
 	var scene = cc.Scene.create();

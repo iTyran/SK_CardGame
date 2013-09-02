@@ -177,6 +177,8 @@
 		BC0B8D4517D353A700261EDD /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3917D3539200261EDD /* main.js */; };
 		BC0B8D4617D353A700261EDD /* Socket.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3A17D3539200261EDD /* Socket.js */; };
 		BC7D082817CDCA6A009313C5 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = BC7D082717CDCA6A009313C5 /* ipad */; };
+		BCB12BF817D48B61006261D2 /* Instance.js in Sources */ = {isa = PBXBuildFile; fileRef = BCB12BF717D48B61006261D2 /* Instance.js */; };
+		BCB12BF917D48B6B006261D2 /* Instance.js in Resources */ = {isa = PBXBuildFile; fileRef = BCB12BF717D48B61006261D2 /* Instance.js */; };
 		D446FDA316102D7D000ADA7B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA216102D7D000ADA7B /* Default.png */; };
 		D446FDA516102D82000ADA7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA416102D82000ADA7B /* Default@2x.png */; };
 		D446FDA716102D86000ADA7B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA616102D86000ADA7B /* Default-568h@2x.png */; };
@@ -505,9 +507,8 @@
 		BC0B8D3817D3539200261EDD /* Login.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Login.js; path = ../Resources/Login.js; sourceTree = "<group>"; };
 		BC0B8D3917D3539200261EDD /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = ../Resources/main.js; sourceTree = "<group>"; };
 		BC0B8D3A17D3539200261EDD /* Socket.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Socket.js; path = ../Resources/Socket.js; sourceTree = "<group>"; };
-		BC7D082317CDCA5D009313C5 /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
-		BC7D082417CDCA5D009313C5 /* orange_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange_edit.png; sourceTree = "<group>"; };
 		BC7D082717CDCA6A009313C5 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ipad; path = ../Resources/ipad; sourceTree = "<group>"; };
+		BCB12BF717D48B61006261D2 /* Instance.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Instance.js; path = ../Resources/Instance.js; sourceTree = "<group>"; };
 		BCF3364217CEE691008CE0E7 /* AppMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacros.h; sourceTree = "<group>"; };
 		D446FDA216102D7D000ADA7B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D446FDA416102D82000ADA7B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -553,6 +554,7 @@
 		15628F5B15F0F5C2000CF24B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BCB12BF717D48B61006261D2 /* Instance.js */,
 				BC0B8D3517D3539200261EDD /* Common.js */,
 				BC0B8D3617D3539200261EDD /* GameManager.js */,
 				BC0B8D3717D3539200261EDD /* GameScene.js */,
@@ -1077,7 +1079,6 @@
 				D45446CC156DE73F00887EB5 /* ios */,
 				1AB87018175E07C6005D39BF /* libwebsockets */,
 				A922753E1517C094001B78AA /* Products */,
-				BC7D082217CDCA5D009313C5 /* ipad */,
 				15628F5B15F0F5C2000CF24B /* Resources */,
 			);
 			sourceTree = "<group>";
@@ -1107,16 +1108,6 @@
 				A922754F1517C094001B78AA /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BC7D082217CDCA5D009313C5 /* ipad */ = {
-			isa = PBXGroup;
-			children = (
-				BC7D082317CDCA5D009313C5 /* card.png */,
-				BC7D082417CDCA5D009313C5 /* orange_edit.png */,
-			);
-			name = ipad;
-			path = ../Resources/ipad;
 			sourceTree = "<group>";
 		};
 		D45446CC156DE73F00887EB5 /* ios */ = {
@@ -1211,6 +1202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB12BF917D48B6B006261D2 /* Instance.js in Resources */,
 				BC0B8D4117D353A700261EDD /* Common.js in Resources */,
 				BC0B8D4217D353A700261EDD /* GameManager.js in Resources */,
 				BC0B8D4317D353A700261EDD /* GameScene.js in Resources */,
@@ -1386,6 +1378,7 @@
 				BC0B8D3E17D3539200261EDD /* Login.js in Sources */,
 				BC0B8D3F17D3539200261EDD /* main.js in Sources */,
 				BC0B8D4017D3539200261EDD /* Socket.js in Sources */,
+				BCB12BF817D48B61006261D2 /* Instance.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

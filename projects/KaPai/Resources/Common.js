@@ -9,12 +9,25 @@ IMG.loading = "loading.png";
 IMG.loadingBg = "loading_bg.png";
 IMG.editBox = "edit_box.png";
 IMG.loginBox = "login_box.png";
+
+IMG.bgMain = "bg_instance.png";
+IMG.bgInstance = "bg_instance.png";
+
 IMG.btnLogin = "btn_login.png";
 IMG.btnLoginPress = "btn_login_press.png";
 IMG.btnRegister = "btn_register.png";
 IMG.btnRegisterPress = "btn_register_press.png";
 IMG.btnCancel = "btn_cancel.png";
 IMG.btnCancelPress = "btn_cancel_press.png";
+IMG.btnInstance = "btn_instance.png";
+IMG.btnInstancePress = "btn_instance_press.png";
+
+// user status
+IMG.usImgBack = "us_img_back.png";
+IMG.usImg = "us_img.png";
+IMG.usName = "us_name.png";
+IMG.usBack = "us_back.png";
+IMG.usHp = "us_hp.png";
 
 
 var WS = WS || {};

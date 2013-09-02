@@ -32,13 +32,15 @@ require("GameManager.js");
 require("Socket.js");
 require("Login.js");
 require("GameScene.js");
+require("Instance.js");
 
 try{
-	var uri = "172.100.104.225:1234";
+	var uri = "172.100.104.204:1234";
 	// var uri = "ws://localhost:8082/echo;
 	Socket.getInstance().setUri(uri);
 	director = cc.Director.getInstance();
-	director.runWithScene(GameLayer.scene());
+	// director.runWithScene(GameLayer.scene());
+	director.runWithScene(LoginLayer.scene());
 
 	var winSize = VisibleRect.winSize();
 	cc.log("winSize width: " + winSize.width + " height: " + winSize.height);
