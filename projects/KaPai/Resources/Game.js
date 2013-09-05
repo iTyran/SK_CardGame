@@ -8,6 +8,7 @@ var GameLayer = cc.Layer.extend({
 			this.initLayer();
 			this.CharInfo.init(this);
 			Socket.getInstance().send(WS.CHAR_GET);
+			this.CharInfo.updateInfo();
 			return true;
 		}
 		return false;
@@ -28,7 +29,7 @@ var GameLayer = cc.Layer.extend({
 			cc.log("card upgrade");
 		}, this);
 		var itemImgCardGroup = cc.MenuItemImage.create(IMG.btnCardGroup, IMG.btnCardGroupPress, function(){
-			cc.log("card group");
+			cc.Director.getInstance().replaceScene(CardGroup.scene());
 		}, this);
 		
 		itemImgInstance.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-200, -200)));
@@ -51,11 +52,14 @@ var GameLayer = cc.Layer.extend({
 	},
 	callSocket:function(obj){
 		if (obj.Command == WS.CHAR_GET && obj.Return.Code == 0){
-			this.CharInfo.updateInfo(JSON.parse(obj.Return.Message));
+			Gm.getInstance().setCharInfo(JSON.parse(obj.Return.Message));
+			this.CharInfo.updateInfo();
 		}
 	},
 	CharInfo:{
 		_name: null,
+		_level: null,
+		_vit: null,
 		
 		init:function(node){
 			var us = cc.Node.create();
@@ -64,27 +68,44 @@ var GameLayer = cc.Layer.extend({
 			var usBack = cc.Sprite.create(IMG.usBack);
 			var usImg = cc.Sprite.create(IMG.usImg);
 			var usImgBack = cc.Sprite.create(IMG.usImgBack);
-			var usVit = cc.Sprite.create(IMG.usVit);
 			var usName = cc.Sprite.create(IMG.usName);
+			var usLevel = cc.Sprite.create(IMG.usLevel);
+			this._vit = cc.Sprite.create(IMG.usVit);
 
 			usImg.setPosition(cc.p(-120, 0));
 			usImgBack.setPosition(cc.p(-120, 0));
-			usVit.setPosition(cc.p(30, - 33));
 			usName.setPosition(cc.p(5, 22));
+			usLevel.setPosition(cc.p(-160, 45));
+			
+			this._vit.setPosition(cc.p(-100, - 33));
+			this._vit.setAnchorPoint(cc.p(0.05, 0.5));
+			// usVit.setScaleX(0.1);
 
-			us.addChild(usVit);
+			us.addChild(this._vit);
 			us.addChild(usName);
 			us.addChild(usImgBack);
 			us.addChild(usImg);
 			us.addChild(usBack);
+			us.addChild(usLevel);
 
 			this._name = cc.LabelTTF.create("", "", 24);
 			this._name.setPosition(cc.p(15, 22));
+
+			this._level = cc.LabelTTF.create("", "", 24);
+			this._level.setPosition(usLevel.getPosition());
+			
 			us.addChild(this._name);
+			us.addChild(this._level);
+			
 			node.addChild(us);
 		},
-		updateInfo:function(info){
-			this._name.setString(info.CharName);
+		updateInfo:function(){
+			var info = Gm.getInstance().getCharInfo();
+			if(info){
+				this._name.setString(info.CharName);
+				this._level.setString(info.Level);
+				this._vit.setScaleX(info.Vitality / 60);
+			}
 		}
 	}
 });

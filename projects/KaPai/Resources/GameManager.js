@@ -3,6 +3,7 @@
 var s_gameManager = null;
 
 var Gm = cc.Class.extend({
+	_charInfo: null,
 	_loadingNode: null,
 	getCacheLoginUser:function(){
 		var cacheUser = {};
@@ -32,6 +33,12 @@ var Gm = cc.Class.extend({
 			this._loadingNode = null;
 		}
 		cc.log("");
+	},
+	getCharInfo:function(){
+		return this._charInfo;
+	},
+	setCharInfo:function(info){
+		this._charInfo = info;
 	}
 });
 

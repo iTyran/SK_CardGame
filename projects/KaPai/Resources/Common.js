@@ -44,6 +44,7 @@ IMG.usImg = "us_img.png";
 IMG.usName = "us_name.png";
 IMG.usBack = "us_back.png";
 IMG.usVit = "us_vit.png";
+IMG.usLevel = "us_level.png";
 
 IMG.fightBackground = "fight_background.png";
 
@@ -55,14 +56,22 @@ IMG.cardGreen = "card_green.png";
 IMG.cardGreenStatus = "card_green_status.png";
 IMG.cardOrange = "card_orange.png";
 IMG.cardOrangeStatus = "card_orange_status.png";
-IMG.cardSkill1 = "card_skill_1.png";
-IMG.cardSkill2 = "card_skill_2.png";
 IMG.cardDog1 = "card_dog_1.png";
 IMG.cardDog2 = "card_dog_2.png";
 IMG.cardDog3 = "card_dog_3.png";
 IMG.cardDog4 = "card_dog_4.png";
 IMG.cardDog5 = "card_dog_5.png";
+IMG.cardDogFace1 = "card_dog_face_1.png";
+IMG.cardDogFace2 = "card_dog_face_2.png";
+IMG.cardDogFace3 = "card_dog_face_3.png";
+IMG.cardDogFace4 = "card_dog_face_4.png";
+IMG.cardDogFace5 = "card_dog_face_5.png";
 
+// IMG.cardSkill1 = "card_skill_1.png";
+// IMG.cardSkill2 = "card_skill_2.png";
+IMG.skill = {};
+IMG.skill["001"] = "card_skill_1.png";
+IMG.skill["002"] = "card_skill_2.png";
 
 var WS = WS || {};
 

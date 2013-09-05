@@ -34,7 +34,9 @@ require("Login.js");
 require("Game.js");
 require("Instance.js");
 require("Fight.js");
+require("CardGroup.js");
 require("Utile.js");
+
 
 try{
 	var uri = "172.100.104.204:1234";

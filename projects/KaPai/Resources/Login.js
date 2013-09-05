@@ -207,6 +207,8 @@ var LoginLayer = cc.Layer.extend({
 	pCenter: null,
 	_loginName: null,
 	_loginPwd: null,
+
+	_showMessage: null,
 	init:function(){
 		if (this._super()){
 			this.winSize = cc.Director.getInstance().getWinSize();
@@ -277,6 +279,11 @@ var LoginLayer = cc.Layer.extend({
 		var menu = cc.Menu.create(itemImgLoginName, itemImgLoginPwd);
 		menu.setPosition(cc.p(0 ,0));
 		layer.addChild(menu);
+
+		this._showMessage = cc.LabelTTF.create("", "", 34);
+		this._showMessage.setColor(cc.BLACK);
+		this._showMessage.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, -320)));
+		this.addChild(this._showMessage);
 		
 	},
 	onEnter:function(){
@@ -302,17 +309,25 @@ var LoginLayer = cc.Layer.extend({
 		}
 	},
 	callSocket:function(obj){
-		if (obj.Command == WS.LOGIN && obj.Return.Code == 0){
-			Gm.getInstance().setCacheLoginUser(this.getUserByEditBox());
-			if (obj.Return.Message == "CreateCharacter"){
-				cc.log("create character ");
-				cc.Director.getInstance().replaceScene(CharacterLayer.scene());
-			}else{
-				cc.log("login:" + obj.Return.Message);
-				cc.Director.getInstance().replaceScene(GameLayer.scene());				
+		this.showMessage();
+		if (obj.Command == WS.LOGIN){
+			if ( obj.Return.Code == 0){
+				Gm.getInstance().setCacheLoginUser(this.getUserByEditBox());
+				if (obj.Return.Message == "CreateCharacter"){
+					cc.log("create character ");
+					cc.Director.getInstance().replaceScene(CharacterLayer.scene());
+				}else{
+					cc.log("login:" + obj.Return.Message);
+					cc.Director.getInstance().replaceScene(GameLayer.scene());				
+				}
+			} else if (obj.Return.Code == 4){
+				this.showMessage(obj.Return.Message);
 			}
 		}
-	}
+	},
+	showMessage:function(text){
+		this._showMessage.setString(text ? text: "");
+	}		
 });
 
 

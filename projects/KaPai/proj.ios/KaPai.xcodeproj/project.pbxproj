@@ -174,6 +174,8 @@
 		BC0B8D4417D353A700261EDD /* Login.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3817D3539200261EDD /* Login.js */; };
 		BC0B8D4517D353A700261EDD /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3917D3539200261EDD /* main.js */; };
 		BC0B8D4617D353A700261EDD /* Socket.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3A17D3539200261EDD /* Socket.js */; };
+		BC30B48717D85B0600246840 /* CardGroup.js in Sources */ = {isa = PBXBuildFile; fileRef = BC30B48617D85B0600246840 /* CardGroup.js */; };
+		BC30B48817D85B1200246840 /* CardGroup.js in Resources */ = {isa = PBXBuildFile; fileRef = BC30B48617D85B0600246840 /* CardGroup.js */; };
 		BC357CB017D4B8FB006DD1F7 /* Fight.js in Sources */ = {isa = PBXBuildFile; fileRef = BC357CAF17D4B8FB006DD1F7 /* Fight.js */; };
 		BC357CB117D4B904006DD1F7 /* Fight.js in Resources */ = {isa = PBXBuildFile; fileRef = BC357CAF17D4B8FB006DD1F7 /* Fight.js */; };
 		BC357CB317D4B952006DD1F7 /* Game.js in Sources */ = {isa = PBXBuildFile; fileRef = BC357CB217D4B952006DD1F7 /* Game.js */; };
@@ -510,6 +512,7 @@
 		BC0B8D3817D3539200261EDD /* Login.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Login.js; path = ../Resources/Login.js; sourceTree = "<group>"; };
 		BC0B8D3917D3539200261EDD /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = ../Resources/main.js; sourceTree = "<group>"; };
 		BC0B8D3A17D3539200261EDD /* Socket.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Socket.js; path = ../Resources/Socket.js; sourceTree = "<group>"; };
+		BC30B48617D85B0600246840 /* CardGroup.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CardGroup.js; path = ../Resources/CardGroup.js; sourceTree = "<group>"; };
 		BC357CAF17D4B8FB006DD1F7 /* Fight.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Fight.js; path = ../Resources/Fight.js; sourceTree = "<group>"; };
 		BC357CB217D4B952006DD1F7 /* Game.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Game.js; path = ../Resources/Game.js; sourceTree = "<group>"; };
 		BC454D4E17D7336C00EED856 /* Utile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Utile.js; path = ../Resources/Utile.js; sourceTree = "<group>"; };
@@ -560,6 +563,7 @@
 		15628F5B15F0F5C2000CF24B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BC30B48617D85B0600246840 /* CardGroup.js */,
 				BC454D4E17D7336C00EED856 /* Utile.js */,
 				BC357CB217D4B952006DD1F7 /* Game.js */,
 				BC357CAF17D4B8FB006DD1F7 /* Fight.js */,
@@ -1210,6 +1214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC30B48817D85B1200246840 /* CardGroup.js in Resources */,
 				BC454D5017D7337800EED856 /* Utile.js in Resources */,
 				BC357CB417D4B959006DD1F7 /* Game.js in Resources */,
 				BC357CB117D4B904006DD1F7 /* Fight.js in Resources */,
@@ -1391,6 +1396,7 @@
 				BC357CB017D4B8FB006DD1F7 /* Fight.js in Sources */,
 				BC357CB317D4B952006DD1F7 /* Game.js in Sources */,
 				BC454D4F17D7336C00EED856 /* Utile.js in Sources */,
+				BC30B48717D85B0600246840 /* CardGroup.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
