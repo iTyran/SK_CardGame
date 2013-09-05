@@ -48,7 +48,7 @@ var Socket = cc.Class.extend({
 	send:function(cmd, param){
 		var json = {
 			"Command": cmd,
-			"Param": param
+			"Param": param ? param: ""
 		};
 		var msg = JSON.stringify(json);
 		cc.log("web socket send:" + msg);

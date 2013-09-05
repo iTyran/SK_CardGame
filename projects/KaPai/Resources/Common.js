@@ -1,5 +1,11 @@
 // common.js
 
+// config
+var C = C || {};
+C.DOG = "card_dog";
+C.CAT = "card_cat";
+
+// images 
 var IMG = IMG || {};
 
 IMG.loginEditBox = "orange_edit.png";
@@ -19,10 +25,18 @@ IMG.btnRegister = "btn_register.png";
 IMG.btnRegisterPress = "btn_register_press.png";
 IMG.btnCancel = "btn_cancel.png";
 IMG.btnCancelPress = "btn_cancel_press.png";
-IMG.btnInstance = "btn_instance.png";
-IMG.btnInstancePress = "btn_instance_press.png";
 IMG.btnBack = "btn_back.png";
 IMG.btnBackPress = "btn_back_press.png";
+IMG.btnCreate = "btn_create.png";
+IMG.btnCreatePress = "btn_create_press.png";
+IMG.btnInstance = "btn_instance.png";
+IMG.btnInstancePress = "btn_instance_press.png";
+IMG.btnShop = "btn_shop.png";
+IMG.btnShopPress = "btn_shop_press.png";
+IMG.btnCardUpgrade = "btn_card_upgrade.png";
+IMG.btnCardUpgradePress = "btn_card_upgrade_press.png";
+IMG.btnCardGroup = "btn_card_group.png";
+IMG.btnCardGroupPress = "btn_card_group_press.png";
 
 // user status
 IMG.usImgBack = "us_img_back.png";
@@ -40,7 +54,14 @@ IMG.cardPurpleStatus = "card_purple_status.png";
 IMG.cardGreen = "card_green.png";
 IMG.cardGreenStatus = "card_green_status.png";
 IMG.cardOrange = "card_orange.png";
-IMG.cardOrangeStatus = "cardd_orange_status.png";
+IMG.cardOrangeStatus = "card_orange_status.png";
+IMG.cardSkill1 = "card_skill_1.png";
+IMG.cardSkill2 = "card_skill_2.png";
+IMG.cardDog1 = "card_dog_1.png";
+IMG.cardDog2 = "card_dog_2.png";
+IMG.cardDog3 = "card_dog_3.png";
+IMG.cardDog4 = "card_dog_4.png";
+IMG.cardDog5 = "card_dog_5.png";
 
 
 var WS = WS || {};
@@ -48,7 +69,8 @@ var WS = WS || {};
 WS.MSG = "web_socket";
 WS.LOGIN = "CM_LOGIN";
 WS.REGISTER = "CM_REGISTER";
-
+WS.CHAR_CREATE = "CM_CHAR_CREATE";
+WS.CHAR_GET = "CM_CHAR_GET";
 
 cc.s_sharedNotificationCenter = null;
 

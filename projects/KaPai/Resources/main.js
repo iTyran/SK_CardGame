@@ -31,9 +31,10 @@ require("Common.js");
 require("GameManager.js");
 require("Socket.js");
 require("Login.js");
-require("GameScene.js");
+require("Game.js");
 require("Instance.js");
-require("FightLayer.js");
+require("Fight.js");
+require("Utile.js");
 
 try{
 	var uri = "172.100.104.204:1234";
@@ -42,6 +43,8 @@ try{
 	director = cc.Director.getInstance();
 	// director.runWithScene(GameLayer.scene());
 	director.runWithScene(LoginLayer.scene());
+	// director.runWithScene(FightLayer.scene());
+	// director.runWithScene(CharacterLayer.scene());
 
 	var winSize = VisibleRect.winSize();
 	cc.log("winSize width: " + winSize.width + " height: " + winSize.height);

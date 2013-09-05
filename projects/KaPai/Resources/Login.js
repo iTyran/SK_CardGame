@@ -1,13 +1,95 @@
 // login.js
 
+var CharacterLayer = cc.Layer.extend({
+	_charName: null,
+	_showMessage: null,
+	init:function(){
+		if (this._super()){
+			this.initLayer();
+			return true;
+		}
+		return false;
+	},
+	initLayer:function(){
+		var backGround = cc.Sprite.create(IMG.loginBackGround);
+		backGround.setPosition(VisibleRect.center());
+		this.addChild(backGround);
+
+		var layer = cc.Layer.create();
+		layer.setPosition(cc.p(0, 100));
+		this.addChild(layer);
+		
+		// var loginBox = cc.Scale9Sprite.create(IMG.loginBox);
+		// loginBox.setContentSize(cc.size(550, 450));
+		var loginBox = cc.Sprite.create(IMG.loginBox);
+		loginBox.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 0)));
+		layer.addChild(loginBox);
+
+		var editBoxSize = cc.size(350, 80);
+		this._charName = cc.EditBox.create(
+			editBoxSize,
+			cc.Scale9Sprite.create(IMG.editBox),
+			cc.Scale9Sprite.create(IMG.editBox)
+		);
+		this._charName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 0)));
+		this._charName.setPlaceHolder("Char Name");
+		layer.addChild(this._charName);
+
+
+		var itemImgCancel = cc.MenuItemImage.create(IMG.btnCancel, IMG.btnCancelPress, function(){
+			cc.log("careate char cancel.");
+			cc.Director.getInstance().replaceScene(LoginLayer.scene());
+		}, this);
+		itemImgCancel.setPosition(cc.pAdd(VisibleRect.center(), cc.p(200, -230)));
+
+		var itemImgCreate = cc.MenuItemImage.create(IMG.btnCreate, IMG.btnCreatePress, this.callCreate, this);
+		itemImgCreate.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-200, -230)));
+		
+		var menu = cc.Menu.create(itemImgCreate, itemImgCancel);
+		menu.setPosition(cc.p(0, 0));
+		this.addChild(menu);
+
+
+	},
+	callCreate:function(){
+		cc.log("create char..");
+		var u = {};
+		u.CharName = this._charName.getText();
+		
+		if (u.CharName == ""){
+			cc.log("char name not null");
+		}else{
+			Socket.getInstance().send(WS.CHAR_CREATE, u);
+		}
+	},
+	onEnter:function(){
+		this._super();
+		Socket.getInstance().addObserver(this, this.callSocket);
+	},
+	onExit:function(){
+		this._super();
+		Socket.getInstance().removeObserver(this);
+	},
+	callSocket:function(obj){
+		if (obj.Command == WS.CHAR_CREATE && obj.Return.Code == 0){
+			cc.Director.getInstance().replaceScene(GameLayer.scene());
+		}
+		cc.log("leafsoar");
+	}
+});
+
 var RegisterLayer = cc.Layer.extend({
 	_loginName: null,
 	_loginPwd: null,
 	_loginPwdConfim: null,
 	_email: null,
+
+	_showMessage: null,
 	init:function(){
 		if (this._super()){
 			this.initLayer();
+
+
 		}
 		return true;
 	},
@@ -47,6 +129,8 @@ var RegisterLayer = cc.Layer.extend({
 		this._loginPwd.setPlaceHolder("Password");
 		this._loginPwdConfim.setPlaceHolder("Pwd Confirm");
 		this._email.setPlaceHolder("Email");
+		this._loginPwd.setInputFlag(cc.EDITBOX_INPUT_FLAG_PASSWORD);		
+		this._loginPwdConfim.setInputFlag(cc.EDITBOX_INPUT_FLAG_PASSWORD);		
 
 		var layer = cc.Layer.create();
 		layer.setPosition(cc.p(0, 100));
@@ -74,6 +158,10 @@ var RegisterLayer = cc.Layer.extend({
 		menu.setPosition(cc.p(0, 0));
 		this.addChild(menu);
 
+		this._showMessage = cc.LabelTTF.create("", "", 34);
+		this._showMessage.setColor(cc.BLACK);
+		this._showMessage.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, -320)));
+		this.addChild(this._showMessage);
 	},
 	callRegister:function(){
 		var user = {};
@@ -81,14 +169,20 @@ var RegisterLayer = cc.Layer.extend({
 		user.Password = this._loginPwd.getText();
 		user.Email = this._email.getText();
 
-		if (!user.Username || !user.Password){
-			cc.log("username or password is not null !");
+		this.showMessage();
+		if (!Check.notNull(user.Username) || !Check.notNull(user.Password)){
+			this.showMessage("username or password not null !");
 		}else if (user.Password != this._loginPwdConfim.getText()){
-			cc.log("password confirm !!!");
+			this.showMessage("password confirm !!!");
+		}else if(!Check.isEmail(user.Email)){
+			this.showMessage("email format error !!!");			
 		}else{
 			Socket.getInstance().send(WS.REGISTER, user);
 		}
-	}
+	},
+	showMessage:function(text){
+		this._showMessage.setString(text ? text: "");
+	}	
 });
 
 var CreateUserLayer = cc.Layer.extend({
@@ -209,9 +303,14 @@ var LoginLayer = cc.Layer.extend({
 	},
 	callSocket:function(obj){
 		if (obj.Command == WS.LOGIN && obj.Return.Code == 0){
-			cc.log("login:" + obj.Return.Message);
 			Gm.getInstance().setCacheLoginUser(this.getUserByEditBox());
-			cc.Director.getInstance().replaceScene(GameLayer.scene());
+			if (obj.Return.Message == "CreateCharacter"){
+				cc.log("create character ");
+				cc.Director.getInstance().replaceScene(CharacterLayer.scene());
+			}else{
+				cc.log("login:" + obj.Return.Message);
+				cc.Director.getInstance().replaceScene(GameLayer.scene());				
+			}
 		}
 	}
 });
@@ -225,6 +324,14 @@ LoginLayer.scene = function(){
 	return scene;
 };
 
+CharacterLayer.scene = function(){
+	var scene = cc.Scene.create();
+	var layer = new CharacterLayer();
+	layer.init();
+	scene.addChild(layer);
+	return scene;
+};
+
 RegisterLayer.scene = function(){
 	var scene = cc.Scene.create();
 	var layer = new RegisterLayer();
@@ -232,3 +339,4 @@ RegisterLayer.scene = function(){
 	scene.addChild(layer);
 	return scene;
 };
+

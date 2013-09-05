@@ -166,21 +166,23 @@
 		A92275501517C094001B78AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A922754F1517C094001B78AA /* CoreGraphics.framework */; };
 		BC0B8D3B17D3539200261EDD /* Common.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3517D3539200261EDD /* Common.js */; };
 		BC0B8D3C17D3539200261EDD /* GameManager.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3617D3539200261EDD /* GameManager.js */; };
-		BC0B8D3D17D3539200261EDD /* GameScene.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3717D3539200261EDD /* GameScene.js */; };
 		BC0B8D3E17D3539200261EDD /* Login.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3817D3539200261EDD /* Login.js */; };
 		BC0B8D3F17D3539200261EDD /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3917D3539200261EDD /* main.js */; };
 		BC0B8D4017D3539200261EDD /* Socket.js in Sources */ = {isa = PBXBuildFile; fileRef = BC0B8D3A17D3539200261EDD /* Socket.js */; };
 		BC0B8D4117D353A700261EDD /* Common.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3517D3539200261EDD /* Common.js */; };
 		BC0B8D4217D353A700261EDD /* GameManager.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3617D3539200261EDD /* GameManager.js */; };
-		BC0B8D4317D353A700261EDD /* GameScene.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3717D3539200261EDD /* GameScene.js */; };
 		BC0B8D4417D353A700261EDD /* Login.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3817D3539200261EDD /* Login.js */; };
 		BC0B8D4517D353A700261EDD /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3917D3539200261EDD /* main.js */; };
 		BC0B8D4617D353A700261EDD /* Socket.js in Resources */ = {isa = PBXBuildFile; fileRef = BC0B8D3A17D3539200261EDD /* Socket.js */; };
+		BC357CB017D4B8FB006DD1F7 /* Fight.js in Sources */ = {isa = PBXBuildFile; fileRef = BC357CAF17D4B8FB006DD1F7 /* Fight.js */; };
+		BC357CB117D4B904006DD1F7 /* Fight.js in Resources */ = {isa = PBXBuildFile; fileRef = BC357CAF17D4B8FB006DD1F7 /* Fight.js */; };
+		BC357CB317D4B952006DD1F7 /* Game.js in Sources */ = {isa = PBXBuildFile; fileRef = BC357CB217D4B952006DD1F7 /* Game.js */; };
+		BC357CB417D4B959006DD1F7 /* Game.js in Resources */ = {isa = PBXBuildFile; fileRef = BC357CB217D4B952006DD1F7 /* Game.js */; };
+		BC454D4F17D7336C00EED856 /* Utile.js in Sources */ = {isa = PBXBuildFile; fileRef = BC454D4E17D7336C00EED856 /* Utile.js */; };
+		BC454D5017D7337800EED856 /* Utile.js in Resources */ = {isa = PBXBuildFile; fileRef = BC454D4E17D7336C00EED856 /* Utile.js */; };
 		BC7D082817CDCA6A009313C5 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = BC7D082717CDCA6A009313C5 /* ipad */; };
 		BCB12BF817D48B61006261D2 /* Instance.js in Sources */ = {isa = PBXBuildFile; fileRef = BCB12BF717D48B61006261D2 /* Instance.js */; };
 		BCB12BF917D48B6B006261D2 /* Instance.js in Resources */ = {isa = PBXBuildFile; fileRef = BCB12BF717D48B61006261D2 /* Instance.js */; };
-		BCB12BFB17D4AA5C006261D2 /* FightLayer.js in Sources */ = {isa = PBXBuildFile; fileRef = BCB12BFA17D4AA5C006261D2 /* FightLayer.js */; };
-		BCB12BFC17D4AA65006261D2 /* FightLayer.js in Resources */ = {isa = PBXBuildFile; fileRef = BCB12BFA17D4AA5C006261D2 /* FightLayer.js */; };
 		D446FDA316102D7D000ADA7B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA216102D7D000ADA7B /* Default.png */; };
 		D446FDA516102D82000ADA7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA416102D82000ADA7B /* Default@2x.png */; };
 		D446FDA716102D86000ADA7B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FDA616102D86000ADA7B /* Default-568h@2x.png */; };
@@ -505,13 +507,14 @@
 		A922754F1517C094001B78AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BC0B8D3517D3539200261EDD /* Common.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Common.js; path = ../Resources/Common.js; sourceTree = "<group>"; };
 		BC0B8D3617D3539200261EDD /* GameManager.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = GameManager.js; path = ../Resources/GameManager.js; sourceTree = "<group>"; };
-		BC0B8D3717D3539200261EDD /* GameScene.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = GameScene.js; path = ../Resources/GameScene.js; sourceTree = "<group>"; };
 		BC0B8D3817D3539200261EDD /* Login.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Login.js; path = ../Resources/Login.js; sourceTree = "<group>"; };
 		BC0B8D3917D3539200261EDD /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = ../Resources/main.js; sourceTree = "<group>"; };
 		BC0B8D3A17D3539200261EDD /* Socket.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Socket.js; path = ../Resources/Socket.js; sourceTree = "<group>"; };
+		BC357CAF17D4B8FB006DD1F7 /* Fight.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Fight.js; path = ../Resources/Fight.js; sourceTree = "<group>"; };
+		BC357CB217D4B952006DD1F7 /* Game.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Game.js; path = ../Resources/Game.js; sourceTree = "<group>"; };
+		BC454D4E17D7336C00EED856 /* Utile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Utile.js; path = ../Resources/Utile.js; sourceTree = "<group>"; };
 		BC7D082717CDCA6A009313C5 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ipad; path = ../Resources/ipad; sourceTree = "<group>"; };
 		BCB12BF717D48B61006261D2 /* Instance.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Instance.js; path = ../Resources/Instance.js; sourceTree = "<group>"; };
-		BCB12BFA17D4AA5C006261D2 /* FightLayer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = FightLayer.js; path = ../Resources/FightLayer.js; sourceTree = "<group>"; };
 		BCF3364217CEE691008CE0E7 /* AppMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacros.h; sourceTree = "<group>"; };
 		D446FDA216102D7D000ADA7B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D446FDA416102D82000ADA7B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -557,11 +560,12 @@
 		15628F5B15F0F5C2000CF24B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BCB12BFA17D4AA5C006261D2 /* FightLayer.js */,
+				BC454D4E17D7336C00EED856 /* Utile.js */,
+				BC357CB217D4B952006DD1F7 /* Game.js */,
+				BC357CAF17D4B8FB006DD1F7 /* Fight.js */,
 				BCB12BF717D48B61006261D2 /* Instance.js */,
 				BC0B8D3517D3539200261EDD /* Common.js */,
 				BC0B8D3617D3539200261EDD /* GameManager.js */,
-				BC0B8D3717D3539200261EDD /* GameScene.js */,
 				BC0B8D3817D3539200261EDD /* Login.js */,
 				BC0B8D3917D3539200261EDD /* main.js */,
 				BC0B8D3A17D3539200261EDD /* Socket.js */,
@@ -1206,11 +1210,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCB12BFC17D4AA65006261D2 /* FightLayer.js in Resources */,
+				BC454D5017D7337800EED856 /* Utile.js in Resources */,
+				BC357CB417D4B959006DD1F7 /* Game.js in Resources */,
+				BC357CB117D4B904006DD1F7 /* Fight.js in Resources */,
 				BCB12BF917D48B6B006261D2 /* Instance.js in Resources */,
 				BC0B8D4117D353A700261EDD /* Common.js in Resources */,
 				BC0B8D4217D353A700261EDD /* GameManager.js in Resources */,
-				BC0B8D4317D353A700261EDD /* GameScene.js in Resources */,
 				BC0B8D4417D353A700261EDD /* Login.js in Resources */,
 				BC0B8D4517D353A700261EDD /* main.js in Resources */,
 				BC0B8D4617D353A700261EDD /* Socket.js in Resources */,
@@ -1379,12 +1384,13 @@
 				1AB87017175E0773005D39BF /* jsb_websocket.cpp in Sources */,
 				BC0B8D3B17D3539200261EDD /* Common.js in Sources */,
 				BC0B8D3C17D3539200261EDD /* GameManager.js in Sources */,
-				BC0B8D3D17D3539200261EDD /* GameScene.js in Sources */,
 				BC0B8D3E17D3539200261EDD /* Login.js in Sources */,
 				BC0B8D3F17D3539200261EDD /* main.js in Sources */,
 				BC0B8D4017D3539200261EDD /* Socket.js in Sources */,
 				BCB12BF817D48B61006261D2 /* Instance.js in Sources */,
-				BCB12BFB17D4AA5C006261D2 /* FightLayer.js in Sources */,
+				BC357CB017D4B8FB006DD1F7 /* Fight.js in Sources */,
+				BC357CB317D4B952006DD1F7 /* Game.js in Sources */,
+				BC454D4F17D7336C00EED856 /* Utile.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
