@@ -19,24 +19,28 @@ IMG.loginBox = "login_box.png";
 IMG.bgMain = "bg_instance.png";
 IMG.bgInstance = "bg_instance.png";
 
-IMG.btnLogin = "btn_login.png";
-IMG.btnLoginPress = "btn_login_press.png";
-IMG.btnRegister = "btn_register.png";
-IMG.btnRegisterPress = "btn_register_press.png";
-IMG.btnCancel = "btn_cancel.png";
-IMG.btnCancelPress = "btn_cancel_press.png";
-IMG.btnBack = "btn_back.png";
-IMG.btnBackPress = "btn_back_press.png";
-IMG.btnCreate = "btn_create.png";
-IMG.btnCreatePress = "btn_create_press.png";
-IMG.btnInstance = "btn_instance.png";
-IMG.btnInstancePress = "btn_instance_press.png";
-IMG.btnShop = "btn_shop.png";
-IMG.btnShopPress = "btn_shop_press.png";
-IMG.btnCardUpgrade = "btn_card_upgrade.png";
-IMG.btnCardUpgradePress = "btn_card_upgrade_press.png";
-IMG.btnCardGroup = "btn_card_group.png";
-IMG.btnCardGroupPress = "btn_card_group_press.png";
+IMG.btn = {
+	"Login": "btn_login.png",
+	"LoginPress": "btn_login_press.png",
+	"Register": "btn_register.png",
+	"RegisterPress": "btn_register_press.png",
+	"Cancel": "btn_cancel.png",
+	"CancelPress": "btn_cancel_press.png",
+	"Create": "btn_create.png",
+	"CreatePress": "btn_create_press.png",
+	"Back": "btn_back.png",
+	"BackPress": "btn_back_press.png",
+
+	"Instance": "btn_instance.png",
+	"InstancePress": "btn_instance_press.png",
+	"Shop": "btn_shop.png",
+	"ShopPress": "btn_shop_press.png",
+	"CardUpgrade": "btn_card_upgrade.png",
+	"CardUpgradePress": "btn_card_upgrade_press.png",
+	"CardGroup": "btn_card_group.png",
+	"CardGroupPress": "btn_card_group_press.png"
+};
+
 
 // user status
 IMG.usImgBack = "us_img_back.png";
@@ -50,28 +54,58 @@ IMG.fightBackground = "fight_background.png";
 
 IMG.cardAt = "card_at.png";
 IMG.cardHp = "card_hp.png";
-IMG.cardPurple = "card_purple.png";
-IMG.cardPurpleStatus = "card_purple_status.png";
-IMG.cardGreen = "card_green.png";
-IMG.cardGreenStatus = "card_green_status.png";
-IMG.cardOrange = "card_orange.png";
-IMG.cardOrangeStatus = "card_orange_status.png";
-IMG.cardDog1 = "card_dog_1.png";
-IMG.cardDog2 = "card_dog_2.png";
-IMG.cardDog3 = "card_dog_3.png";
-IMG.cardDog4 = "card_dog_4.png";
-IMG.cardDog5 = "card_dog_5.png";
-IMG.cardDogFace1 = "card_dog_face_1.png";
-IMG.cardDogFace2 = "card_dog_face_2.png";
-IMG.cardDogFace3 = "card_dog_face_3.png";
-IMG.cardDogFace4 = "card_dog_face_4.png";
-IMG.cardDogFace5 = "card_dog_face_5.png";
 
-// IMG.cardSkill1 = "card_skill_1.png";
-// IMG.cardSkill2 = "card_skill_2.png";
-IMG.skill = {};
-IMG.skill["001"] = "card_skill_1.png";
-IMG.skill["002"] = "card_skill_2.png";
+// IMG.cardPurpleStatus = "";
+// IMG.cardGreenStatus = "card_green_status.png";
+// IMG.cardOrangeStatus = "card_orange_status.png";
+
+IMG.card = {
+	"Orange": "card_orange.png",
+	"Green": "card_green.png",
+	"Purple": "card_purple.png",
+	"Status": {
+		"Orange": "card_orange_status.png",
+		"Green": "card_green_status.png",
+		"Purple": "card_purple_status.png"
+	}	
+};
+
+IMG.attack = [
+	"attack_1.png",
+	"attack_2.png",
+	"attack_3.png",
+	"attack_4.png",
+	"attack_5.png",
+	"attack_6.png",
+	"attack_7.png"
+];
+
+IMG.hurt = [
+	"hurt_1.png",
+	"hurt_2.png",
+	"hurt_3.png"
+];
+
+IMG.dog = {
+	"001": "card_dog_1.png",
+	"002": "card_dog_2.png",
+	"003": "card_dog_3.png",
+	"004": "card_dog_4.png",
+	"005": "card_dog_5.png"
+};
+
+IMG.dogFace = {
+	"001": "card_dog_face_1.png",
+	"002": "card_dog_face_2.png",
+	"003": "card_dog_face_3.png",
+	"004": "card_dog_face_4.png",
+	"005": "card_dog_face_5.png"
+};
+
+IMG.skill = {
+	"001": "card_skill_1.png",
+	"002": "card_skill_2.png"
+};
 
 var WS = WS || {};
 
@@ -338,8 +372,6 @@ var VisibleRect = {
 	}
 };
 
-
-
 var LoadingLayer = cc.Layer.extend({
 	init:function(){
 		var loadingBg = cc.Sprite.create(IMG.loadingBg);
@@ -365,8 +397,6 @@ var LoadingLayer = cc.Layer.extend({
 		return true;
 	}
 });
-
-
 
 
 // var GalleryLayer = cc.Layer.extend({

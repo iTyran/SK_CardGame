@@ -14,12 +14,12 @@ var InstanceLayer = cc.Layer.extend({
 		backGround.setPosition(VisibleRect.center());
 		this.addChild(backGround);
 
-		var itemImgBack = cc.MenuItemImage.create(IMG.btnBack, IMG.btnBackPress, function(){
+		var itemImgBack = cc.MenuItemImage.create(IMG.btn.Back, IMG.btn.BackPress, function(){
 			cc.Director.getInstance().replaceScene(GameLayer.scene());
 		}, this);
 		itemImgBack.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-80, -80)));
 
-		var itemImgFight = cc.MenuItemImage.create(IMG.btnInstance, IMG.btnInstancePress, function(){
+		var itemImgFight = cc.MenuItemImage.create(IMG.btn.Instance, IMG.btn.InstancePress, function(){
 			cc.Director.getInstance().replaceScene(FightLayer.scene());
 		}, this);
 		itemImgFight.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-300, -300)));

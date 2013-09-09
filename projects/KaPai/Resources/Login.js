@@ -36,19 +36,18 @@ var CharacterLayer = cc.Layer.extend({
 		layer.addChild(this._charName);
 
 
-		var itemImgCancel = cc.MenuItemImage.create(IMG.btnCancel, IMG.btnCancelPress, function(){
+		var itemImgCancel = cc.MenuItemImage.create(IMG.btn.Cancel, IMG.btn.CancelPress, function(){
 			cc.log("careate char cancel.");
 			cc.Director.getInstance().replaceScene(LoginLayer.scene());
 		}, this);
 		itemImgCancel.setPosition(cc.pAdd(VisibleRect.center(), cc.p(200, -230)));
 
-		var itemImgCreate = cc.MenuItemImage.create(IMG.btnCreate, IMG.btnCreatePress, this.callCreate, this);
+		var itemImgCreate = cc.MenuItemImage.create(IMG.btn.Create, IMG.btn.CreatePress, this.callCreate, this);
 		itemImgCreate.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-200, -230)));
 		
 		var menu = cc.Menu.create(itemImgCreate, itemImgCancel);
 		menu.setPosition(cc.p(0, 0));
 		this.addChild(menu);
-
 
 	},
 	callCreate:function(){
@@ -146,8 +145,8 @@ var RegisterLayer = cc.Layer.extend({
 		layer.addChild(this._loginPwdConfim);
 		layer.addChild(this._email);
 		
-		var itemImgRegister = cc.MenuItemImage.create(IMG.btnRegister, IMG.btnRegisterPress, this.callRegister, this);
-		var itemImgCancel = cc.MenuItemImage.create(IMG.btnCancel, IMG.btncancelPress, function(){
+		var itemImgRegister = cc.MenuItemImage.create(IMG.btn.Register, IMG.btn.RegisterPress, this.callRegister, this);
+		var itemImgCancel = cc.MenuItemImage.create(IMG.btn.Cancel, IMG.btn.CancelPress, function(){
 			cc.Director.getInstance().replaceScene(LoginLayer.scene());
 		}, this);
 		
@@ -162,6 +161,14 @@ var RegisterLayer = cc.Layer.extend({
 		this._showMessage.setColor(cc.BLACK);
 		this._showMessage.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, -320)));
 		this.addChild(this._showMessage);
+	},
+	onEnter:function(){
+		this._super();
+		Socket.getInstance().addObserver(this, this.callSocket);
+	},
+	onExit:function(){
+		this._super();
+		Socket.getInstance().removeObserver(this);
 	},
 	callRegister:function(){
 		var user = {};
@@ -178,6 +185,24 @@ var RegisterLayer = cc.Layer.extend({
 			this.showMessage("email format error !!!");			
 		}else{
 			Socket.getInstance().send(WS.REGISTER, user);
+		}
+	},
+	getUserByEditBox:function(){
+		var user = {};
+		user.Username = this._loginName.getText();
+		user.Password = this._loginPwd.getText();
+		return user;
+	},
+	callSocket:function(obj){
+		this.showMessage();
+		if (obj.Command == WS.REGISTER){
+			if ( obj.Return.Code == 0){
+				Gm.getInstance().setCacheLoginUser(this.getUserByEditBox());
+				if (obj.Return.Message == "CreateCharacter"){
+					cc.log("create character ");
+					cc.Director.getInstance().replaceScene(CharacterLayer.scene());
+				}
+			}
 		}
 	},
 	showMessage:function(text){
@@ -269,8 +294,8 @@ var LoginLayer = cc.Layer.extend({
 		this._loginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 170)));
 		this._loginPwd.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 30)));
 
-		var itemImgLoginName = cc.MenuItemImage.create(IMG.btnLogin, IMG.btnLoginPress, this.callLogin, this);
-		var itemImgLoginPwd = cc.MenuItemImage.create(IMG.btnRegister, IMG.btnRegisterPress, function(){
+		var itemImgLoginName = cc.MenuItemImage.create(IMG.btn.Login, IMG.btn.LoginPress, this.callLogin, this);
+		var itemImgLoginPwd = cc.MenuItemImage.create(IMG.btn.Register, IMG.btn.RegisterPress, function(){
 			cc.Director.getInstance().replaceScene(RegisterLayer.scene());
 		}, this);
 		itemImgLoginName.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-170, -200)));

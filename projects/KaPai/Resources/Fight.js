@@ -1,40 +1,51 @@
-// FightLayer.js
+ // FightLayer.js
 
 var FightLayer = cc.Layer.extend({
 	_dogs: null,
 	_cats: null,
 
 	_nFight: null,
-	init:function(){
-		if (this._super()){
-			this.initLayer();
+	_bgSize: null,
+	_bgOffset: null,
 
+	_animalNode: null,
+	
+	init:function(){
+		cc.log("fight layer init ...");
+		if (this._super()){
+			this.initCard();
+			// this.initDisplay();
+			this.initAnimal();
 			return true;
 		}
-		cc.log("fight layer init ...");
 		return false;
 	},
-	initLayer:function(){
+	initCard:function(){
 		
 		var fightBackground = cc.Sprite.create(IMG.fightBackground);
 		var cs = fightBackground.getContentSize();
+		this._bgSize = cs;
 		this._nFight = cc.LayerColor.create(cc.c4b(255, 0, 0, 100), cs.width, cs.height);
 		this._nFight.setAnchorPoint(cc.p(0.5 ,0));
+
+		var animalLayer = cc.LayerColor.create(cc.c4b(0, 0, 255, 100), cs.width, cs.height);
+		animalLayer.setAnchorPoint(cc.p(0.5, 0));
+
+		this._animalNode = cc.Node.create();
+		this._animalNode.setPosition(cc.p(cs.width / 2, cs.height / 2));
+		this._animalNode.addChild(animalLayer);
+
+
 		var p = cc.pSub(VisibleRect.topRight(), cc.p(cs.width, cs.height));
 		this.setPosition(cc.p(p.x / 2, p.y / 2));
-		this.addChild(this._nFight);
+		this.addChild(this._nFight);		
+		this.addChild(this._animalNode);
 
 		var node = cc.Node.create();
 		node.setPosition(cc.p(cs.width / 2, cs.height / 2));
 		node.addChild(fightBackground);
 		this._nFight.addChild(node);
 
-		var eye = this._nFight.getCamera().getEye();
-		var z = eye.z + 300;
-		this._nFight.setVertexZ(300);
-		this._nFight.getCamera().setEye(eye.x, -z * 0.1, z);
-		// this._nFight.getCamera().setEye(eye.x, 800, 30);
-		
 		// add cards
 		this._dogs = [];
 		this._dogs.push(Card.create(C.DOG, 4));
@@ -49,27 +60,44 @@ var FightLayer = cc.Layer.extend({
 		this._cats.push(Card.create(C.CAT, 2));
 		this._cats.push(Card.create(C.CAT, 1));
 		this._cats.push(Card.create(C.CAT, 0));
-		
+
 		for(var id = 0; id < this._dogs.length; id++){
-			node.addChild(this._dogs[id]);
-			this._dogs[id].display();
+			var dogCard = this._dogs[id];
+			node.addChild(dogCard);
+			var animal = dogCard.getAnimal();
+			var point = cc.pAdd(dogCard.getPosition(), animal.getPosition());
+			// animal.setScale(0.44);
+			animal.setPosition(point);
+			cc.log("pos:" + animal.getPosition().x + " " + animal.getPosition().y);
+			this._animalNode.addChild(animal);
 		}
 			
 		for(var ic = 0; ic < this._cats.length; ic++){
-			node.addChild(this._cats[ic]);
-			this._cats[ic].display();			
+			var catCard = this._cats[ic];
+			var cat = catCard.getAnimal();
+			catCard.addChild(cat);
+			// cc.log("position:" + cat.getPosition().x + " " + cat.getPosition().y);
+			node.addChild(catCard);
 		}
 
-		var dog = Card.create(C.DOG, 0);
-		dog.setPosition(cc.p(0, 0));
-		dog.display();
-		node.addChild(dog);
+	},
+	initAnimal:function(){
+		
+	},
+	initDisplay:function(){
+		var eye = this._nFight.getCamera().getEye();
+		var z = eye.z;
+		this._nFight.getCamera().setEye(eye.x, -z * 0.28, z);
+		
+		// add test layer
+		var cl1 = cc.LayerColor.create(cc.c4b(255, 0, 0, 100), this._bgSize.width, 20);
+		this.addChild(cl1);
 
-		var test = cc.Sprite.create(IMG.cardDog1);
-		test.setPosition(cc.p(20, 100));
-		test.setScale(0.44);
-		this.addChild(test);
-	}
+		this._bgOffset = cc.size(98, 92);
+		var cl2 = cc.LayerColor.create(cc.c4b(255, 0, 0, 100), this._bgSize.width, 20);
+		cl2.setPosition(cc.p(0 + this._bgOffset.width, this._bgSize.height - 20 - this._bgOffset.height));
+		this.addChild(cl2);
+	}	
 });
 
 FightLayer.scene = function(){

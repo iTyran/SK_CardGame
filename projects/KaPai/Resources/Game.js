@@ -19,28 +19,27 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(backGround);
 
 		// add menu
-		var itemImgInstance = cc.MenuItemImage.create(IMG.btnInstance, IMG.btnInstancePress, function(){
+		var itemImgInstance = cc.MenuItemImage.create(IMG.btn.Instance, IMG.btn.InstancePress, function(){
 			cc.Director.getInstance().replaceScene(InstanceLayer.scene());
 		}, this);
-		var itemImgShop = cc.MenuItemImage.create(IMG.btnShop, IMG.btnShopPress, function(){
+		var itemImgShop = cc.MenuItemImage.create(IMG.btn.Shop, IMG.btn.ShopPress, function(){
 			cc.log("open shop .");
 		}, this);
-		var itemImgCardUpgrade = cc.MenuItemImage.create(IMG.btnCardUpgrade, IMG.btnCardUpgradePress, function(){
+		var itemImgCardUpgrade = cc.MenuItemImage.create(IMG.btn.CardUpgrade, IMG.btn.CardUpgradePress, function(){
 			cc.log("card upgrade");
 		}, this);
-		var itemImgCardGroup = cc.MenuItemImage.create(IMG.btnCardGroup, IMG.btnCardGroupPress, function(){
+		var itemImgCardGroup = cc.MenuItemImage.create(IMG.btn.CardGroup, IMG.btn.CardGroupPress, function(){
 			cc.Director.getInstance().replaceScene(CardGroup.scene());
 		}, this);
 		
 		itemImgInstance.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-200, -200)));
 		itemImgShop.setPosition(cc.pAdd(VisibleRect.bottomRight(), cc.p(-180, 180)));
-		itemImgCardUpgrade.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 0)));
-		itemImgCardGroup.setPosition(cc.pAdd(VisibleRect.bottom(), cc.p(0, 130)));
+		itemImgCardUpgrade.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-220, 90)));
+		itemImgCardGroup.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-150, -200)));
 
 		var menu = cc.Menu.create(itemImgInstance, itemImgShop, itemImgCardUpgrade, itemImgCardGroup);
 		menu.setPosition(cc.p(0, 0));
 		this.addChild(menu);
-
 	},
 	onEnter:function(){
 		this._super();
