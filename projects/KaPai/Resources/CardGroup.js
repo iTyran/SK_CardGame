@@ -18,8 +18,6 @@ var Animal = cc.Class.extend({
 		this._layer.setAnchorPoint(cc.p(0.5, 0));
 		this._layer.addChild(an);
 		an.setPosition(this._center);
-
-		// node.addChild(this._layer);
 	},
 	getNode:function(){
 		return this._layer;
@@ -30,7 +28,7 @@ var Animal = cc.Class.extend({
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(30, 0)));
 			this._layer.addChild(this._animate);
 			this._animate.runAction(Utile.getAnimate(0.1, IMG.attack, this.unAnimate, this));
-			// this._attack.runAction(Utile.getAnimate(0.1, IMG.attack));
+			// this._animate.runAction(Utile.getAnimate(0.1, IMG.attack));
 		}
 	},
 	hurt:function(){
@@ -53,7 +51,7 @@ var Animal = cc.Class.extend({
 var Card = cc.Node.extend({
 	
 	_hp: null,
-	_at: null,
+	_atk: null,
 	_level: null,
 	_name: null,
 	
@@ -87,8 +85,6 @@ var Card = cc.Node.extend({
 	initLayer:function(){
 		var sprite = cc.Sprite.create(IMG.card.Purple);
 		var status = cc.Sprite.create(IMG.card.Status.Purple);
-		var at = cc.Sprite.create(IMG.cardAt);
-		var hp = cc.Sprite.create(IMG.cardHp);
 		var skillA = cc.Sprite.create(IMG.skill["001"]);
 		var skillB = cc.Sprite.create(IMG.skill["002"]);
 
@@ -96,30 +92,35 @@ var Card = cc.Node.extend({
 		// skillB.setTexture(t);
 
 		status.setPosition(cc.p(0, -100));
-		hp.setPosition(cc.p(-39, -128));
-		at.setPosition(cc.p(-13, -163));
 		skillA.setPosition(cc.p(103, -57));
 		skillB.setPosition(cc.p(82, -112));
 
 		this.addChild(sprite);
-		this.addChild(at);
-		this.addChild(hp);
 		this.addChild(status);
 		this.addChild(skillA);
 		this.addChild(skillB);
 
-		this._level = cc.LabelTTF.create("3", "", 24);
-		this._level.setPosition(cc.p(-122, -208));
+		this._level = cc.LabelTTF.create("1", "", 24);
+		this._level.setPosition(cc.p(122, 208));
 		this.addChild(this._level);
 
 		this._name = cc.LabelTTF.create("zlong", "", 34);
 		this._name.setPosition(cc.p(0, 208));
 		this.addChild(this._name);
 
+		this._hp = cc.LabelTTF.create("1", "", 24);
+		this._hp.setPosition(cc.p(-40, -126));
+		this.addChild(this._hp);
+
+		this._atk = cc.LabelTTF.create("1", "", 24);
+		this._atk.setPosition(cc.p(-5, -162));
+		this.addChild(this._atk);
 	},
 	updateInfo:function(info){
 		this._level.setString(info.Level);
 		this._name.setString(info.Name);
+		this._hp.setString(info.HP);
+		this._atk.setString(info.ATK);
 	},
 	getAnimal:function(){
 		return this._sAnimal;
@@ -180,12 +181,4 @@ CardGroup.scene = function(){
 	scene.addChild(layer);
 	return scene;
 };
-
-
-
-
-
-
-
-
 
