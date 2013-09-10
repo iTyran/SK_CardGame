@@ -45,8 +45,8 @@ try{
 	Socket.getInstance().setUri(uri);
 	director = cc.Director.getInstance();
 	// director.runWithScene(GameLayer.scene());
-	// director.runWithScene(LoginLayer.scene());
-	director.runWithScene(FightLayer.scene());
+	director.runWithScene(LoginLayer.scene());
+	// director.runWithScene(FightLayer.scene());
 	// director.runWithScene(CharacterLayer.scene());
 
 	var winSize = VisibleRect.winSize();
