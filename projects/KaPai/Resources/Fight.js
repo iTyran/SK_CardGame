@@ -28,12 +28,12 @@ var FightLayer = cc.Layer.extend({
 		this._nFight = cc.LayerColor.create(cc.c4b(255, 0, 0, 100), cs.width, cs.height);
 		this._nFight.setAnchorPoint(cc.p(0.5 ,0));
 
-		var animalLayer = cc.LayerColor.create(cc.c4b(0, 0, 255, 100), cs.width, cs.height);
-		animalLayer.setAnchorPoint(cc.p(0.5, 0));
+		// var animalLayer = cc.LayerColor.create(cc.c4b(0, 0, 255, 100), cs.width, cs.height);
+		// animalLayer.setAnchorPoint(cc.p(0.5, 0));
 
 		this._animalNode = cc.Node.create();
 		this._animalNode.setPosition(cc.p(cs.width / 2, cs.height / 2));
-		this._animalNode.addChild(animalLayer);
+		// this._animalNode.addChild(animalLayer);
 
 
 		var p = cc.pSub(VisibleRect.topRight(), cc.p(cs.width, cs.height));
@@ -64,12 +64,32 @@ var FightLayer = cc.Layer.extend({
 		for(var id = 0; id < this._dogs.length; id++){
 			var dogCard = this._dogs[id];
 			node.addChild(dogCard);
-			var animal = dogCard.getAnimal();
-			var point = cc.pAdd(dogCard.getPosition(), animal.getPosition());
+
+			var dog = dogCard.getAnimal();
+			var dogP = dog.getPosition();
+			var dogScale = dogCard.getScaleX();
+			// cc.log("scale: " + dogScale);
+			var point = cc.pAdd(dogCard.getPosition(), cc.p(dogP.x, dogP.y * dogScale));
+			dog.setScale(dogScale);
+			dog.setPosition(this.getNewPoint(point));
+			cc.log("p:" + dogP.x + " " + dogP.y * dogScale);
+			// this._animalNode.addChild(dog);
+
+			var nd = cc.Node.create();
+			var t = cc.Sprite.create(IMG.btn.Back);
+			t.setScale(0.2);
+			nd.addChild(t);
+			nd.addChild(dog);
+			this._animalNode.addChild(nd);
+			
+
+			// dogCard.addChild(dog);
+			// var point = cc.pAdd(dogCard.getPosition(), animal.getPosition());
 			// animal.setScale(0.44);
-			animal.setPosition(point);
-			cc.log("pos:" + animal.getPosition().x + " " + animal.getPosition().y);
-			this._animalNode.addChild(animal);
+			// animal.setPosition(point);
+			// cc.log("pos:" + animal.getPosition().x + " " + animal.getPosition().y);
+			// this._animalNode.addChild(animal);
+			// node.addChild(animal);
 		}
 			
 		for(var ic = 0; ic < this._cats.length; ic++){
@@ -82,7 +102,13 @@ var FightLayer = cc.Layer.extend({
 
 	},
 	initAnimal:function(){
-		
+
+	},
+	getNewPoint:function(p){
+		var o = cc.p(0, -this._bgSize.height / 2);
+		var lp = p;
+		cc.log("Position:" + lp.x + " " + lp.y);
+		return p;
 	},
 	initDisplay:function(){
 		var eye = this._nFight.getCamera().getEye();
