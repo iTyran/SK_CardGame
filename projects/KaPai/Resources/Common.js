@@ -55,7 +55,7 @@ IMG.fightBackground = "fight_background.png";
 IMG.cardAt = "card_at.png";
 IMG.cardHp = "card_hp.png";
 
-IMG.cardGround = "card_group.png";
+IMG.cardGroup = "card_group.png";
 
 // IMG.cardPurpleStatus = "";
 // IMG.cardGreenStatus = "card_green_status.png";
