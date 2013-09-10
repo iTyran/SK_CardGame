@@ -203,6 +203,9 @@ var RegisterLayer = cc.Layer.extend({
 					cc.Director.getInstance().replaceScene(CharacterLayer.scene());
 				}
 			}
+            else if ( obj.Return.Code == 3){
+            	this.showMessage("duplicate name, change a name !!!");
+            }
 		}
 	},
 	showMessage:function(text){
