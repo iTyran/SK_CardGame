@@ -7,6 +7,7 @@ var CardGroup = cc.Layer.extend({
 			
 			var card = Card.create();
 			card.setPosition(VisibleRect.center());
+			card.addChild(card.getAnimal());
 			this.addChild(card);
 			this.initLayer();
 
