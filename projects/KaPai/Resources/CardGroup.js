@@ -1,156 +1,10 @@
 // CardGroup.js
 
-var Animal = cc.Class.extend({
-	_layer: null,
-	_card: null,
-	_center: null,
-
-	_animate: null,
-	
-	init:function(node){
-		this._card = node;
-
-		var an = cc.Sprite.create(IMG.dog["001"]);
-		var cs = an.getContentSize();
-		this._center = cc.p(cs.width / 2, cs.height / 2);
-		this._layer = cc.LayerColor.create(cc.c4b(0, 0, 125, 125), cs.width, cs.height);
-		this._layer.setPosition(cc.p(-cs.width / 2, -cs.height / 2 + 50));
-		this._layer.setAnchorPoint(cc.p(0.5, 0));
-		this._layer.addChild(an);
-		an.setPosition(this._center);
-	},
-	getNode:function(){
-		return this._layer;
-	},
-	attack:function(){
-		if (!this._animate){
-			this._animate = cc.Sprite.create(IMG.attack[0]);
-			this._animate.setPosition(cc.pAdd(this._center, cc.p(30, 0)));
-			this._layer.addChild(this._animate);
-			this._animate.runAction(Utile.getAnimate(0.1, IMG.attack, this.unAnimate, this));
-			// this._attack.runAction(Utile.getAnimate(0.1, IMG.attack));
-		}
-	},
-	hurt:function(){
-		if (!this._animate){
-			this._animate = cc.Sprite.create(IMG.hurt[0]);
-			this._animate.setPosition(cc.pAdd(this._center, cc.p(0, 0)));
-			this._layer.addChild(this._animate);
-			this._animate.runAction(Utile.getAnimate(0.2, IMG.hurt, this.unAnimate, this));
-			// this._animate.runAction(Utile.getAnimate(0.2, IMG.hurt));
-		}
-	},
-	unAnimate:function(){
-		if (this._animate){
-			this._animate.removeFromParent();
-		}
-	}
-}
-							);
-
-var Card = cc.Node.extend({
-	
-	_hp: null,
-	_atk: null,
-	_level: null,
-	_name: null,
-	
-	_skillA: null,
-	_skillB: null,
-	_sAnimal: null,
-
-	init:function(){
-		if (this._super()){
-			this.initLayer();
-
-			var animal = new Animal();
-			animal.init(this);
-			this._sAnimal = animal.getNode();
-			// this.addChild(this._sAnimal);
-
-			var info = {};
-			info.Name = "巡逻兵";
-			info.ID = "001";
-			info.Level = 1;
-			info.HP = 380;
-			info.ATK = 110;
-			info.Skill = ["001", "002"];
-			
-			this.updateInfo(info);
-
-			return true;
-		}
-		return false;
-	},
-	initLayer:function(){
-		var sprite = cc.Sprite.create(IMG.card.Purple);
-		var status = cc.Sprite.create(IMG.card.Status.Purple);
-		var skillA = cc.Sprite.create(IMG.skill["001"]);
-		var skillB = cc.Sprite.create(IMG.skill["002"]);
-
-		// var t = cc.TextureCache.getInstance().addImage(IMG.skill["001"]);
-		// skillB.setTexture(t);
-
-		status.setPosition(cc.p(0, -100));
-		skillA.setPosition(cc.p(103, -57));
-		skillB.setPosition(cc.p(82, -112));
-
-		this.addChild(sprite);
-		this.addChild(status);
-		this.addChild(skillA);
-		this.addChild(skillB);
-
-		this._level = cc.LabelTTF.create("1", "", 24);
-		this._level.setPosition(cc.p(122, 208));
-		this.addChild(this._level);
-
-		this._name = cc.LabelTTF.create("zlong", "", 34);
-		this._name.setPosition(cc.p(0, 208));
-		this.addChild(this._name);
-
-		this._hp = cc.LabelTTF.create("1", "", 24);
-		this._hp.setPosition(cc.p(-40, -126));
-		this.addChild(this._hp);
-
-		this._atk = cc.LabelTTF.create("1", "", 24);
-		this._atk.setPosition(cc.p(-5, -162));
-		this.addChild(this._atk);
-	},
-	updateInfo:function(info){
-		this._level.setString(info.Level);
-		this._name.setString(info.Name);
-		this._hp.setString(info.HP);
-		this._atk.setString(info.ATK);
-	},
-	getAnimal:function(){
-		return this._sAnimal;
-	}
-});
-
-Card.position = [
-	cc.p(-198, -120),
-	cc.p(-198, 120),
-	cc.p(-370, -225),
-	cc.p(-370, 0),
-	cc.p(-370, 225)
-];
-
-Card.create = function(type, index){
-	var card = new Card();
-	card.init();
-	if (type){
-		card.setScale(0.44);
-		var p = Card.position[index];
-		var point = type == C.CAT ? cc.p(-p.x, p.y): p;
-		card.setPosition(point);
-	}
-	return card;
-};
 
 var CardGroup = cc.Layer.extend({
 	init:function(){
 		if (this._super()){
-
+			
 			var card = Card.create();
 			card.setPosition(VisibleRect.center());
 			this.addChild(card);
@@ -203,3 +57,124 @@ CardGroup.scene = function(){
 	return scene;
 };
 
+var GalleryLayer = cc.Layer.extend({
+	_scrollView: null,
+	
+	_colorLayer: null,
+	_cardWidth: null,
+	_cardHeight: null,
+	_cardDistance: null,
+	_contentSize: null,
+
+	_touchPoint: null,
+	_touchOffset: null,
+	init:function(){
+		if (this._super()){
+			
+			this._colorLayer = cc.LayerColor.create();
+			this._cardWidth = 200;
+			this._cardDistance = 40;
+			this._cardHeight = 290;
+			this._contentSize = VisibleRect.winSize();
+			// this._contentSize = cc.size(1024, 768 / 2);
+
+			for (var i = 0; i < 8; i++){
+				// var card = cc.Sprite.create("card.png");
+				// var card = Card.create("card.png");
+				var card = Card.create();
+				
+				card.setPosition(cc.p((this._cardWidth + this._cardDistance) * i, this._contentSize.height / 2));
+				this._colorLayer.addChild(card, 0, i);
+			}
+
+			// this.addChild(this._colorLayer);
+			this._scrollView = cc.ScrollView.create(this._contentSize, this._colorLayer);
+			this._scrollView.setTouchEnabled(false);
+			this._scrollView.setDelegate(this);
+			this.addChild(this._scrollView);
+			
+			this.updateDisplay();
+		}
+	},
+	addCard:function(){
+		// cc.log("gallery layer init..");
+	},
+	onEnter:function(){
+		this._super();
+		cc.registerTargettedDelegate(0, true, this);
+	},
+	onExit:function(){
+		cc.unregisterTouchDelegate(this);
+		this._super();
+	},
+	scrollViewDidScroll:function(obj){
+		this.updateDisplay();
+	},
+    onTouchBegan:function(touch, event) {
+		this._touchPoint = touch.getLocationInView();
+		this._touchOffset = this._scrollView.getContentOffset();
+		cc.log("on touch begain ...");		
+        return true;
+    },
+	onTouchMoved:function(touch, event){ 
+		var movePoint = touch.getLocationInView();
+		var distance = movePoint.x - this._touchPoint.x;
+		var adjustPoint = cc.p(this._touchOffset.x + distance, 0);
+		this._scrollView.setContentOffset(adjustPoint, false);
+		cc.log("on touch moved ..");
+	},
+	onTouchEnded:function(touch, event){
+		this.adjustScrollView();
+		cc.log("on touch ended ..");
+	},
+	onTouchCancelled:function(touch, event){
+		cc.log("on touch cancelled ..");
+	},
+	updateDisplay:function(){
+		// test
+		for (var i = 0; i < 8; i++){
+			var card = this._colorLayer.getChildByTag(i);
+			card.updateDisplay(this._scrollView.getContentOffset(), this._cardWidth + this._cardDistance);
+		}		
+	},
+	adjustScrollView:function(){
+		// end test
+		var width = this._cardWidth + this._cardDistance;
+		var winOffset = (VisibleRect.winSize().width / 2) % width;
+		
+		var touchOffset = this._scrollView.getContentOffset();
+		var index = Math.round((touchOffset.x - winOffset) / width);
+
+		cc.log("index:" + winOffset);
+		var adjustPoint = cc.p(width * index + winOffset, 0);
+		this._scrollView.setContentOffsetInDuration(adjustPoint, 0.3);
+
+	}
+});
+
+
+GalleryLayer.scene = function(){
+	var scene = cc.Scene.create();
+	var layer = new GalleryLayer();
+	layer.init();
+	scene.addChild(layer);
+	cc.log("gallery layer ");
+	return scene;
+};
+
+
+
+// var Card = cc.Node.extend({
+// 	_sprite: null,
+// 	init:function(image){
+// 		this._sprite = cc.Sprite.create(image);
+// 		this._sprite.setScale(0.65);
+// 		this.addChild(this._sprite);
+// 	},
+// });
+
+// Card.create = function(image){
+// 	var card = new Card();
+// 	card.init(image);
+// 	return card;
+// };

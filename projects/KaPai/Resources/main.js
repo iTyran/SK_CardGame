@@ -34,6 +34,7 @@ require("Login.js");
 require("Game.js");
 require("Instance.js");
 require("Fight.js");
+require("Card.js")
 require("CardGroup.js");
 require("Utile.js");
 
