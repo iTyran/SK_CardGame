@@ -13,8 +13,9 @@ var FightLayer = cc.Layer.extend({
 	init:function(){
 		cc.log("fight layer init ...");
 		if (this._super()){
+			this._bgOffset = cc.size(98, 92);
 			this.initCard();
-			// this.initDisplay();
+			this.initDisplay();
 			this.initAnimal();
 			return true;
 		}
@@ -28,13 +29,8 @@ var FightLayer = cc.Layer.extend({
 		this._nFight = cc.LayerColor.create(cc.c4b(255, 0, 0, 100), cs.width, cs.height);
 		this._nFight.setAnchorPoint(cc.p(0.5 ,0));
 
-		// var animalLayer = cc.LayerColor.create(cc.c4b(0, 0, 255, 100), cs.width, cs.height);
-		// animalLayer.setAnchorPoint(cc.p(0.5, 0));
-
 		this._animalNode = cc.Node.create();
 		this._animalNode.setPosition(cc.p(cs.width / 2, cs.height / 2));
-		// this._animalNode.addChild(animalLayer);
-
 
 		var p = cc.pSub(VisibleRect.topRight(), cc.p(cs.width, cs.height));
 		this.setPosition(cc.p(p.x / 2, p.y / 2));
@@ -63,33 +59,21 @@ var FightLayer = cc.Layer.extend({
 
 		for(var id = 0; id < this._dogs.length; id++){
 			var dogCard = this._dogs[id];
+			var scale = dogCard.getScaleX();
 			node.addChild(dogCard);
-
 			var dog = dogCard.getAnimal();
-			var dogP = dog.getPosition();
-			var dogScale = dogCard.getScaleX();
-			// cc.log("scale: " + dogScale);
-			var point = cc.pAdd(dogCard.getPosition(), cc.p(dogP.x, dogP.y * dogScale));
-			dog.setScale(dogScale);
-			dog.setPosition(this.getNewPoint(point));
-			cc.log("p:" + dogP.x + " " + dogP.y * dogScale);
-			// this._animalNode.addChild(dog);
 
-			var nd = cc.Node.create();
-			var t = cc.Sprite.create(IMG.btn.Back);
-			t.setScale(0.2);
-			nd.addChild(t);
-			nd.addChild(dog);
-			this._animalNode.addChild(nd);
+			var dcp = dogCard.getPosition();
+			var dp = dog.getPosition();
+			var np = cc.pAdd(dcp, cc.p(0, dp.y * scale));
 			
+			var nd = cc.Node.create();
+			dog.setScale(scale);
+			dog.setPosition(cc.p(dog.getPosition().x, 0));
+			nd.addChild(dog);
 
-			// dogCard.addChild(dog);
-			// var point = cc.pAdd(dogCard.getPosition(), animal.getPosition());
-			// animal.setScale(0.44);
-			// animal.setPosition(point);
-			// cc.log("pos:" + animal.getPosition().x + " " + animal.getPosition().y);
-			// this._animalNode.addChild(animal);
-			// node.addChild(animal);
+			this.updatePoint(nd, np);
+			this._animalNode.addChild(nd);
 		}
 			
 		for(var ic = 0; ic < this._cats.length; ic++){
@@ -104,25 +88,26 @@ var FightLayer = cc.Layer.extend({
 	initAnimal:function(){
 
 	},
-	getNewPoint:function(p){
+	updatePoint:function(nd, p){
 		var o = cc.p(0, -this._bgSize.height / 2);
-		var lp = p;
-		cc.log("Position:" + lp.x + " " + lp.y);
-		return p;
+		var xPercent  = Math.abs(p.x) / this._bgSize.width * 2;
+		var yPercent = (p.y + this._bgSize.height / 2) / this._bgSize.height ;
+
+		var xOffset = yPercent * this._bgOffset.width * xPercent;
+		var yOffset =  yPercent * yPercent * this._bgOffset.height;
+
+		cc.log("xP: " + xOffset + " yP: " + yOffset);
+
+		var rp = cc.p(p.x + xOffset ,p.y - yOffset);
+		var scale = (this._bgSize.width / 2 - yPercent * this._bgOffset.width) / (this._bgSize.width / 2);
+		var offsetY = (1 -scale) * this._bgOffset.height / 2;
+		nd.setPosition(cc.pAdd(rp, cc.p(0, offsetY)));
+		nd.setScale(scale);
 	},
 	initDisplay:function(){
 		var eye = this._nFight.getCamera().getEye();
 		var z = eye.z;
 		this._nFight.getCamera().setEye(eye.x, -z * 0.28, z);
-		
-		// add test layer
-		var cl1 = cc.LayerColor.create(cc.c4b(255, 0, 0, 100), this._bgSize.width, 20);
-		this.addChild(cl1);
-
-		this._bgOffset = cc.size(98, 92);
-		var cl2 = cc.LayerColor.create(cc.c4b(255, 0, 0, 100), this._bgSize.width, 20);
-		cl2.setPosition(cc.p(0 + this._bgOffset.width, this._bgSize.height - 20 - this._bgOffset.height));
-		this.addChild(cl2);
 	}	
 });
 
