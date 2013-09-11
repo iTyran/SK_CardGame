@@ -1,0 +1,101 @@
+{
+  "Monster": [
+    {
+      "HP": 21,
+      "Name": "田园犬",
+      "Drop": 100,
+      "Speed": 120,
+      "Experience": 324,
+      "ID": "001",
+      "Hash": "0xc2000ee222",
+      "Talent": 720,
+      "Attack": 25,
+      "Skill": [
+        1,
+        2
+      ],
+      "Status": 1,
+      "Pos": 1,
+      "Level": 1,
+      "Defence": 13
+    },
+    {
+      "HP": 21,
+      "Name": "田园犬",
+      "Drop": 100,
+      "Speed": 120,
+      "Experience": 324,
+      "ID": "001",
+      "Hash": "0xc2000ee333",
+      "Talent": 720,
+      "Attack": 25,
+      "Skill": [
+        1,
+        2
+      ],
+      "Status": 1,
+      "Pos": 2,
+      "Level": 1,
+      "Defence": 13
+    }
+  ],
+  "My": [
+    {
+      "HP": 21,
+      "Name": "田园犬",
+      "Drop": 100,
+      "Speed": 120,
+      "Experience": 324,
+      "ID": "001",
+      "Hash": "0xc2000ee5a0",
+      "Talent": 720,
+      "Attack": 25,
+      "Skill": [
+        1,
+        2
+      ],
+      "Status": 1,
+      "Pos": 1,
+      "Level": 1,
+      "Defence": 13
+    },
+    {
+      "HP": 21,
+      "Name": "田园犬",
+      "Drop": 100,
+      "Speed": 120,
+      "Experience": 324,
+      "ID": "001",
+      "Hash": "0xc2000ee111",
+      "Talent": 720,
+      "Attack": 25,
+      "Skill": [
+        1,
+        2
+      ],
+      "Status": 1,
+      "Pos": 2,
+      "Level": 1,
+      "Defence": 13
+    }
+  ],
+  "End": {
+    "Experience": 100,
+    "Drop": 1,
+    "Result": 1
+  },
+  "Combat": [
+    {
+      "Beattacked": "0xc2000ee333",
+      "Skill": 0,
+      "Attacker": "0xc2000ee5a0",
+      "Damage": 12
+    },
+    {
+      "Beattacked": "0xc2000ee5a0",
+      "Skill": 1,
+      "Attacker": "0xc2000ee333",
+      "Damage": 12
+    }
+  ]
+}

@@ -18,6 +18,7 @@ var Animal = cc.Class.extend({
 		this._layer.setAnchorPoint(cc.p(0.5, 0));
 		this._layer.addChild(an);
 		an.setPosition(this._center);
+
 	},
 	getNode:function(){
 		return this._layer;
@@ -27,8 +28,8 @@ var Animal = cc.Class.extend({
 			this._animate = cc.Sprite.create(IMG.attack[0]);
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(30, 0)));
 			this._layer.addChild(this._animate);
-			this._animate.runAction(Utile.getAnimate(0.1, IMG.attack, this.unAnimate, this));
-			// this._attack.runAction(Utile.getAnimate(0.1, IMG.attack));
+			// this._animate.runAction(Utile.getAnimate(0.1, IMG.attack, this.unAnimate, this));
+			this._animate.runAction(Utile.getAnimate(0.1, IMG.attack));
 		}
 	},
 	hurt:function(){
@@ -36,8 +37,8 @@ var Animal = cc.Class.extend({
 			this._animate = cc.Sprite.create(IMG.hurt[0]);
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(0, 0)));
 			this._layer.addChild(this._animate);
-			this._animate.runAction(Utile.getAnimate(0.2, IMG.hurt, this.unAnimate, this));
-			// this._animate.runAction(Utile.getAnimate(0.2, IMG.hurt));
+			this._animate.runAction(Utile.getAnimate(0.15, IMG.hurt, this.unAnimate, this));
+			// this._animate.runAction(Utile.getAnimate(0.15, IMG.hurt));
 		}
 	},
 	unAnimate:function(){
@@ -60,8 +61,9 @@ var Card = cc.Node.extend({
 	_sAnimal: null,
 
 	_node: null,
+	_info: null,
 
-	init:function(){
+	init:function(info){
 		if (this._super()){
 			this.initLayer();
 
@@ -70,16 +72,19 @@ var Card = cc.Node.extend({
 			this._sAnimal = animal.getNode();
 			// this.addChild(this._sAnimal);
 
-			var info = {};
-			info.Name = "巡逻兵";
-			info.ID = "001";
-			info.Level = 1;
-			info.HP = 380;
-			info.ATK = 110;
-			info.Skill = ["001", "002"];
+			// var info = {};
+			// info.Name = "巡逻兵";
+			// info.ID = "001";
+			// info.Level = 1;
+			// info.HP = 380;
+			// info.ATK = 110;
+			// info.Skill = ["001", "002"];
 			
-			this.updateInfo(info);
+			// this.updateInfo(info);
 
+			if (info){
+				this._info = info;
+			}
 			return true;
 		}
 		return false;
@@ -121,7 +126,8 @@ var Card = cc.Node.extend({
 		this._atk.setPosition(cc.p(-5, -162));
 		this._node.addChild(this._atk);
 	},
-	updateInfo:function(info){
+	updateInfo:function(){
+		var info = this._info;
 		this._level.setString(info.Level);
 		this._name.setString(info.Name);
 		this._hp.setString(info.HP);
@@ -163,5 +169,16 @@ Card.create = function(type, index){
 		var point = type == C.CAT ? cc.p(-p.x, p.y): p;
 		card.setPosition(point);
 	}
+	return card;
+};
+
+Card.createWithCombat = function(info){
+	var card = new Card();
+	card.init(info);
+	card.updateInfo();
+	card.setScale(0.44);
+	var p = Card.position[info.Pos - 1];
+	var point = info.Type == C.CAT ? cc.p(-p.x, p.y): p;
+	card.setPosition(point);
 	return card;
 };

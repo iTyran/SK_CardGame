@@ -178,6 +178,7 @@
 		BC30B48817D85B1200246840 /* CardGroup.js in Resources */ = {isa = PBXBuildFile; fileRef = BC30B48617D85B0600246840 /* CardGroup.js */; };
 		BC3566F617E0163300831289 /* Card.js in Sources */ = {isa = PBXBuildFile; fileRef = BC3566F517E0163300831289 /* Card.js */; };
 		BC3566F717E0163E00831289 /* Card.js in Resources */ = {isa = PBXBuildFile; fileRef = BC3566F517E0163300831289 /* Card.js */; };
+		BC3566FC17E0443E00831289 /* json in Resources */ = {isa = PBXBuildFile; fileRef = BC3566FB17E0443E00831289 /* json */; };
 		BC357CB017D4B8FB006DD1F7 /* Fight.js in Sources */ = {isa = PBXBuildFile; fileRef = BC357CAF17D4B8FB006DD1F7 /* Fight.js */; };
 		BC357CB117D4B904006DD1F7 /* Fight.js in Resources */ = {isa = PBXBuildFile; fileRef = BC357CAF17D4B8FB006DD1F7 /* Fight.js */; };
 		BC357CB317D4B952006DD1F7 /* Game.js in Sources */ = {isa = PBXBuildFile; fileRef = BC357CB217D4B952006DD1F7 /* Game.js */; };
@@ -516,6 +517,7 @@
 		BC0B8D3A17D3539200261EDD /* Socket.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Socket.js; path = ../Resources/Socket.js; sourceTree = "<group>"; };
 		BC30B48617D85B0600246840 /* CardGroup.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = CardGroup.js; path = ../Resources/CardGroup.js; sourceTree = "<group>"; };
 		BC3566F517E0163300831289 /* Card.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Card.js; path = ../Resources/Card.js; sourceTree = "<group>"; };
+		BC3566FB17E0443E00831289 /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; name = json; path = ../Resources/json; sourceTree = "<group>"; };
 		BC357CAF17D4B8FB006DD1F7 /* Fight.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Fight.js; path = ../Resources/Fight.js; sourceTree = "<group>"; };
 		BC357CB217D4B952006DD1F7 /* Game.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Game.js; path = ../Resources/Game.js; sourceTree = "<group>"; };
 		BC454D4E17D7336C00EED856 /* Utile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Utile.js; path = ../Resources/Utile.js; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 		15628F5B15F0F5C2000CF24B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BC3566FB17E0443E00831289 /* json */,
 				BC3566F517E0163300831289 /* Card.js */,
 				BC30B48617D85B0600246840 /* CardGroup.js */,
 				BC454D4E17D7336C00EED856 /* Utile.js */,
@@ -1247,6 +1250,7 @@
 				15A3D3231682F0A0002FB0C5 /* README in Resources */,
 				15A3D38D1682F0B6002FB0C5 /* CMakeLists.txt in Resources */,
 				BC7D082817CDCA6A009313C5 /* ipad in Resources */,
+				BC3566FC17E0443E00831289 /* json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
