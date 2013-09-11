@@ -28,7 +28,7 @@ var Animal = cc.Class.extend({
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(30, 0)));
 			this._layer.addChild(this._animate);
 			this._animate.runAction(Utile.getAnimate(0.1, IMG.attack, this.unAnimate, this));
-			// this._animate.runAction(Utile.getAnimate(0.1, IMG.attack));
+			// this._attack.runAction(Utile.getAnimate(0.1, IMG.attack));
 		}
 	},
 	hurt:function(){
@@ -169,7 +169,28 @@ var CardGroup = cc.Layer.extend({
 		var menu = cc.Menu.create(itemImgBack);
 		menu.setPosition(cc.p(0, 0));
 		this.addChild(menu);
-		
+		var CardGroup = cc.Scale9Sprite.create(IMG.cardGroup);
+		CardGroup.setContentSize(cc.size(800, 160));
+		var dogFace1 = cc.Sprite.create(IMG.dogFace["001"]);
+		var dogFace2 = cc.Sprite.create(IMG.dogFace["002"]);
+		var dogFace3 = cc.Sprite.create(IMG.dogFace["003"]);
+		var dogFace4 = cc.Sprite.create(IMG.dogFace["004"]);
+		var dogFace5 = cc.Sprite.create(IMG.dogFace["005"]);
+
+		CardGroup.setPosition(cc.p(450, 650));
+		dogFace1.setPosition(cc.p(150, 650));
+		dogFace2.setPosition(cc.p(300, 650));
+		dogFace3.setPosition(cc.p(450, 650));
+		dogFace4.setPosition(cc.p(600, 650));
+		dogFace5.setPosition(cc.p(750, 650));
+
+		this.addChild(CardGroup);
+		this.addChild(dogFace1);
+		this.addChild(dogFace2);
+		this.addChild(dogFace3);
+		this.addChild(dogFace4);
+		this.addChild(dogFace5);
+
 		return;
 	}
 });
