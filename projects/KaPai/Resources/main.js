@@ -40,7 +40,7 @@ require("Utile.js");
 
 try{
 	// var uri = "172.100.104.204:1234";
-	var uri = "172.100.104.139:1234";
+	var uri = "172.100.104.192:1234";
 	// var uri = "ws://localhost:8082/echo;
 	Socket.getInstance().setUri(uri);
 	director = cc.Director.getInstance();
