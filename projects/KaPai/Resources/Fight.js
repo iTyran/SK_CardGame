@@ -1,14 +1,15 @@
  // FightLayer.js
 
 var FightLayer = cc.Layer.extend({
-	_dogs: null,
-	_cats: null,
+	_my: null,
+	_monster: null,
 
 	_nFight: null,
 	_bgSize: null,
 	_bgOffset: null,
 
 	_animalNode: null,
+	_combat: null,
 	
 	init:function(){
 		cc.log("fight layer init ...");
@@ -17,30 +18,63 @@ var FightLayer = cc.Layer.extend({
 
 			// test start combat
 			var json = cc.FileUtils.getInstance().getStringFromFile("json/combat.json");
-			this.startCombat(JSON.parse(json));
+			this._combat = JSON.parse(json);
+			this.startCombat();
 
-			this.initDisplay();			
-
+			this.initDisplay();
+			
 			return true;
 		}
 		return false;
 	},
-	startCombat:function(combat){
-		var dogs = combat.My;
-		this._dogs = [];		
-		for(var di in dogs){
-			var dog = dogs[di];
-			dog.Type = C.DOG;
-			this._dogs.push(Card.createWithCombat(dog));
+	startCombat:function(){
+		// init
+		var my = this._combat.My;
+		this._my = [];
+		for(var di in my){
+			var m = my[di];
+			m.Type = C.DOG;
+			this._my.push(Card.createWithCombat(m));
 		}
-		var cats = combat.Monster;
-		this._cats = [];
-		for(var ci in cats){
-			var cat = cats[ci];
-			cat.Type = C.CAT;
-			this._cats.push(Card.createWithCombat(cat));
+		var monster = this._combat.Monster;
+		this._monster = [];
+		for(var ci in monster){
+			var mon = monster[ci];
+			mon.Type = C.CAT;
+			this._monster.push(Card.createWithCombat(mon));
 		}
 		this.initCard();
+
+		// start combat
+		this.combatAction(0);
+	},
+	combatAction:function(index){
+		if (index < this._combat.Combat.size){
+			// return;
+		}
+		var cb = this._combat.Combat[index];
+
+		cc.log("index:" + cb.Attacker);
+
+		var attacker = this.getCardByHash(cb.Attacker);
+		if (attacker){
+			attacker.getAnimal().attack();
+		}
+		var beattacked = this.getCardByHash(cb.Beattacked);
+		if (beattacked){
+			beattacked.getAnimal().hurt();
+		}
+	},
+	getCardByHash:function(hash){
+		for(var mi in this._my){
+			if (hash == this._my[mi].getInfo().Hash)
+				return this._my[mi];
+		}
+		for (var ri in this._monster){
+			if (hash == this._monster[ri].getInfo().Hash)
+				return this._monster[ri];
+		}
+		return null;
 	},
 	initCard:function(){
 		
@@ -63,26 +97,11 @@ var FightLayer = cc.Layer.extend({
 		node.addChild(fightBackground);
 		this._nFight.addChild(node);
 
-		// add cards
-		// this._dogs = [];
-		// this._dogs.push(Card.create(C.DOG, 4));
-		// this._dogs.push(Card.create(C.DOG, 3));
-		// this._dogs.push(Card.create(C.DOG, 2));		
-		// this._dogs.push(Card.create(C.DOG, 1));
-		// this._dogs.push(Card.create(C.DOG, 0));
-
-		// this._cats = [];
-		// this._cats.push(Card.create(C.CAT, 4));
-		// this._cats.push(Card.create(C.CAT, 3));
-		// this._cats.push(Card.create(C.CAT, 2));
-		// this._cats.push(Card.create(C.CAT, 1));
-		// this._cats.push(Card.create(C.CAT, 0));
-
-		for(var id = 0; id < this._dogs.length; id++){
-			var dogCard = this._dogs[id];
+		for(var id = 0; id < this._my.length; id++){
+			var dogCard = this._my[id];
 			var scale = dogCard.getScaleX();
 			node.addChild(dogCard);
-			var dog = dogCard.getAnimal();
+			var dog = dogCard.getAnimal().getNode();
 
 			var dcp = dogCard.getPosition();
 			var dp = dog.getPosition();
@@ -97,9 +116,9 @@ var FightLayer = cc.Layer.extend({
 			this._animalNode.addChild(nd);
 		}
 			
-		for(var ic = 0; ic < this._cats.length; ic++){
-			var catCard = this._cats[ic];
-			var cat = catCard.getAnimal();
+		for(var ic = 0; ic < this._monster.length; ic++){
+			var catCard = this._monster[ic];
+			var cat = catCard.getAnimal().getNode();
 			catCard.addChild(cat);
 			// cc.log("position:" + cat.getPosition().x + " " + cat.getPosition().y);
 			node.addChild(catCard);

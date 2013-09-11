@@ -28,8 +28,8 @@ var Animal = cc.Class.extend({
 			this._animate = cc.Sprite.create(IMG.attack[0]);
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(30, 0)));
 			this._layer.addChild(this._animate);
-			// this._animate.runAction(Utile.getAnimate(0.1, IMG.attack, this.unAnimate, this));
-			this._animate.runAction(Utile.getAnimate(0.1, IMG.attack));
+			this._animate.runAction(Utile.getAnimate(0.1, IMG.attack, this.unAnimate, this));
+			// this._animate.runAction(Utile.getAnimate(0.1, IMG.attack));
 		}
 	},
 	hurt:function(){
@@ -69,7 +69,7 @@ var Card = cc.Node.extend({
 
 			var animal = new Animal();
 			animal.init(this);
-			this._sAnimal = animal.getNode();
+			this._sAnimal = animal;
 			// this.addChild(this._sAnimal);
 
 			// var info = {};
@@ -132,6 +132,9 @@ var Card = cc.Node.extend({
 		this._atk = cc.LabelTTF.create("1", "", 40);
 		this._atk.setPosition(cc.p(-15, -153));
 		this._node.addChild(this._atk);
+	},
+	getInfo:function(){
+		return this._info;
 	},
 	updateInfo:function(){
 		var info = this._info;
