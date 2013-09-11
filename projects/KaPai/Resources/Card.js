@@ -104,11 +104,12 @@ var Card = cc.Node.extend({
 		// skillB.setTexture(t);
 
 		status.setPosition(cc.p(0, -70));
-		skillA.setPosition(cc.p(237, 182));
+		skillA.setPosition(cc.p(237, 185));
 		skillB.setPosition(cc.p(237, 102));
 		pLevel.setPosition(cc.p(42, 78));
-		pHp.setPosition(cc.p(140, 150));
-		pHp.setScaleX(0.9);
+		pHp.setPosition(cc.p(75, 150));
+		pHp.setScaleX(0.85);
+		pHp.setAnchorPoint(cc.p(0, 0.5));
 
 		this._node.addChild(sprite);
 		this._node.addChild(status);
@@ -117,11 +118,11 @@ var Card = cc.Node.extend({
 		sprite.addChild(pLevel);
 		sprite.addChild(pHp);
 
-		this._level = cc.LabelTTF.create("1", "", 24);
-		this._level.setPosition(cc.p(122, 208));
+		this._level = cc.LabelTTF.create("1", "", 50);
+		this._level.setPosition(cc.p(-120, -210));
 		this._node.addChild(this._level);
 
-		this._name = cc.LabelTTF.create("zlong", "", 40);
+		this._name = cc.LabelTTF.create("zlong", "", 50);
 		this._name.setPosition(cc.p(0, 208));
 		this._node.addChild(this._name);
 
