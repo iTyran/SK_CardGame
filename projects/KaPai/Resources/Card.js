@@ -97,33 +97,40 @@ var Card = cc.Node.extend({
 		var status = cc.Sprite.create(IMG.card.Status.Purple);
 		var skillA = cc.Sprite.create(IMG.skill["001"]);
 		var skillB = cc.Sprite.create(IMG.skill["002"]);
+		var pLevel = cc.Sprite.create(IMG.cardLv);
+		var pHp = cc.Sprite.create(IMG.cardHp);
 
 		// var t = cc.TextureCache.getInstance().addImage(IMG.skill["001"]);
 		// skillB.setTexture(t);
 
-		status.setPosition(cc.p(0, -100));
-		skillA.setPosition(cc.p(103, -57));
-		skillB.setPosition(cc.p(82, -112));
+		status.setPosition(cc.p(0, -70));
+		skillA.setPosition(cc.p(237, 182));
+		skillB.setPosition(cc.p(237, 102));
+		pLevel.setPosition(cc.p(42, 78));
+		pHp.setPosition(cc.p(140, 150));
+		pHp.setScaleX(0.9);
 
 		this._node.addChild(sprite);
 		this._node.addChild(status);
-		this._node.addChild(skillA);
-		this._node.addChild(skillB);
+		status.addChild(skillA);
+		status.addChild(skillB);
+		sprite.addChild(pLevel);
+		sprite.addChild(pHp);
 
 		this._level = cc.LabelTTF.create("1", "", 24);
 		this._level.setPosition(cc.p(122, 208));
 		this._node.addChild(this._level);
 
-		this._name = cc.LabelTTF.create("zlong", "", 34);
+		this._name = cc.LabelTTF.create("zlong", "", 40);
 		this._name.setPosition(cc.p(0, 208));
 		this._node.addChild(this._name);
 
-		this._hp = cc.LabelTTF.create("1", "", 24);
-		this._hp.setPosition(cc.p(-40, -126));
+		this._hp = cc.LabelTTF.create("1", "", 40);
+		this._hp.setPosition(cc.p(-30, -93));
 		this._node.addChild(this._hp);
 
-		this._atk = cc.LabelTTF.create("1", "", 24);
-		this._atk.setPosition(cc.p(-5, -162));
+		this._atk = cc.LabelTTF.create("1", "", 40);
+		this._atk.setPosition(cc.p(-15, -153));
 		this._node.addChild(this._atk);
 	},
 	updateInfo:function(){
@@ -131,7 +138,7 @@ var Card = cc.Node.extend({
 		this._level.setString(info.Level);
 		this._name.setString(info.Name);
 		this._hp.setString(info.HP);
-		this._atk.setString(info.ATK);
+		this._atk.setString(info.Attack);
 	},
 	getAnimal:function(){
 		return this._sAnimal;
