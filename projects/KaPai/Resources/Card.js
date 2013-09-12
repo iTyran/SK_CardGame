@@ -18,7 +18,6 @@ var Animal = cc.Class.extend({
 		this._layer.setAnchorPoint(cc.p(0.5, 0));
 		this._layer.addChild(an);
 		an.setPosition(this._center);
-
 	},
 	getNode:function(){
 		return this._layer;
@@ -26,24 +25,45 @@ var Animal = cc.Class.extend({
 	attack:function(){
 		if (!this._animate){
 			this._animate = cc.Sprite.create(IMG.attack[0]);
+			if (this._card.isMonster())
+				this._animate.setFlipX(true);
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(30, 0)));
 			this._layer.addChild(this._animate);
 			this._animate.runAction(Utile.getAnimate(0.1, IMG.attack, this.unAnimate, this));
 			// this._animate.runAction(Utile.getAnimate(0.1, IMG.attack));
+		}else{
+			this.unAnimate();
+			this.attack();
 		}
 	},
-	hurt:function(){
+	hurt:function(damage){
 		if (!this._animate){
 			this._animate = cc.Sprite.create(IMG.hurt[0]);
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(0, 0)));
 			this._layer.addChild(this._animate);
-			this._animate.runAction(Utile.getAnimate(0.15, IMG.hurt, this.unAnimate, this));
+			this._animate.runAction(Utile.getAnimate(0.12, IMG.hurt, this.unAnimate, this));
 			// this._animate.runAction(Utile.getAnimate(0.15, IMG.hurt));
+
+			// damage label
+			var label = cc.LabelTTF.create("-" + damage, "", 60);
+			label.setPosition(cc.pAdd(this._center, cc.p(0, 80)));
+			label.setColor(cc.RED);
+			this._layer.addChild(label);
+
+			var fadeIn = cc.FadeIn.create(0.3);
+			var fadeOut = cc.FadeOut.create(1.5);
+			var mu = cc.MoveBy.create(1, cc.p(0, 60));
+			var a = cc.Spawn.create(fadeIn, mu);
+			label.runAction(a);
+		}else{
+			this.unAnimate();
+			this.hurt(damage);
 		}
 	},
 	unAnimate:function(){
 		if (this._animate){
 			this._animate.removeFromParent();
+			this._animate = null;
 		}
 	}
 }
@@ -55,6 +75,7 @@ var Card = cc.Node.extend({
 	_atk: null,
 	_level: null,
 	_name: null,
+	_damage: 0,
 	
 	_skillA: null,
 	_skillB: null,
@@ -62,29 +83,22 @@ var Card = cc.Node.extend({
 
 	_node: null,
 	_info: null,
+	_isMonster: true,
+
+	_nHp: null,
 
 	init:function(info){
 		if (this._super()){
 			this.initLayer();
-
+			
+			if (info){
+				this._info = info;
+				this._isMonster = info.Type == C.MONSTER;
+			}
 			var animal = new Animal();
 			animal.init(this);
 			this._sAnimal = animal;
-			// this.addChild(this._sAnimal);
 
-			// var info = {};
-			// info.Name = "巡逻兵";
-			// info.ID = "001";
-			// info.Level = 1;
-			// info.HP = 380;
-			// info.ATK = 110;
-			// info.Skill = ["001", "002"];
-			
-			// this.updateInfo(info);
-
-			if (info){
-				this._info = info;
-			}
 			return true;
 		}
 		return false;
@@ -108,8 +122,9 @@ var Card = cc.Node.extend({
 		skillB.setPosition(cc.p(237, 102));
 		pLevel.setPosition(cc.p(42, 78));
 		pHp.setPosition(cc.p(75, 150));
-		pHp.setScaleX(0.85);
+		pHp.setScaleX(1);
 		pHp.setAnchorPoint(cc.p(0, 0.5));
+		this._nHp = pHp;
 
 		this._node.addChild(sprite);
 		this._node.addChild(status);
@@ -137,15 +152,30 @@ var Card = cc.Node.extend({
 	getInfo:function(){
 		return this._info;
 	},
+	hurt:function(damage){
+		var d = damage;
+		this._damage += damage;
+		if (this._damage > this._info.HP){
+			this._damage = this._info.HP;
+			d -= this._damage - this._info.HP;
+			cc.log("leafsoar leafsoar:" + this._damage - this._info.HP);
+		}
+		this.updateInfo();
+		this._sAnimal.hurt(d);
+	},
 	updateInfo:function(){
 		var info = this._info;
 		this._level.setString(info.Level);
 		this._name.setString(info.Name);
-		this._hp.setString(info.HP);
+		this._hp.setString((info.HP - this._damage) + "/" + info.HP);
 		this._atk.setString(info.Attack);
+		this._nHp.setScale(1 - this._damage / info.HP);
 	},
 	getAnimal:function(){
 		return this._sAnimal;
+	},
+	isMonster:function(){
+		return this._isMonster;
 	},
 	updateDisplay:function(scrollViewOffset, wd){
 		var distance = (this.getPosition().x + scrollViewOffset.x );
@@ -159,8 +189,10 @@ var Card = cc.Node.extend({
 
 		var offset = cc.p(x * x* x* 30, 0);
 		this._node.setPosition(offset);
+	},
+	attack:function(){
+		this._sAnimal.attack();
 	}
-	
 });
 
 Card.position = [
@@ -177,7 +209,7 @@ Card.create = function(type, index){
 	if (type){
 		card.setScale(0.44);
 		var p = Card.position[index];
-		var point = type == C.CAT ? cc.p(-p.x, p.y): p;
+		var point = type == C.MONSTER ? cc.p(-p.x, p.y): p;
 		card.setPosition(point);
 	}
 	return card;
@@ -189,7 +221,7 @@ Card.createWithCombat = function(info){
 	card.updateInfo();
 	card.setScale(0.44);
 	var p = Card.position[info.Pos - 1];
-	var point = info.Type == C.CAT ? cc.p(-p.x, p.y): p;
+	var point = info.Type == C.MONSTER ? cc.p(-p.x, p.y): p;
 	card.setPosition(point);
 	return card;
 };

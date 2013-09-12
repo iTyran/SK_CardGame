@@ -51,7 +51,8 @@ var GameLayer = cc.Layer.extend({
 	},
 	callSocket:function(obj){
 		if (obj.Command == WS.CHAR_GET && obj.Return.Code == 0){
-			Gm.getInstance().setCharInfo(JSON.parse(obj.Return.Message));
+			// Gm.getInstance().setCharInfo(JSON.parse(obj.Return.Message));
+			Gm.getInstance().setCharInfo(obj.Return.Message);
 			this.CharInfo.updateInfo();
 		}
 	},
