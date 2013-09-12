@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>KaPai</name>
+	<name>CardGame</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -112,7 +112,7 @@
 		<link>
 			<name>Classes</name>
 			<type>2</type>
-			<location>COCOS2DX/projects/KaPai/Classes</location>
+			<location>COCOS2DX/projects/CardGame/Classes</location>
 		</link>
 		<link>
 			<name>cocos2dx</name>

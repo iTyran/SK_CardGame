@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3B0B58B1-2734-488E-A542-ECEC11EB2455}</ProjectGuid>
-    <RootNamespace>KaPai</RootNamespace>
+    <RootNamespace>CardGame</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -105,10 +105,10 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     </Link>
     <PreBuildEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-if exist "$(OutDir)\KaPaiRes" rd /s /q "$(OutDir)\KaPaiRes"
-mkdir "$(OutDir)\KaPaiRes"
-xcopy "$(ProjectDir)..\..\..\scripting\javascript\bindings\js\*.js" "$(OutDir)\KaPaiRes\" /e /Y
-xcopy "$(ProjectDir)..\Resources" "$(OutDir)\KaPaiRes\" /e /Y</Command>
+if exist "$(OutDir)\CardGameRes" rd /s /q "$(OutDir)\CardGameRes"
+mkdir "$(OutDir)\CardGameRes"
+xcopy "$(ProjectDir)..\..\..\scripting\javascript\bindings\js\*.js" "$(OutDir)\CardGameRes\" /e /Y
+xcopy "$(ProjectDir)..\Resources" "$(OutDir)\CardGameRes\" /e /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Copy js and resource files.</Message>
@@ -158,10 +158,10 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     </Link>
     <PreBuildEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-if exist "$(OutDir)\KaPaiRes" rd /s /q "$(OutDir)\KaPaiRes"
-mkdir "$(OutDir)\KaPaiRes"
-xcopy "$(ProjectDir)..\..\..\scripting\javascript\bindings\js\*.js" "$(OutDir)\KaPaiRes\" /e /Y
-xcopy "$(ProjectDir)..\Resources" "$(OutDir)\KaPaiRes\" /e /Y</Command>
+if exist "$(OutDir)\CardGameRes" rd /s /q "$(OutDir)\CardGameRes"
+mkdir "$(OutDir)\CardGameRes"
+xcopy "$(ProjectDir)..\..\..\scripting\javascript\bindings\js\*.js" "$(OutDir)\CardGameRes\" /e /Y
+xcopy "$(ProjectDir)..\Resources" "$(OutDir)\CardGameRes\" /e /Y</Command>
       <Message>Copy js and resource files.</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>

@@ -1,4 +1,4 @@
-APPNAME="KaPai"
+APPNAME="CardGame"
 
 # options
 
