@@ -5,10 +5,14 @@ var CardGroup = cc.Layer.extend({
 	init:function(){
 		if (this._super()){
 			
-			var card = Card.create();
-			card.setPosition(VisibleRect.center());
-			card.addChild(card.getAnimal());
-			this.addChild(card);
+//			var card = Card.create();
+//			card.setPosition(VisibleRect.center());
+//			card.addChild(card.getAnimal().getNode());
+//			this.addChild(card);
+			var cardGallery = new GalleryLayer();
+			cardGallery.init();
+			cardGallery.setPosition(cc.p(0, -50));
+			this.addChild(cardGallery);
 			this.initLayer();
 
 			return true;
@@ -83,7 +87,6 @@ var GalleryLayer = cc.Layer.extend({
 				// var card = cc.Sprite.create("card.png");
 				// var card = Card.create("card.png");
 				var card = Card.create();
-				
 				card.setPosition(cc.p((this._cardWidth + this._cardDistance) * i, this._contentSize.height / 2));
 				this._colorLayer.addChild(card, 0, i);
 			}
@@ -121,8 +124,14 @@ var GalleryLayer = cc.Layer.extend({
 		var movePoint = touch.getLocationInView();
 		var distance = movePoint.x - this._touchPoint.x;
 		var adjustPoint = cc.p(this._touchOffset.x + distance, 0);
+		if (adjustPoint.x >= 528) {
+			adjustPoint.x = 528;
+		}
+		else if (adjustPoint.x <= -1228) {
+			adjustPoint.x = -1228;
+		}
 		this._scrollView.setContentOffset(adjustPoint, false);
-		cc.log("on touch moved ..");
+		cc.log("on touch moved .. " + adjustPoint.x);
 	},
 	onTouchEnded:function(touch, event){
 		this.adjustScrollView();
@@ -136,6 +145,8 @@ var GalleryLayer = cc.Layer.extend({
 		for (var i = 0; i < 8; i++){
 			var card = this._colorLayer.getChildByTag(i);
 			card.updateDisplay(this._scrollView.getContentOffset(), this._cardWidth + this._cardDistance);
+			var scale = card.getScaleX();
+			card.setScale(scale * 0.75);
 		}		
 	},
 	adjustScrollView:function(){
