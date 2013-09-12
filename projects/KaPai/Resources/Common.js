@@ -2,8 +2,8 @@
 
 // config
 var C = C || {};
-C.DOG = "card_dog";
-C.CAT = "card_cat";
+C.MY = "my";
+C.MONSTER = "monster";
 
 // images 
 var IMG = IMG || {};
@@ -119,6 +119,7 @@ WS.LOGIN = "CM_LOGIN";
 WS.REGISTER = "CM_REGISTER";
 WS.CHAR_CREATE = "CM_CHAR_CREATE";
 WS.CHAR_GET = "CM_CHAR_GET";
+WS.RAID = "CM_RAID";
 
 cc.s_sharedNotificationCenter = null;
 
@@ -377,19 +378,7 @@ var VisibleRect = {
 	}
 };
 
-var LoadingLayer = cc.Layer.extend({
-	init:function(){
-		var loadingBg = cc.Sprite.create(IMG.loadingBg);
-		loadingBg.setPosition(VisibleRect.center());
-		this.addChild(loadingBg);
-
-		var loading = cc.Sprite.create(IMG.loading);
-		loading.setPosition(VisibleRect.center());
-		this.addChild(loading);
-
-		var action = cc.RotateBy.create(2, 360);
-		loading.runAction(cc.RepeatForever.create(action));
-	},
+var ModeLayer = cc.Layer.extend({
 	onEnter:function(){
 		cc.registerTargettedDelegate(cc.MENU_HANDLER_PRIORITY, true, this);
 		this._super();
@@ -400,6 +389,26 @@ var LoadingLayer = cc.Layer.extend({
 	},
 	onTouchBegan:function(){
 		return true;
+	},
+	onTouchEnded:function(){
+		cc.log("touch action");
+	}
+});
+
+var LoadingLayer = ModeLayer.extend({
+	init:function(){
+		if (this._super()){
+			var loadingBg = cc.Sprite.create(IMG.loadingBg);
+			loadingBg.setPosition(VisibleRect.center());
+			this.addChild(loadingBg);
+
+			var loading = cc.Sprite.create(IMG.loading);
+			loading.setPosition(VisibleRect.center());
+			this.addChild(loading);
+
+			var action = cc.RotateBy.create(2, 360);
+			loading.runAction(cc.RepeatForever.create(action));
+		}
 	}
 });
 

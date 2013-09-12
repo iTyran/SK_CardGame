@@ -11,17 +11,19 @@ var FightLayer = cc.Layer.extend({
 	_animalNode: null,
 	_combat: null,
 	
-	init:function(){
+	init:function(combat){
 		cc.log("fight layer init ...");
 		if (this._super()){
 			this._bgOffset = cc.size(98, 92);
 
 			// test start combat
-			var json = cc.FileUtils.getInstance().getStringFromFile("json/combat.json");
-			this._combat = JSON.parse(json);
+			// var json = cc.FileUtils.getInstance().getStringFromFile("json/combat.json");
+			this._combat = combat;
 			this.startCombat();
 
 			this.initDisplay();
+
+			this.combatEnd();
 			
 			return true;
 		}
@@ -33,14 +35,14 @@ var FightLayer = cc.Layer.extend({
 		this._my = [];
 		for(var di in my){
 			var m = my[di];
-			m.Type = C.DOG;
+			m.Type = C.MY;
 			this._my.push(Card.createWithCombat(m));
 		}
 		var monster = this._combat.Monster;
 		this._monster = [];
 		for(var ci in monster){
 			var mon = monster[ci];
-			mon.Type = C.CAT;
+			mon.Type = C.MONSTER;
 			this._monster.push(Card.createWithCombat(mon));
 		}
 		this.initCard();
@@ -49,21 +51,38 @@ var FightLayer = cc.Layer.extend({
 		this.combatAction(0);
 	},
 	combatAction:function(index){
-		if (index < this._combat.Combat.size){
-			// return;
+		if (index >= this._combat.Combat.length){
+			this.combatEnd();
+			return;
 		}
 		var cb = this._combat.Combat[index];
 
-		cc.log("index:" + cb.Attacker);
+		// cc.log("index:" + cb.Attacker);
 
 		var attacker = this.getCardByHash(cb.Attacker);
 		if (attacker){
-			attacker.getAnimal().attack();
+			attacker.attack();
+			// attacker.getAnimal().attack();
 		}
 		var beattacked = this.getCardByHash(cb.Beattacked);
 		if (beattacked){
-			beattacked.getAnimal().hurt();
+			var ba = cc.Sequence.create(cc.DelayTime.create(0.9), cc.CallFunc.create(function(){
+				beattacked.hurt(cb.Damage);
+			}, this));
+			beattacked.runAction(ba);
 		}
+		var action = cc.Sequence.create(cc.DelayTime.create(2), cc.CallFunc.create(function(){
+			var ni = index + 1;
+			this.combatAction(ni);
+		}, this));
+		this.runAction(action);
+	},
+	combatEnd:function(){
+		var end = this._combat.End;
+		cc.log("action end;");
+		var ml = new ModeLayer();
+		ml.init();
+		this.addChild(ml);
 	},
 	getCardByHash:function(hash){
 		for(var mi in this._my){
@@ -98,36 +117,48 @@ var FightLayer = cc.Layer.extend({
 		this._nFight.addChild(node);
 
 		for(var id = 0; id < this._my.length; id++){
-			var dogCard = this._my[id];
-			var scale = dogCard.getScaleX();
-			node.addChild(dogCard);
-			var dog = dogCard.getAnimal().getNode();
+			var myCard = this._my[id];
+			var scale = myCard.getScaleX();
+			node.addChild(myCard);
+			var myAn = myCard.getAnimal().getNode();
 
-			var dcp = dogCard.getPosition();
-			var dp = dog.getPosition();
+			var dcp = myCard.getPosition();
+			var dp = myAn.getPosition();
 			var np = cc.pAdd(dcp, cc.p(0, dp.y * scale));
 			
 			var nd = cc.Node.create();
-			dog.setScale(scale);
-			dog.setPosition(cc.p(dog.getPosition().x, 0));
-			nd.addChild(dog);
+			myAn.setScale(scale);
+			myAn.setPosition(cc.p(myAn.getPosition().x, 0));
+			nd.addChild(myAn);
 
 			this.updatePoint(nd, np);
 			this._animalNode.addChild(nd);
 		}
 			
 		for(var ic = 0; ic < this._monster.length; ic++){
-			var catCard = this._monster[ic];
-			var cat = catCard.getAnimal().getNode();
-			catCard.addChild(cat);
-			// cc.log("position:" + cat.getPosition().x + " " + cat.getPosition().y);
-			node.addChild(catCard);
+			var msCard = this._monster[ic];
+			var cScale = msCard.getScaleX();
+			node.addChild(msCard);
+			var msAn = msCard.getAnimal().getNode();
+
+			var cDcp = msCard.getPosition();
+			var cDp = msAn.getPosition();
+			var dNp = cc.pAdd(cDcp, cc.p(0, cDp.y * cScale));
+
+			var cNd = cc.Node.create();
+			msAn.setScale(cScale);
+			msAn.setPosition(cc.p(msAn.getPosition().x, 0));
+			cNd.addChild(msAn);
+			
+			// msCard.addChild(msAn);
+			this.updatePoint(cNd, dNp);
+			this._animalNode.addChild(cNd);
 		}
 
 	},
 	updatePoint:function(nd, p){
 		var o = cc.p(0, -this._bgSize.height / 2);
-		var xPercent  = Math.abs(p.x) / this._bgSize.width * 2;
+		var xPercent  = -p.x / this._bgSize.width * 2;
 		var yPercent = (p.y + this._bgSize.height / 2) / this._bgSize.height ;
 
 		var xOffset = yPercent * this._bgOffset.width * xPercent;
@@ -147,10 +178,10 @@ var FightLayer = cc.Layer.extend({
 	}
 });
 
-FightLayer.scene = function(){
+FightLayer.scene = function(combat){
 	var scene = cc.Scene.create();
 	var layer = new FightLayer();
-	layer.init();
+	layer.init(combat);
 	scene.addChild(layer);
 	return scene;
 };

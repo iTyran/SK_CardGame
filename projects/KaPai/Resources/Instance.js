@@ -20,7 +20,8 @@ var InstanceLayer = cc.Layer.extend({
 		itemImgBack.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-80, -80)));
 
 		var itemImgFight = cc.MenuItemImage.create(IMG.btn.Instance, IMG.btn.InstancePress, function(){
-			cc.Director.getInstance().replaceScene(FightLayer.scene());
+			Socket.getInstance().send(WS.RAID, {"Scene": 1, "Stage": 1});
+			Gm.getInstance().loading(this);
 		}, this);
 		itemImgFight.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-300, -300)));
 
@@ -31,7 +32,26 @@ var InstanceLayer = cc.Layer.extend({
 	},
 	initMenu:function(){
 
-	}	
+	},
+	onEnter:function(){
+		this._super();
+		Socket.getInstance().addObserver(this, this.callSocket);
+	},
+	onExit:function(){
+		this._super();
+		Socket.getInstance().removeObserver(this);
+	},
+	callSocket:function(obj){
+		if (obj && obj.Command == WS.RAID){
+			if (obj.Return.Code == 0){
+				cc.log(obj);
+				var combat = obj.Return.Message;
+				Gm.getInstance().unLoading(this);				
+				cc.Director.getInstance().replaceScene(FightLayer.scene(combat));
+			}
+		}
+
+	}
 });
 
 InstanceLayer.scene = function(){
@@ -41,8 +61,4 @@ InstanceLayer.scene = function(){
 	scene.addChild(layer);
 	return scene;
 };
-
-
-
-
 
