@@ -6,14 +6,16 @@ var Animal = cc.Class.extend({
 	_center: null,
 
 	_animate: null,
+	_damageLabel: null,
+	_damageLabelAction: null,
 	
 	init:function(node){
 		this._card = node;
 
-		var an = cc.Sprite.create(IMG.dog["001"]);
+		var an = cc.Sprite.create(IMG.animal[this._card.getInfo().ID]);			
 		var cs = an.getContentSize();
 		this._center = cc.p(cs.width / 2, cs.height / 2);
-		this._layer = cc.LayerColor.create(cc.c4b(0, 0, 125, 125), cs.width, cs.height);
+		this._layer = cc.LayerColor.create(cc.c4b(0, 0, 125, 0), cs.width, cs.height);
 		this._layer.setPosition(cc.p(-cs.width / 2, -cs.height / 2 + 50));
 		this._layer.setAnchorPoint(cc.p(0.5, 0));
 		this._layer.addChild(an);
@@ -45,16 +47,21 @@ var Animal = cc.Class.extend({
 			// this._animate.runAction(Utile.getAnimate(0.15, IMG.hurt));
 
 			// damage label
-			var label = cc.LabelTTF.create("-" + damage, "", 60);
-			label.setPosition(cc.pAdd(this._center, cc.p(0, 80)));
-			label.setColor(cc.RED);
-			this._layer.addChild(label);
+			if (!this._damageLabel){
+				var label = cc.LabelTTF.create("-" + damage, "", 60);
+				label.setColor(cc.RED);
+				this._layer.addChild(label);
+				this._damageLabel = label;
+			}
+			this._damageLabel.setString("-" + damage);
+			this._damageLabel.setPosition(cc.pAdd(this._center, cc.p(0, 80)));
 
 			var fadeIn = cc.FadeIn.create(0.3);
 			var fadeOut = cc.FadeOut.create(1.5);
 			var mu = cc.MoveBy.create(1, cc.p(0, 60));
-			var a = cc.Spawn.create(fadeIn, mu);
-			label.runAction(a);
+			var action = cc.Spawn.create(fadeIn, fadeOut, mu);				
+			
+			this._damageLabel.runAction(action);
 		}else{
 			this.unAnimate();
 			this.hurt(damage);
@@ -89,15 +96,27 @@ var Card = cc.Node.extend({
 
 	init:function(info){
 		if (this._super()){
-			this.initLayer();
 			
 			if (info){
 				this._info = info;
 				this._isMonster = info.Type == C.MONSTER;
+			} else{
+				// if info is null, default test value
+				this._info = {
+					"Level": 20,
+					"HP": 20,
+					"Name": "Dog",
+					"ID": "001",
+					"Attack": 25,
+					"Skill":[1, 2]
+				};
+				this._isMonster = false;				
 			}
 			var animal = new Animal();
 			animal.init(this);
 			this._sAnimal = animal;
+			
+			this.initLayer();
 
 			return true;
 		}
@@ -106,11 +125,44 @@ var Card = cc.Node.extend({
 	initLayer:function(){
 		this._node = cc.Node.create();
 		this.addChild(this._node);
+
+		var spriteImg;
+		var statusImg;
+
+		var cardType;
+		if (!this.isMonster()){
+			cardType = IMG.card.my;
+		}else{
+			cardType = IMG.card.monster;
+		}
 		
-		var sprite = cc.Sprite.create(IMG.card.Purple);
-		var status = cc.Sprite.create(IMG.card.Status.Purple);
-		var skillA = cc.Sprite.create(IMG.skill["001"]);
-		var skillB = cc.Sprite.create(IMG.skill["002"]);
+		// set card level
+		if (this._info.Level >= 25){
+			spriteImg = cardType.Purple;
+			statusImg = cardType.Status.Purple;
+		}else if (this._info.Level >= 15){
+			spriteImg = cardType.Orange;
+			statusImg = cardType.Status.Orange;			
+		}else {
+			spriteImg = cardType.Green;
+			statusImg = cardType.Status.Green;
+		}
+		
+		var sprite = cc.Sprite.create(spriteImg);
+		var status = cc.Sprite.create(statusImg);
+
+		// display effect attack img
+		if (this._info.Skill[0] != undefined){
+			var skillA = cc.Sprite.create(IMG.skill[this._info.Skill[0]]);
+			skillA.setPosition(cc.p(237, 185));
+			status.addChild(skillA);			
+		}
+		if (this._info.Skill[1] != undefined){
+			var skillB = cc.Sprite.create(IMG.skill[this._info.Skill[1]]);
+			skillB.setPosition(cc.p(237, 102));
+			status.addChild(skillB);			
+		}
+		
 		var pLevel = cc.Sprite.create(IMG.cardLv);
 		var pHp = cc.Sprite.create(IMG.cardHp);
 
@@ -118,18 +170,14 @@ var Card = cc.Node.extend({
 		// skillB.setTexture(t);
 
 		status.setPosition(cc.p(0, -70));
-		skillA.setPosition(cc.p(237, 185));
-		skillB.setPosition(cc.p(237, 102));
 		pLevel.setPosition(cc.p(42, 78));
-		pHp.setPosition(cc.p(75, 150));
+		pHp.setPosition(cc.p(72, 150));
 		pHp.setScaleX(1);
 		pHp.setAnchorPoint(cc.p(0, 0.5));
 		this._nHp = pHp;
 
 		this._node.addChild(sprite);
 		this._node.addChild(status);
-		status.addChild(skillA);
-		status.addChild(skillB);
 		sprite.addChild(pLevel);
 		sprite.addChild(pHp);
 
@@ -137,7 +185,7 @@ var Card = cc.Node.extend({
 		this._level.setPosition(cc.p(-120, -210));
 		this._node.addChild(this._level);
 
-		this._name = cc.LabelTTF.create("zlong", "", 50);
+		this._name = cc.LabelTTF.create("cd", "", 50);
 		this._name.setPosition(cc.p(0, 208));
 		this._node.addChild(this._name);
 
@@ -153,15 +201,15 @@ var Card = cc.Node.extend({
 		return this._info;
 	},
 	hurt:function(damage){
-		var d = damage;
-		this._damage += damage;
-		if (this._damage > this._info.HP){
+		var hurt = damage;
+		if (this._damage + damage > this._info.HP){
+			hurt = this._info.HP - this._damage;
 			this._damage = this._info.HP;
-			d -= this._damage - this._info.HP;
-			cc.log("leafsoar leafsoar:" + this._damage - this._info.HP);
+		}else{
+			this._damage = this._damage + damage;
 		}
 		this.updateInfo();
-		this._sAnimal.hurt(d);
+		this._sAnimal.hurt(hurt);
 	},
 	updateInfo:function(){
 		var info = this._info;
