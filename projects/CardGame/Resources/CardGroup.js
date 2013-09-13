@@ -11,7 +11,7 @@ var CardGroup = cc.Layer.extend({
 //			this.addChild(card);
 			var cardGallery = new GalleryLayer();
 			cardGallery.init();
-			cardGallery.setPosition(cc.p(0, -50));
+			cardGallery.setPosition(cc.p(0, -85));
 			this.addChild(cardGallery);
 			this.initLayer();
 
@@ -24,6 +24,9 @@ var CardGroup = cc.Layer.extend({
 			cc.Director.getInstance().replaceScene(GameLayer.scene());
 		}, this);
 		itemImgBack.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-80, -80)));
+		var btn1 = cc.Sprite.create(IMG.btn.Back);
+		btn1.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 130)));
+		this.addChild(btn1);
 
 		var menu = cc.Menu.create(itemImgBack);
 		menu.setPosition(cc.p(0, 0));
@@ -116,8 +119,18 @@ var GalleryLayer = cc.Layer.extend({
 	},
     onTouchBegan:function(touch, event) {
 		this._touchPoint = touch.getLocationInView();
-		this._touchOffset = this._scrollView.getContentOffset();
+		cc.log("x = " + this._touchPoint.x + "y = " + this._touchPoint.y);
+		if (this._touchPoint.y >= 300 && this._touchPoint.y <= 655){
+			this._touchOffset = this._scrollView.getContentOffset();
+		}
+		else{
+			this._touchOffset = null;
+		}
 		cc.log("on touch begain ...");		
+		cc.log("Xn = " + this.convertTouchToNodeSpace(touch).x + " Yn = " + this.convertTouchToNodeSpace(touch).y);
+		if ((this._touchPoint.x >= 460 && this._touchPoint.x <= 555) && (this._touchPoint.y >= 200 && this._touchPoint.y <= 670)) {
+			cc.log("Touched logo");
+		}
         return true;
     },
 	onTouchMoved:function(touch, event){ 
