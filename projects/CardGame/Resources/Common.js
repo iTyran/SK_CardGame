@@ -65,14 +65,26 @@ IMG.cardGroupFace = "card_group_face.png";
 
 
 IMG.card = {
-	"Orange": "card_orange.png",
-	"Green": "card_green.png",
-	"Purple": "card_purple.png",
-	"Status": {
-		"Orange": "card_orange_status.png",
-		"Green": "card_green_status.png",
-		"Purple": "card_purple_status.png"
-	}	
+	"my":{
+		"Orange": "card_dog_orange.png",
+		"Green": "card_dog_green.png",
+		"Purple": "card_dog_purple.png",
+		"Status": {
+			"Orange": "card_dog_orange_status.png",
+			"Green": "card_dog_green_status.png",
+			"Purple": "card_dog_purple_status.png"
+		}
+	},
+	"monster":{
+		"Orange": "card_cat_orange.png",
+		"Green": "card_cat_green.png",
+		"Purple": "card_cat_purple.png",
+		"Status": {
+			"Orange": "card_cat_orange_status.png",
+			"Green": "card_cat_green_status.png",
+			"Purple": "card_cat_purple_status.png"
+		}
+	}
 };
 
 IMG.attack = [
@@ -91,12 +103,16 @@ IMG.hurt = [
 	"hurt_3.png"
 ];
 
-IMG.dog = {
-	"001": "card_dog_1.png",
-	"002": "card_dog_2.png",
-	"003": "card_dog_3.png",
-	"004": "card_dog_4.png",
-	"005": "card_dog_5.png"
+IMG.animal = {
+	"001": "card_animal_001.png",
+	"002": "card_animal_002.png",
+	"003": "card_animal_003.png",
+	"004": "card_animal_004.png",
+	"005": "card_animal_005.png",
+	"006": "card_animal_006.png",
+	"007": "card_animal_007.png",
+	"008": "card_animal_008.png",
+	"009": "card_animal_009.png"
 };
 
 IMG.dogFace = {
@@ -107,10 +123,9 @@ IMG.dogFace = {
 	"005": "card_dog_face_5.png"
 };
 
-IMG.skill = {
-	"001": "card_skill_1.png",
-	"002": "card_skill_2.png"
-};
+IMG.skill = [];
+IMG.skill[1] = "card_skill_1.png";
+IMG.skill[2] = "card_skill_2.png";
 
 var WS = WS || {};
 
