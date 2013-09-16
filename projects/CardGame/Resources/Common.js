@@ -87,6 +87,16 @@ IMG.card = {
 	}
 };
 
+IMG.level = {
+	"bg": "level_bg.png",
+	"1": "level_1.png",
+	"1Press": "level_1_press.png",
+	"1_1": "level_1_1.png",
+	"1_2": "level_1_2.png",
+	"1_3": "level_1_3.png",
+	"1_4": "level_1_4.png"
+};
+
 IMG.attack = [
 	"attack_1.png",
 	"attack_2.png",
@@ -112,7 +122,8 @@ IMG.animal = {
 	"006": "card_animal_006.png",
 	"007": "card_animal_007.png",
 	"008": "card_animal_008.png",
-	"009": "card_animal_009.png"
+	"009": "card_animal_009.png",
+	"010": "card_animal_010.png"
 };
 
 IMG.dogFace = {

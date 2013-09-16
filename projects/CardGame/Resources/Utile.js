@@ -26,6 +26,7 @@ var MoveLayer = cc.LayerColor.extend({
 		if (this.getParent()){
 			var p = this.getParent().getPosition();
 			var c = cc.pSub(p, VisibleRect.center());
+			// var c = cc.pSub(p, VisibleRect.top());
 			var str = "p:(" + p.x + "," + p.y + ")\n";
 			str += "c:(" + c.x + "," + c.y + ")\n";
 			this._label.setString(str);

@@ -4,6 +4,7 @@ var Animal = cc.Class.extend({
 	_layer: null,
 	_card: null,
 	_center: null,
+	_animal: null,
 
 	_animate: null,
 	_damageLabel: null,
@@ -20,6 +21,8 @@ var Animal = cc.Class.extend({
 		this._layer.setAnchorPoint(cc.p(0.5, 0));
 		this._layer.addChild(an);
 		an.setPosition(this._center);
+
+		this._animal = an;
 	},
 	getNode:function(){
 		return this._layer;
@@ -72,9 +75,15 @@ var Animal = cc.Class.extend({
 			this._animate.removeFromParent();
 			this._animate = null;
 		}
+	},
+	die:function(){
+		var t1 = cc.TintTo.create(0.5, 200, 0, 0);
+		var t2 = cc.TintTo.create(1, 100, 100, 100);
+		var action = cc.Sequence.create(t1, t2);
+		this._animal.runAction(action);
+
 	}
-}
-							);
+});
 
 var Card = cc.Node.extend({
 	
@@ -208,6 +217,10 @@ var Card = cc.Node.extend({
 		}else{
 			this._damage = this._damage + damage;
 		}
+		
+		if (this._damage == this._info.HP)
+			this._sAnimal.die();
+
 		this.updateInfo();
 		this._sAnimal.hurt(hurt);
 	},
@@ -217,7 +230,7 @@ var Card = cc.Node.extend({
 		this._name.setString(info.Name);
 		this._hp.setString((info.HP - this._damage) + "/" + info.HP);
 		this._atk.setString(info.Attack);
-		this._nHp.setScale(1 - this._damage / info.HP);
+		this._nHp.setScaleX(1 - this._damage / info.HP);
 	},
 	getAnimal:function(){
 		return this._sAnimal;
