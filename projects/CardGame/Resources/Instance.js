@@ -29,6 +29,7 @@ var InstanceLayer = cc.Layer.extend({
 		menu.setPosition(cc.p(0, 0));
 		this.addChild(menu);
 
+		
 	},
 	initMenu:function(){
 

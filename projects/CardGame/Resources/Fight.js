@@ -20,11 +20,8 @@ var FightLayer = cc.Layer.extend({
 			// var json = cc.FileUtils.getInstance().getStringFromFile("json/combat.json");
 			this._combat = combat;
 			this.startCombat();
-
 			this.initDisplay();
 
-			this.combatEnd();
-			
 			return true;
 		}
 		return false;
@@ -80,9 +77,31 @@ var FightLayer = cc.Layer.extend({
 	combatEnd:function(){
 		var end = this._combat.End;
 		cc.log("action end;");
+		// var ml = new ModeLayer();
+		// ml.init();
+		// this.addChild(ml);
+
+		// add combat result layer
+
 		var ml = new ModeLayer();
-		ml.init();
+		ml.init(this);
+		
+		var endLayer = cc.LayerColor.create(cc.c4b(0, 0, 0, 192), VisibleRect.rect().width, VisibleRect.rect().height);
+		endLayer.setPosition(cc.p(0, 0));
+		ml.addChild(endLayer);
 		this.addChild(ml);
+		
+		var lblExperience = cc.LabelTTF.create("Experience: " + this._combat.End.Experience, "", 66);
+		cc.log("result:" + this._combat.End.Result);
+		var lblisWin = cc.LabelTTF.create(this._combat.End.Result ? "You Win !": "You Lost !", "", 66);
+		lblExperience.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 100)));
+		lblisWin.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, -100)));
+		endLayer.addChild(lblExperience);
+		endLayer.addChild(lblisWin);
+	},
+	modelLayerTouch:function(){
+		// cc.log("action mode layer touch ");
+		cc.Director.getInstance().replaceScene(InstanceLayer.scene());
 	},
 	getCardByHash:function(hash){
 		for(var mi in this._my){
@@ -104,10 +123,12 @@ var FightLayer = cc.Layer.extend({
 		this._nFight.setAnchorPoint(cc.p(0.5 ,0));
 
 		this._animalNode = cc.Node.create();
-		this._animalNode.setPosition(cc.p(cs.width / 2, cs.height / 2));
 
 		var p = cc.pSub(VisibleRect.topRight(), cc.p(cs.width, cs.height));
-		this.setPosition(cc.p(p.x / 2, p.y / 2));
+		// this.setPosition(cc.p(p.x / 2, p.y / 2));
+		this._nFight.setPosition(cc.p(p.x / 2, p.y / 2));
+		this._animalNode.setPosition(cc.pAdd(cc.p(cs.width / 2, cs.height / 2), cc.p(p.x / 2, p.y / 2)));
+		
 		this.addChild(this._nFight);		
 		this.addChild(this._animalNode);
 

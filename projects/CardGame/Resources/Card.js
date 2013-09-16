@@ -31,7 +31,7 @@ var Animal = cc.Class.extend({
 				this._animate.setFlipX(true);
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(30, 0)));
 			this._layer.addChild(this._animate);
-			this._animate.runAction(Utile.getAnimate(0.1, IMG.attack, this.unAnimate, this));
+			this._animate.runAction(Utile.getAnimate(0.08, IMG.attack, this.unAnimate, this));
 			// this._animate.runAction(Utile.getAnimate(0.1, IMG.attack));
 		}else{
 			this.unAnimate();
@@ -43,7 +43,7 @@ var Animal = cc.Class.extend({
 			this._animate = cc.Sprite.create(IMG.hurt[0]);
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(0, 0)));
 			this._layer.addChild(this._animate);
-			this._animate.runAction(Utile.getAnimate(0.12, IMG.hurt, this.unAnimate, this));
+			this._animate.runAction(Utile.getAnimate(0.10, IMG.hurt, this.unAnimate, this));
 			// this._animate.runAction(Utile.getAnimate(0.15, IMG.hurt));
 
 			// damage label
