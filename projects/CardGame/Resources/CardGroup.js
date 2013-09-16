@@ -1,5 +1,5 @@
 // CardGroup.js
-	_tag: 0;
+
 var CardGroup = cc.Layer.extend({
 	_gallery: null,
 	init:function(){
@@ -41,11 +41,12 @@ var CardGroup = cc.Layer.extend({
 		var dogFace5 = cc.Sprite.create(IMG.dogFace["005"]);
 
 		CardGroup.setPosition(cc.p(450, 650));
-		dogFace1.setPosition(cc.p(150, 650));
-		dogFace2.setPosition(cc.p(300, 650));
+		CardGroup.setScaleX(1.1);
+		dogFace1.setPosition(cc.p(100, 650));
+		dogFace2.setPosition(cc.p(275, 650));
 		dogFace3.setPosition(cc.p(450, 650));
-		dogFace4.setPosition(cc.p(600, 650));
-		dogFace5.setPosition(cc.p(750, 650));
+		dogFace4.setPosition(cc.p(625, 650));
+		dogFace5.setPosition(cc.p(800, 650));
 
 		this.addChild(CardGroup);
 		this.addChild(dogFace1);
@@ -56,9 +57,6 @@ var CardGroup = cc.Layer.extend({
 		
 
 		return;
-	},
-	showCardData:function(){
-
 	}
 });
 
@@ -82,6 +80,7 @@ var GalleryLayer = cc.Layer.extend({
 	_touchPoint: null,
 	_touchOffset: null,
 	_adjustPoint: null,
+	_tag: 0,
 	init:function(){
 		if (this._super()){
 			
@@ -110,15 +109,13 @@ var GalleryLayer = cc.Layer.extend({
 		}
 	},
 	showCardData:function(){
-		cc.log("function is called!");
-		cc.log("adjustPoint is :" + this._adjustPoint);
 		if (this._adjustPoint != null) {
 			_tag = 2 - parseInt(this._adjustPoint.x / 200);
 		}
 		else{
 			_tag = 2;
 		}
-		cc.log("tag = " + _tag);
+		cc.log("Info:" + this._colorLayer.getChildByTag(_tag).getInfo().Name);
 	},
 	addCard:function(){
 		// cc.log("gallery layer init..");
@@ -136,7 +133,6 @@ var GalleryLayer = cc.Layer.extend({
 	},
     onTouchBegan:function(touch, event) {
 		this._touchPoint = touch.getLocationInView();
-		cc.log("x = " + this._touchPoint.x + "y = " + this._touchPoint.y);
 		if (this._touchPoint.y >= 300 && this._touchPoint.y <= 655){
 			this._touchOffset = this._scrollView.getContentOffset();
 		}
@@ -144,10 +140,6 @@ var GalleryLayer = cc.Layer.extend({
 			this._touchOffset = null;
 		}
 		cc.log("on touch begain ...");		
-		cc.log("Xn = " + this.convertTouchToNodeSpace(touch).x + " Yn = " + this.convertTouchToNodeSpace(touch).y);
-		if ((this._touchPoint.x >= 460 && this._touchPoint.x <= 555) && (this._touchPoint.y >= 200 && this._touchPoint.y <= 670)) {
-			cc.log("Touched logo");
-		}
         return true;
     },
 	onTouchMoved:function(touch, event){ 
