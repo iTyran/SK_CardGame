@@ -1,7 +1,7 @@
 // CardGroup.js
-
-
+	_tag: 0;
 var CardGroup = cc.Layer.extend({
+	_gallery: null,
 	init:function(){
 		if (this._super()){
 			
@@ -9,12 +9,12 @@ var CardGroup = cc.Layer.extend({
 //			card.setPosition(VisibleRect.center());
 //			card.addChild(card.getAnimal().getNode());
 //			this.addChild(card);
-			var cardGallery = new GalleryLayer();
+			var cardGallery = new GalleryLayer(); 
 			cardGallery.init();
 			cardGallery.setPosition(cc.p(0, -85));
 			this.addChild(cardGallery);
 			this.initLayer();
-
+			this._gallery = cardGallery;
 			return true;
 		}
 		return false;
@@ -24,11 +24,12 @@ var CardGroup = cc.Layer.extend({
 			cc.Director.getInstance().replaceScene(GameLayer.scene());
 		}, this);
 		itemImgBack.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-80, -80)));
-		var btn1 = cc.Sprite.create(IMG.btn.Back);
-		btn1.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 130)));
-		this.addChild(btn1);
+		var getCardData = cc.MenuItemImage.create(IMG.btn.Back, IMG.btn.BackPress, function(){
+			this._gallery.showCardData();
+		}, this);
+		getCardData.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 130)));
 
-		var menu = cc.Menu.create(itemImgBack);
+		var menu = cc.Menu.create(itemImgBack, getCardData);
 		menu.setPosition(cc.p(0, 0));
 		this.addChild(menu);
 		var CardGroup = cc.Scale9Sprite.create(IMG.cardGroup);
@@ -52,8 +53,12 @@ var CardGroup = cc.Layer.extend({
 		this.addChild(dogFace3);
 		this.addChild(dogFace4);
 		this.addChild(dogFace5);
+		
 
 		return;
+	},
+	showCardData:function(){
+
 	}
 });
 
@@ -76,6 +81,7 @@ var GalleryLayer = cc.Layer.extend({
 
 	_touchPoint: null,
 	_touchOffset: null,
+	_adjustPoint: null,
 	init:function(){
 		if (this._super()){
 			
@@ -102,6 +108,17 @@ var GalleryLayer = cc.Layer.extend({
 			
 			this.updateDisplay();
 		}
+	},
+	showCardData:function(){
+		cc.log("function is called!");
+		cc.log("adjustPoint is :" + this._adjustPoint);
+		if (this._adjustPoint != null) {
+			_tag = 2 - parseInt(this._adjustPoint.x / 200);
+		}
+		else{
+			_tag = 2;
+		}
+		cc.log("tag = " + _tag);
 	},
 	addCard:function(){
 		// cc.log("gallery layer init..");
@@ -137,11 +154,12 @@ var GalleryLayer = cc.Layer.extend({
 		var movePoint = touch.getLocationInView();
 		var distance = movePoint.x - this._touchPoint.x;
 		var adjustPoint = cc.p(this._touchOffset.x + distance, 0);
+		this._adjustPoint = adjustPoint;
 		if (adjustPoint.x >= 528) {
 			adjustPoint.x = 528;
 		}
 		else if (adjustPoint.x <= -1228) {
-			adjustPoint.x = -1228;
+			adjustPoint.x = -1199;
 		}
 		this._scrollView.setContentOffset(adjustPoint, false);
 		cc.log("on touch moved .. " + adjustPoint.x);
