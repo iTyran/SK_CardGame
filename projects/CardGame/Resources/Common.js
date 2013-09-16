@@ -394,6 +394,10 @@ var VisibleRect = {
 };
 
 var ModeLayer = cc.Layer.extend({
+	_delegate: null,
+	init:function(delegate){
+		this._delegate = delegate;
+	},
 	onEnter:function(){
 		cc.registerTargettedDelegate(cc.MENU_HANDLER_PRIORITY, true, this);
 		this._super();
@@ -406,7 +410,9 @@ var ModeLayer = cc.Layer.extend({
 		return true;
 	},
 	onTouchEnded:function(){
-		cc.log("touch action");
+		// cc.log("touch action");
+		if (this._delegate)
+			this._delegate.modelLayerTouch();
 	}
 });
 
