@@ -82,6 +82,7 @@ private:
     pthread_t  _subThreadInstance;
     WebSocket* _ws;
     bool _needQuit;
+    bool _isQuited;
     friend class WebSocket;
 };
 
@@ -108,6 +109,7 @@ public:
 WsThreadHelper::WsThreadHelper()
 : _ws(NULL)
 , _needQuit(false)
+, _isQuited(false)
 {
     _UIWsMessageQueue = new std::list<WsMessage*>();
     pthread_mutex_init(&_UIWsMessageQueueMutex, NULL);
@@ -170,7 +172,8 @@ void* WsThreadHelper::wsThreadEntryFunc(void* arg)
     }
     
     _ws->onSubThreadEnded();
-
+    _isQuited = true;
+    
     return (void*)0;
 }
 
@@ -647,6 +650,14 @@ void WebSocket::onUIThreadReceiveMessage(WsMessage* msg)
             break;
         case WS_MSG_TO_UITHREAD_CLOSE:
             {
+                // wait subThread exit to avoid the crash on _ws->onSubThreadEnded()
+                while (!_wsHelper->_isQuited) {
+#ifdef WIN32
+                    Sleep(50);
+#else
+                    usleep(50000);
+#endif
+                }
                 _delegate->onClose(this);
             }
             break;
