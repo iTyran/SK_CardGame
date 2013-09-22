@@ -355,6 +355,12 @@ Card.create = function(type, index){
 	return card;
 };
 
+Card.createWithInfo = function(info){
+	var card = Card.createWithCombat(info);
+	card._node.addChild(card.getAnimal().getNode());
+	return card;
+};
+
 Card.createWithCombat = function(info){
 	var card = new Card();
 	card.init(info);

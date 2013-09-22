@@ -5,10 +5,6 @@ var CardGroup = cc.Layer.extend({
 	init:function(){
 		if (this._super()){
 			
-//			var card = Card.create();
-//			card.setPosition(VisibleRect.center());
-//			card.addChild(card.getAnimal().getNode());
-//			this.addChild(card);
 			var cardGallery = new GalleryLayer(); 
 			cardGallery.init();
 			cardGallery.setPosition(cc.p(0, -85));
@@ -23,13 +19,13 @@ var CardGroup = cc.Layer.extend({
 		var itemImgBack = cc.MenuItemImage.create(IMG.btn.Back, IMG.btn.BackPress, function(){
 			cc.Director.getInstance().replaceScene(GameLayer.scene());
 		}, this);
-		itemImgBack.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-80, -80)));
-		var getCardData = cc.MenuItemImage.create(IMG.btn.Back, IMG.btn.BackPress, function(){
-			this._gallery.showCardData();
-		}, this);
-		getCardData.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 130)));
+		itemImgBack.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-65, -120)));
+		// var getCardData = cc.MenuItemImage.create(IMG.btn.Back, IMG.btn.BackPress, function(){
+			// this._gallery.showCardData();
+		// }, this);
+		// getCardData.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 130)));
 
-		var menu = cc.Menu.create(itemImgBack, getCardData);
+		var menu = cc.Menu.create(itemImgBack);
 		menu.setPosition(cc.p(0, 0));
 		this.addChild(menu);
 		var CardGroup = cc.Scale9Sprite.create(IMG.cardGroup);
@@ -90,13 +86,16 @@ var GalleryLayer = cc.Layer.extend({
 			this._cardHeight = 290;
 			this._contentSize = VisibleRect.winSize();
 			// this._contentSize = cc.size(1024, 768 / 2);
-
-			for (var i = 0; i < 8; i++){
-				// var card = cc.Sprite.create("card.png");
-				// var card = Card.create("card.png");
-				var card = Card.create();
-				card.setPosition(cc.p((this._cardWidth + this._cardDistance) * i, this._contentSize.height / 2));
-				this._colorLayer.addChild(card, 0, i);
+			
+			var json = cc.FileUtils.getInstance().getStringFromFile("json/cardGroup.json");
+			var cards = JSON.parse(json).cards;
+			
+			for(var i in cards){
+				var card = cards[i];
+				cc.log(card.Name);
+				var cd = Card.createWithInfo(card);
+				cd.setPosition(cc.p((this._cardWidth + this._cardDistance) * i, this._contentSize.height / 2));
+				this._colorLayer.addChild(cd, 0, i);
 			}
 
 			// this.addChild(this._colorLayer);
