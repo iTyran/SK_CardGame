@@ -49,7 +49,7 @@ try{
 	// director.runWithScene(GameLayer.scene());
 	director.runWithScene(LoginLayer.scene());
 	// director.runWithScene(FightLayer.scene());
-	// director.runWithScene(CharacterLayer.scene());
+	// director.runWithScene(CharacterLayer.scene());
 
 	var winSize = VisibleRect.winSize();
 	cc.log("winSize width: " + winSize.width + " height: " + winSize.height);

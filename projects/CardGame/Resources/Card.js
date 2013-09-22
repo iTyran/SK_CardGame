@@ -27,7 +27,77 @@ var Animal = cc.Class.extend({
 	getNode:function(){
 		return this._layer;
 	},
-	attack:function(){
+	attack:function(effect){
+		if (effect){
+			if (effect > 0){
+				var ac = cc.ScaleBy.create(0.3, 1.3);
+				this._layer.runAction(cc.Sequence.create(ac, ac.reverse()));
+			}
+			if (effect == 1){
+				var effectAtk = cc.Layer.create();
+				effectAtk.setPosition(cc.pSub(cc.p(0, 0), VisibleRect.center()));
+				this._layer.getParent().getParent().addChild(effectAtk);
+
+				var etk2 = cc.Sprite.create(IMG.attackEffect["1_2"]);
+				// etk2.setPosition(cc.pAdd(VisibleRect.center(), cc.p(0, 80)));
+				etk2.setPosition(cc.pAdd(VisibleRect.center(), cc.p(250, 700)));
+				var actionEtk2 = cc.MoveTo.create(0.3, cc.pAdd(VisibleRect.center(), cc.p(0, 80)));
+				var actionEtk2_2 = cc.MoveTo.create(0.5, cc.pAdd(VisibleRect.center(), cc.p(250, 700)));
+				var actionE2 = cc.Sequence.create(
+					cc.DelayTime.create(0.6),
+					actionEtk2, cc.CallFunc.create(function(){
+
+					var etk1l = cc.Sprite.create(IMG.attackEffect["1_1"]);
+					etk1l.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-340, -135)));
+
+					var etk1r = cc.Sprite.create(IMG.attackEffect["1_1"]);
+					etk1r.setFlipX(true);
+					etk1r.setPosition(cc.pAdd(VisibleRect.center(), cc.p(325, -125)));
+
+					var fadeOut = cc.FadeOut.create(0.1);
+					etk1l.runAction(fadeOut);
+					etk1r.runAction(fadeOut.copy());
+
+					effectAtk.addChild(etk1l);
+					effectAtk.addChild(etk1r);				
+					
+				}), actionEtk2_2, cc.CallFunc.create(function(){
+					this.removeFromParent();
+				}, effectAtk));
+				etk2.runAction(actionE2);
+				effectAtk.addChild(etk2);
+			} else if (effect  == 2){
+				var effectAtk2 = cc.Layer.create();
+				effectAtk2.setPosition(cc.pSub(cc.p(0, 0), VisibleRect.center()));
+				this._layer.getParent().getParent().addChild(effectAtk2);
+
+				// var sprite = cc.Sprite.create(IMG.attackEffect["2_1"]);
+				var sprite = cc.Sprite.create();
+				sprite.setPosition(VisibleRect.center());
+				effectAtk2.addChild(sprite);
+
+				var ea2 = cc.Animation.create();
+				for(var i = 1; i < 7; i++){
+					var frameName = "attack_effect_2_" + i + ".png";
+					ea2.addSpriteFrameWithFile(frameName);
+				}
+				ea2.setDelayPerUnit(0.08);
+
+				sprite.runAction(cc.Sequence.create(
+					cc.DelayTime.create(0.6),
+					cc.Animate.create(ea2),
+					cc.FadeOut.create(0.3)));
+				effectAtk2.runAction(cc.Sequence.create(
+					cc.DelayTime.create(0.6),					
+					cc.DelayTime.create(1.0),
+					cc.CallFunc.create(function(){
+						this.removeFromParent();
+					}, effectAtk2)
+				));
+			
+			}
+			return;
+		}
 		if (!this._animate){
 			this._animate = cc.Sprite.create(IMG.attack[0]);
 			if (this._card.isMonster())
@@ -41,14 +111,23 @@ var Animal = cc.Class.extend({
 			this.attack();
 		}
 	},
-	hurt:function(damage){
+	hurt:function(damage, effect){
 		if (!this._animate){
 			this._animate = cc.Sprite.create(IMG.hurt[0]);
 			this._animate.setPosition(cc.pAdd(this._center, cc.p(0, 0)));
 			this._layer.addChild(this._animate);
-			this._animate.runAction(Utile.getAnimate(0.10, IMG.hurt, this.unAnimate, this));
-			// this._animate.runAction(Utile.getAnimate(0.15, IMG.hurt));
-
+			if (!effect){
+				this._animate.runAction(
+					Utile.getAnimate(0.10, IMG.hurt, this.unAnimate, this)
+				);				
+			}else{
+				this._animate.runAction(
+					Utile.getAnimate(0.10, IMG.hurt, function(){
+						this._animate.setFlipX(true);
+						this._animate.runAction(Utile.getAnimate(0.10, IMG.hurt, this.unAnimate, this));
+					}, this)
+				);			
+			}
 			// damage label
 			if (!this._damageLabel){
 				var label = cc.LabelTTF.create("-" + damage, "", 60);
@@ -209,7 +288,7 @@ var Card = cc.Node.extend({
 	getInfo:function(){
 		return this._info;
 	},
-	hurt:function(damage){
+	hurt:function(damage, effect){
 		var hurt = damage;
 		if (this._damage + damage > this._info.HP){
 			hurt = this._info.HP - this._damage;
@@ -222,7 +301,7 @@ var Card = cc.Node.extend({
 			this._sAnimal.die();
 
 		this.updateInfo();
-		this._sAnimal.hurt(hurt);
+		this._sAnimal.hurt(hurt, effect);
 	},
 	updateInfo:function(){
 		var info = this._info;
@@ -251,8 +330,8 @@ var Card = cc.Node.extend({
 		var offset = cc.p(x * x* x* 30, 0);
 		this._node.setPosition(offset);
 	},
-	attack:function(){
-		this._sAnimal.attack();
+	attack:function(effect){
+		this._sAnimal.attack(effect);
 	}
 });
 

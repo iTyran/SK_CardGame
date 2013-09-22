@@ -29,7 +29,7 @@ var GameLayer = cc.Layer.extend({
 			cc.log("card upgrade");
 		}, this);
 		var itemImgCardGroup = cc.MenuItemImage.create(IMG.btn.CardGroup, IMG.btn.CardGroupPress, function(){
-			cc.Director.getInstance().replaceScene(CardGroup.scene());
+//			cc.Director.getInstance().replaceScene(CardGroup.scene());
 		}, this);
 		
 		itemImgInstance.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-200, -200)));

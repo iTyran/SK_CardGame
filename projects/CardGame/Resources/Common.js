@@ -107,6 +107,17 @@ IMG.attack = [
 	"attack_7.png"
 ];
 
+IMG.attackEffect = {
+	"1_1": "attack_effect_1_1.png",
+	"1_2": "attack_effect_1_2.png",
+	"2_1": "attack_effect_2_1.png",
+	"2_2": "attack_effect_2_2.png",
+	"2_3": "attack_effect_2_3.png",
+	"2_4": "attack_effect_2_4.png",
+	"2_5": "attack_effect_2_5.png",
+	"2_6": "attack_effect_2_6.png"
+};
+
 IMG.hurt = [
 	"hurt_1.png",
 	"hurt_2.png",

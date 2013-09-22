@@ -22,6 +22,7 @@ var FightLayer = cc.Layer.extend({
 			this.startCombat();
 			this.initDisplay();
 
+			
 			return true;
 		}
 		return false;
@@ -49,26 +50,42 @@ var FightLayer = cc.Layer.extend({
 	},
 	combatAction:function(index){
 		if (index >= this._combat.Combat.length){
-			this.combatEnd();
+			this.runAction(cc.Sequence.create(
+				cc.DelayTime.create(0.6),
+				cc.CallFunc.create(function(){
+					this.combatEnd();
+				}, this)
+			));
 			return;
 		}
 		var cb = this._combat.Combat[index];
 
-		// cc.log("index:" + cb.Attacker);
-
 		var attacker = this.getCardByHash(cb.Attacker);
-		if (attacker){
-			attacker.attack();
-			// attacker.getAnimal().attack();
-		}
 		var beattacked = this.getCardByHash(cb.Beattacked);
-		if (beattacked){
+
+		if (!attacker || !beattacked)
+			return;
+
+		var delay = 2;
+		if (cb.Skill > 0){
+			// effect attack
+			attacker.attack(cb.Skill);
+			beattacked.runAction(cc.Sequence.create(
+				cc.DelayTime.create(1.4),
+				cc.CallFunc.create(function(){
+					beattacked.hurt(cb.Damage, true);
+				})
+			));
+			delay = 2.5;
+		} else {
+			// normal attack
+			attacker.attack(0);
 			var ba = cc.Sequence.create(cc.DelayTime.create(0.9), cc.CallFunc.create(function(){
 				beattacked.hurt(cb.Damage);
 			}, this));
 			beattacked.runAction(ba);
 		}
-		var action = cc.Sequence.create(cc.DelayTime.create(2), cc.CallFunc.create(function(){
+		var action = cc.Sequence.create(cc.DelayTime.create(delay), cc.CallFunc.create(function(){
 			var ni = index + 1;
 			this.combatAction(ni);
 		}, this));
