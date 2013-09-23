@@ -16,8 +16,10 @@ IMG.loadingBg = "loading_bg.png";
 IMG.editBox = "edit_box.png";
 IMG.loginBox = "login_box.png";
 
-IMG.bgMain = "bg_instance.png";
+IMG.bgMain = "bg_main.png";
 IMG.bgInstance = "bg_instance.png";
+IMG.bgLoading = "bg_loading.png";
+IMG.bgFight = "bg_fight.png";
 
 IMG.btn = {
 	"Login": "btn_login.png",
@@ -419,6 +421,7 @@ var ModeLayer = cc.Layer.extend({
 	_delegate: null,
 	init:function(delegate){
 		this._delegate = delegate;
+		return true;
 	},
 	onEnter:function(){
 		cc.registerTargettedDelegate(cc.MENU_HANDLER_PRIORITY, true, this);
@@ -438,7 +441,7 @@ var ModeLayer = cc.Layer.extend({
 	}
 });
 
-var LoadingLayer = ModeLayer.extend({
+var LoadingMode = ModeLayer.extend({
 	init:function(){
 		if (this._super()){
 			var loadingBg = cc.Sprite.create(IMG.loadingBg);
@@ -452,6 +455,7 @@ var LoadingLayer = ModeLayer.extend({
 			var action = cc.RotateBy.create(2, 360);
 			loading.runAction(cc.RepeatForever.create(action));
 		}
+		return true;
 	}
 });
 

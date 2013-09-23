@@ -32,10 +32,10 @@ var GameLayer = cc.Layer.extend({
 			cc.Director.getInstance().replaceScene(CardGroup.scene());
 		}, this);
 		
-		itemImgInstance.setPosition(cc.pAdd(VisibleRect.topRight(), cc.p(-200, -200)));
-		itemImgShop.setPosition(cc.pAdd(VisibleRect.bottomRight(), cc.p(-180, 180)));
+		itemImgInstance.setPosition(cc.pAdd(VisibleRect.center(), cc.p(270, 170)));
+		itemImgShop.setPosition(cc.pAdd(VisibleRect.center(), cc.p(180, -150)));
 		itemImgCardUpgrade.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-220, 90)));
-		itemImgCardGroup.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-150, -200)));
+		itemImgCardGroup.setPosition(cc.pAdd(VisibleRect.center(), cc.p(-300, -160)));
 
 		var menu = cc.Menu.create(itemImgInstance, itemImgShop, itemImgCardUpgrade, itemImgCardGroup);
 		menu.setPosition(cc.p(0, 0));

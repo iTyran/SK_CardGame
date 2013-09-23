@@ -17,7 +17,7 @@ var Gm = cc.Class.extend({
 	},
 	loading:function(node){
 		if (!this._loadingParent){
-			var layer = new LoadingLayer();
+			var layer = new LoadingMode();
 			layer.init();
 			node.addChild(layer);
 			this._loadingNode = layer;

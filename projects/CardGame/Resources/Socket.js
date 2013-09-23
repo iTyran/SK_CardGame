@@ -19,14 +19,18 @@ var Socket = cc.Class.extend({
 			this._webSocket = new WebSocket(this._uri);
 			this._webSocket.onopen = function(){
 				cc.log("ws:onopen websocket uri:" + this._uri);
-				delegate.onOpen();
+				if (delegate)
+					delegate.onOpen();
 			};
 			this._webSocket.onerror = function(evt){
 				cc.log("ws:onerror:" + evt.data);
-				delegate.onError();
+				if (delegate)				
+					delegate.onError();
 			},
 			this._webSocket.onclose = function(evt){
 				cc.log("ws:onclose:" + evt.data);
+				if (delegate)				
+					delegate.onClose();
 			},
 			this._webSocket.onmessage = this.onmessage;
 			return true;

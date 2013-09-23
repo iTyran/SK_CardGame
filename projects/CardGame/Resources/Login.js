@@ -242,23 +242,16 @@ var LoginLayer = cc.Layer.extend({
 			this.winSize = cc.Director.getInstance().getWinSize();
 			this.initLayer();
 
-			if(Socket.getInstance().init(this)){
-				Gm.getInstance().loading(this);				
-			}
+			var user = Gm.getInstance().getCacheLoginUser();
+			this._loginName.setText(user.Username);
+			this._loginPwd.setText(user.Password);
+
+			// if(Socket.getInstance().init()){
+				// Gm.getInstance().loading(this);				
+			// }
+			
 		}
 		return true;
-	},
-	onOpen:function(){
-		cc.log("login on open .");
-		Gm.getInstance().unLoading();
-
-		// get user cache
-		var user = Gm.getInstance().getCacheLoginUser();
-		this._loginName.setText(user.Username);
-		this._loginPwd.setText(user.Password);
-	},
-	onError:function(){
-		cc.log("login on error .");		
 	},
 	initLayer:function(){
 		var backGround = cc.Sprite.create(IMG.loginBackGround);
@@ -357,6 +350,43 @@ var LoginLayer = cc.Layer.extend({
 		this._showMessage.setString(text ? text: "");
 	}		
 });
+
+var LoadingLayer = cc.Layer.extend({
+	init:function(){
+		if (this._super()){
+			var background = cc.Sprite.create(IMG.bgLoading);
+			background.setPosition(VisibleRect.center());
+			this.addChild(background);
+
+			// socket connect test
+			if(Socket.getInstance().init(this)){
+				Gm.getInstance().loading(this);				
+			}
+			return true;
+		}
+		return false;
+	},
+	onOpen:function(){
+		cc.log("login on open .");
+		Gm.getInstance().unLoading();
+		
+		cc.Director.getInstance().replaceScene(LoginLayer.scene());
+	},
+	onError:function(){
+		cc.log("login on error .");		
+	},
+	onClose:function(){
+		
+	}
+});
+
+LoadingLayer.scene = function(){
+	var scene = cc.Scene.create();
+	var layer = new LoadingLayer();
+	layer.init();
+	scene.addChild(layer);
+	return scene;
+};
 
 
 LoginLayer.scene = function(){

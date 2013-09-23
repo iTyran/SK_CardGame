@@ -4,18 +4,28 @@ var CardGroup = cc.Layer.extend({
 	_gallery: null,
 	init:function(){
 		if (this._super()){
+			this.initLayer();
 			
 			var cardGallery = new GalleryLayer(); 
 			cardGallery.init();
 			cardGallery.setPosition(cc.p(0, -85));
 			this.addChild(cardGallery);
-			this.initLayer();
 			this._gallery = cardGallery;
 			return true;
 		}
 		return false;
 	},
 	initLayer:function(){
+		// set background image
+		var background = cc.Sprite.create(IMG.bgLoading);
+		background.setPosition(VisibleRect.center());
+		this.addChild(background);
+
+		var size = VisibleRect.rect();
+		var bgColor = cc.LayerColor.create(cc.c4b(0, 0, 0, 175), size.width, size.height);
+		this.addChild(bgColor);
+		
+		
 		var itemImgBack = cc.MenuItemImage.create(IMG.btn.Back, IMG.btn.BackPress, function(){
 			cc.Director.getInstance().replaceScene(GameLayer.scene());
 		}, this);
@@ -29,7 +39,7 @@ var CardGroup = cc.Layer.extend({
 		menu.setPosition(cc.p(0, 0));
 		this.addChild(menu);
 		var CardGroup = cc.Scale9Sprite.create(IMG.cardGroup);
-		CardGroup.setContentSize(cc.size(800, 160));
+		CardGroup.setContentSize(cc.size(880, 180));
 		var dogFace1 = cc.Sprite.create(IMG.dogFace["001"]);
 		var dogFace2 = cc.Sprite.create(IMG.dogFace["002"]);
 		var dogFace3 = cc.Sprite.create(IMG.dogFace["003"]);
@@ -37,7 +47,6 @@ var CardGroup = cc.Layer.extend({
 		var dogFace5 = cc.Sprite.create(IMG.dogFace["005"]);
 
 		CardGroup.setPosition(cc.p(450, 650));
-		CardGroup.setScaleX(1.1);
 		dogFace1.setPosition(cc.p(100, 650));
 		dogFace2.setPosition(cc.p(275, 650));
 		dogFace3.setPosition(cc.p(450, 650));
@@ -50,7 +59,6 @@ var CardGroup = cc.Layer.extend({
 		this.addChild(dogFace3);
 		this.addChild(dogFace4);
 		this.addChild(dogFace5);
-		
 
 		return;
 	}
@@ -86,7 +94,8 @@ var GalleryLayer = cc.Layer.extend({
 			this._cardHeight = 290;
 			this._contentSize = VisibleRect.winSize();
 			// this._contentSize = cc.size(1024, 768 / 2);
-			
+
+			// card group test data
 			var json = cc.FileUtils.getInstance().getStringFromFile("json/cardGroup.json");
 			var cards = JSON.parse(json).cards;
 			
