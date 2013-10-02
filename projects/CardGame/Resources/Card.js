@@ -259,7 +259,7 @@ var Card = cc.Node.extend({
 
 		status.setPosition(cc.p(0, -70));
 		pLevel.setPosition(cc.p(42, 78));
-		pHp.setPosition(cc.p(72, 150));
+		pHp.setPosition(cc.p(70, 148));
 		pHp.setScaleX(1);
 		pHp.setAnchorPoint(cc.p(0, 0.5));
 		this._nHp = pHp;

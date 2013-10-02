@@ -16,6 +16,11 @@ var FightLayer = cc.Layer.extend({
 		if (this._super()){
 			this._bgOffset = cc.size(98, 92);
 
+			// set bacground
+			var background = cc.Sprite.create(IMG.bgFight);
+			background.setPosition(VisibleRect.center());
+			this.addChild(background);
+
 			// test start combat
 			// var json = cc.FileUtils.getInstance().getStringFromFile("json/combat.json");
 			this._combat = combat;
@@ -136,7 +141,7 @@ var FightLayer = cc.Layer.extend({
 		var fightBackground = cc.Sprite.create(IMG.fightBackground);
 		var cs = fightBackground.getContentSize();
 		this._bgSize = cs;
-		this._nFight = cc.LayerColor.create(cc.c4b(255, 0, 0, 100), cs.width, cs.height);
+		this._nFight = cc.LayerColor.create(cc.c4b(255, 0, 0, 0), cs.width, cs.height);
 		this._nFight.setAnchorPoint(cc.p(0.5 ,0));
 
 		this._animalNode = cc.Node.create();
