@@ -1,5 +1,8 @@
 # Starter Kit 猫狗大战 卡牌客户端
 
+##更多源码
+
+![iTyran](http://bbs.ityran.com/forum-61-1.html)
 
 ##宣传画
 ![bg](./catanddog.png)
