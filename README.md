@@ -4,6 +4,10 @@
 
 [泰然源码](http://bbs.ityran.com/forum-61-1.html "iTyran")
 
+##加入我们
+
+[泰然教程组](http://www.ityran.com/about/#1 "Team iTyran")
+
 ##宣传画
 ![bg](./catanddog.png)
 
