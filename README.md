@@ -1,22 +1,22 @@
 # Starter Kit 猫狗大战 卡牌客户端
 
-##更多源码
+## 更多源码
 
 [泰然源码](http://bbs.ityran.com/forum-61-1.html "iTyran")
 
-##加入我们
+## 加入我们
 
 [泰然教程组](http://www.ityran.com/about/#1 "Team iTyran")
 
-##宣传画
+## 宣传画
 ![bg](./catanddog.png)
 
-##视频地址
+## 视频地址
 
 [优酷视频](http://v.youku.com/v_show/id_XNjE1NDI3NzI4.html "youku")
 
 
-##Cocos2d-x版本
+## Cocos2d-x版本
 
 基于：Cocos2d-x 2.1.5 
 
@@ -24,14 +24,14 @@
 
 作者：u0u0（刘克男）,一叶（刘雪锋），Iven（杨雍）
 
-##目录结构
+## 目录结构
 
 客户端工程目录
 
 	projects/CardGame
 	
 	
-##测试包下载
+## 测试包下载
 
 客户端测试包下载（ipa+apk）：
 
@@ -41,9 +41,9 @@
 
 ![iTyran](./weixin.jpeg)
 
-##服务器下载
+## 服务器下载
 
-###属性
+### 属性
 
 语言：Golang
 
@@ -51,11 +51,11 @@
 
 作者：u0u0（刘克男）
 
-###下载地址：
+### 下载地址：
 
 [Server下载](http://bbs.ityran.com/thread-10041-1-1.html "Server Download")
 
-###接口示例
+### 接口示例
 
 #### Login module
 
